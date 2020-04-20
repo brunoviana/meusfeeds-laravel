@@ -19,7 +19,7 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
             return null;
         }
 
-        return $feedModel->getEntity();
+        return $feedModel->entity();
     }
 
     public function save(Feed $feed) : int

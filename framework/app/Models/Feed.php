@@ -16,7 +16,7 @@ class Feed extends Model
         return $this;
     }
 
-    public function getEntity() : FeedEntity
+    public function entity() : FeedEntity
     {
         $feed = new FeedEntity($this->titulo, $this->link_rss);
 
