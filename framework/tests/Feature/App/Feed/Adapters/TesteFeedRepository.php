@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Feed\Adapters;
 
 use App\Feed\Interfaces\FeedRepositoryInterface;
+use App\Feed\Responses\CriarNovoFeedResponse;
 
 use Domain\Feed\Entities\Feed;
 
@@ -19,10 +20,12 @@ class TesteFeedRepository implements FeedRepositoryInterface
         }
     }
 
-    public function save(Feed $feed)
+    public function save(Feed $feed) : CriarNovoFeedResponse
     {
         $this->feeds[] = $feed;
 
-        return true;
+        $feed->id(count($this->feeds));
+
+        return new CriarNovoFeedResponse($feed);
     }
 }

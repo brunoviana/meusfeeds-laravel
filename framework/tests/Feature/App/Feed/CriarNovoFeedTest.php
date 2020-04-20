@@ -8,7 +8,10 @@ use Tests\Feature\App\Feed\Adapters\TesteFeedRepository;
 
 use App\Feed\UseCases\CriarNovoFeed;
 use App\Feed\Requests\CriarNovoFeedRequest;
+use App\Feed\Responses\CriarNovoFeedResponse;
 use App\Feed\Exceptions\FeedJaExisteException;
+
+use Domain\Feed\Entities\Feed;
 
 class CriarNovoFeedTest extends TestCase
 {
@@ -24,9 +27,11 @@ class CriarNovoFeedTest extends TestCase
         $request = new CriarNovoFeedRequest('Novo Feed', 'https://brunoviana.dev/rss.xml');
         $criarFeed = new CriarNovoFeed($request, $this->feedRepository);
 
-        $this->assertTrue(
-            $criarFeed->executar()
-        );
+        $response = $criarFeed->executar();
+
+        $this->assertInstanceOf(CriarNovoFeedResponse::class, $response);
+        $this->assertInstanceOf(Feed::class, $response->feed());
+        $this->assertEquals(1, $response->feed()->id());
     }
 
     public function test_Deve_Validar_Feed_Ja_Existente()

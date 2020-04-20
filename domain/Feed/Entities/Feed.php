@@ -22,7 +22,7 @@ class Feed
             $this->id = $id;
         }
         
-        return $id;
+        return $this->id;
     }
 
     public function titulo()
