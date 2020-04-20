@@ -19,7 +19,7 @@ class Feed
         return $this->titulo;
     }
 
-    public function linkRSS()
+    public function linkRss()
     {
         return $this->linkRss;
     }
