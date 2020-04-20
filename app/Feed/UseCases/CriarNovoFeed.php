@@ -3,6 +3,7 @@
 namespace App\Feed\UseCases;
 
 use App\Feed\Requests\CriarNovoFeedRequest;
+use App\Feed\Responses\CriarNovoFeedResponse;
 use App\Feed\Interfaces\FeedRepositoryInterface;
 use App\Feed\Exceptions\FeedJaExisteException;
 
@@ -33,6 +34,12 @@ class CriarNovoFeed
             $this->request->linkRss()
         );
 
-        return $this->feedRepository->save($feed);
+        $id = $this->feedRepository->save($feed);
+
+        $feed->id($id);
+
+        $response = new CriarNovoFeedResponse($feed);
+
+        return $response;
     }
 }

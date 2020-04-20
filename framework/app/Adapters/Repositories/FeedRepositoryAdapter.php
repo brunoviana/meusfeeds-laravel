@@ -15,16 +15,12 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
     {
     }
 
-    public function save(Feed $feed) : CriarNovoFeedResponse
+    public function save(Feed $feed) : int
     {
         $feedModel = new FeedModel();
         $feedModel->map($feed);
         $feedModel->save();
 
-        $feed->id($feedModel->id);
-
-        $response = new CriarNovoFeedResponse($feed);
-
-        return $response;
+        return $feedModel->id;
     }
 }
