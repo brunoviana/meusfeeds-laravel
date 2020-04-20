@@ -6,7 +6,7 @@ use Domain\Feed\Entities\Feed;
 
 interface FeedRepositoryInterface
 {
-    public function buscaFeedComLink(string $link);
+    public function buscarPeloLink(string $link);
 
-    public function save(Feed $feed);
+    public function save(Feed $feed) : int;
 }
