@@ -13,6 +13,13 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
 {
     public function buscarPeloLink(string $link)
     {
+        $feedModel = FeedModel::where('link_rss', $link)->first();
+
+        if (!$feedModel) {
+            return null;
+        }
+
+        return $feedModel->getEntity();
     }
 
     public function save(Feed $feed) : int

@@ -9,11 +9,6 @@ class CriarNovoFeedPorAPITest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
     public function test_Api_Deve_Criar_Feed_Com_Sucesso()
     {
         $params = [
@@ -27,5 +22,22 @@ class CriarNovoFeedPorAPITest extends TestCase
                 ->assertJsonFragment(array_merge($params, [
                     'id' => 1
                 ]));
+    }
+
+    public function test_Api_Deve_Retornar_Erro_Se_Feed_Ja_Existir()
+    {
+        $params = [
+            'titulo' => 'Blog do Bruno',
+            'link_rss' => 'https://brunoviana.dev/rss.xml'
+        ];
+
+        $this->post('/api/feeds', $params);
+
+        $response = $this->post('/api/feeds', $params);
+
+        $response->assertStatus(422)
+                ->assertJson([
+                    'message' => 'Este feed já está cadastrado'
+                ]);
     }
 }

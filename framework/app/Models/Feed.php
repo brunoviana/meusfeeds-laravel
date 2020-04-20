@@ -15,4 +15,13 @@ class Feed extends Model
 
         return $this;
     }
+
+    public function getEntity() : FeedEntity
+    {
+        $feed = new FeedEntity($this->titulo, $this->link_rss);
+
+        $feed->id($this->id);
+
+        return $feed;
+    }
 }

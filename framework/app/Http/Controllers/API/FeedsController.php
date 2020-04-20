@@ -45,14 +45,21 @@ class FeedsController extends Controller
 
         $criarFeed = new CriarNovoFeed($criarFeedRequest, $feedRepositoryAdapter);
 
-        $criarFeedResponse = $criarFeed->executar();
-        $feed = $criarFeedResponse->feed();
+        try {
+            $criarFeedResponse = $criarFeed->executar();
 
-        return (new FeedResource(
-            FeedModel::find($feed->id())
-        ))
-        ->response()
-        ->setStatusCode(201);
+            $feed = $criarFeedResponse->feed();
+
+            return (new FeedResource(
+                FeedModel::find($feed->id())
+            ))
+            ->response()
+            ->setStatusCode(201);
+        } catch (FeedJaExisteException $e) {
+            return response()->json([
+                'message' => 'Este feed já está cadastrado'
+            ], 422);
+        }
     }
 
     /**
