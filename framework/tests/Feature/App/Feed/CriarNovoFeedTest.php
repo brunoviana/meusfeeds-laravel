@@ -3,8 +3,9 @@
 namespace Tests\Feature\App\Feed;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use Tests\TestCase;
-use Tests\Feature\App\Feed\Adapters\TesteFeedRepository;
+use Tests\Feature\App\Feed\Adapters\ArrayFeedRepositoryAdapter;
 
 use App\Feed\UseCases\CriarNovoFeed;
 use App\Feed\Requests\CriarNovoFeedRequest;
@@ -19,7 +20,7 @@ class CriarNovoFeedTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->feedRepository = new TesteFeedRepository();
+        $this->feedRepository = new ArrayFeedRepositoryAdapter();
     }
 
     public function test_Deve_Criar_Novo_Feed_Com_Sucesso()

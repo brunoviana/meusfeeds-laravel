@@ -7,7 +7,7 @@ use App\Feed\Responses\CriarNovoFeedResponse;
 
 use Domain\Feed\Entities\Feed;
 
-class TesteFeedRepository implements FeedRepositoryInterface
+class ArrayFeedRepositoryAdapter implements FeedRepositoryInterface
 {
     protected $feeds = [];
 
