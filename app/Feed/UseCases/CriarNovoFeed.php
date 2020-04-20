@@ -22,7 +22,7 @@ class CriarNovoFeed
 
     public function executar()
     {
-        $feed = $this->feedRepository->buscaFeedComLink($this->request->linkRss());
+        $feed = $this->feedRepository->buscarPeloLink($this->request->linkRss());
 
         if ($feed) {
             throw new FeedJaExisteException('Já existe um feed com esse link');

@@ -10,7 +10,7 @@ class TesteFeedRepository implements FeedRepositoryInterface
 {
     protected $feeds = [];
 
-    public function buscaFeedComLink(string $link)
+    public function buscarPeloLink(string $link)
     {
         foreach ($this->feeds as $feed) {
             if ($feed->linkRss() == $link) {
