@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\App\Feed\Adapters;
 
-use App\Feed\Interfaces\FeedRepositoryInterface;
+use App\Feed\Interfaces\Repositories\FeedRepositoryInterface;
 
 use Domain\Feed\Entities\Feed;
 

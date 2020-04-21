@@ -4,7 +4,7 @@ namespace App\Feed\UseCases;
 
 use App\Feed\Requests\CriarNovoFeedRequest;
 use App\Feed\Responses\CriarNovoFeedResponse;
-use App\Feed\Interfaces\FeedRepositoryInterface;
+use App\Feed\Interfaces\Repositories\FeedRepositoryInterface;
 use App\Feed\Exceptions\FeedJaExisteException;
 
 use Domain\Feed\Entities\Feed;

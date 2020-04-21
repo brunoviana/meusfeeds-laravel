@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Feed\Interfaces;
+namespace App\Feed\Interfaces\Repositories;
 
 use Domain\Feed\Entities\Feed;
 
