@@ -5,28 +5,36 @@ namespace Tests\Feature\App\Feed;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use Tests\TestCase;
-use Tests\Feature\App\Feed\Adapters\ArrayFeedRepositoryAdapter;
 
 use App\Feed\UseCases\CriarNovoFeed;
 use App\Feed\Requests\CriarNovoFeedRequest;
 use App\Feed\Responses\CriarNovoFeedResponse;
 use App\Feed\Exceptions\FeedJaExisteException;
+use App\Feed\Interfaces\Repositories\FeedRepositoryInterface;
 
 use Domain\Feed\Entities\Feed;
 
 class CriarNovoFeedTest extends TestCase
 {
-    protected $feedRepository;
-
-    protected function setUp() : void
-    {
-        $this->feedRepository = new ArrayFeedRepositoryAdapter();
-    }
-
     public function test_Deve_Criar_Novo_Feed_Com_Sucesso()
     {
-        $request = new CriarNovoFeedRequest('Novo Feed', 'https://brunoviana.dev/rss.xml');
-        $criarFeed = new CriarNovoFeed($request, $this->feedRepository);
+        $this->mock(FeedRepositoryInterface::class, function ($mock) {
+            $mock->shouldReceive('buscarPeloLink')
+                    ->andReturn(null);
+
+            $mock->shouldReceive('save')
+                    ->andReturn(1);
+        });
+
+        $this->mock(CriarNovoFeedRequest::class, function ($mock) {
+            $mock->shouldReceive('titulo')
+                    ->andReturn('Novo Feed');
+
+            $mock->shouldReceive('linkRss')
+                    ->andReturn('https://brunoviana.dev/rss.xml');
+        });
+
+        $criarFeed = app(CriarNovoFeed::class);
 
         $response = $criarFeed->executar();
 
@@ -39,12 +47,25 @@ class CriarNovoFeedTest extends TestCase
     {
         $this->expectException(FeedJaExisteException::class);
 
-        $request = new CriarNovoFeedRequest('Novo Feed', 'https://brunoviana.dev/rss.xml');
+        $this->mock(FeedRepositoryInterface::class, function ($mock) {
+            $mock->shouldReceive('buscarPeloLink')
+                    ->andReturn(new Feed('Novo Feed', 'https://brunoviana.dev/rss.xml'));
 
-        $criarFeed = new CriarNovoFeed($request, $this->feedRepository);
+            $mock->shouldNotReceive('save');
+        });
+
+        $this->mock(CriarNovoFeedRequest::class, function ($mock) {
+            $mock->shouldReceive('titulo')
+                    ->andReturn('Novo Feed');
+
+            $mock->shouldReceive('linkRss')
+                    ->andReturn('https://brunoviana.dev/rss.xml');
+        });
+
+        $criarFeed = app(CriarNovoFeed::class);
         $criarFeed->executar();
 
-        $criarFeedRepetido = new CriarNovoFeed($request, $this->feedRepository);
+        $criarFeedRepetido = app(CriarNovoFeed::class);
         $criarFeedRepetido->executar();
     }
 }
