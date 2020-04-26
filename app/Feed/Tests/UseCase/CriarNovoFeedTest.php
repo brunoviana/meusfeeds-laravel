@@ -2,10 +2,7 @@
 
 namespace App\Feed\Tests\UseCase;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
 use App\Feed\Tests\TestCase;
-
 use App\Feed\UseCases\CriarNovoFeed;
 use App\Feed\Requests\CriarNovoFeedRequest;
 use App\Feed\Responses\CriarNovoFeedResponse;
@@ -18,7 +15,7 @@ class CriarNovoFeedTest extends TestCase
 {
     public function test_Deve_Criar_Novo_Feed_Com_Sucesso()
     {
-        $this->mock(FeedRepositoryInterface::class, function ($mock) {
+        $this->makeMock(FeedRepositoryInterface::class, function ($mock) {
             $mock->shouldReceive('buscarPeloLink')
                     ->andReturn(null);
 
@@ -26,7 +23,7 @@ class CriarNovoFeedTest extends TestCase
                     ->andReturn(1);
         });
 
-        $this->mock(CriarNovoFeedRequest::class, function ($mock) {
+        $this->makeMock(CriarNovoFeedRequest::class, function ($mock) {
             $mock->shouldReceive('titulo')
                     ->andReturn('Novo Feed');
 
@@ -34,7 +31,7 @@ class CriarNovoFeedTest extends TestCase
                     ->andReturn('https://brunoviana.dev/rss.xml');
         });
 
-        $criarFeed = app(CriarNovoFeed::class);
+        $criarFeed = $this->getInstance(CriarNovoFeed::class);
 
         $response = $criarFeed->executar();
 
@@ -47,7 +44,7 @@ class CriarNovoFeedTest extends TestCase
     {
         $this->expectException(FeedJaExisteException::class);
 
-        $this->mock(FeedRepositoryInterface::class, function ($mock) {
+        $this->makeMock(FeedRepositoryInterface::class, function ($mock) {
             $mock->shouldReceive('buscarPeloLink')
                     ->andReturn(new Feed('Novo Feed', 'https://brunoviana.dev/rss.xml'));
 
@@ -62,10 +59,10 @@ class CriarNovoFeedTest extends TestCase
                     ->andReturn('https://brunoviana.dev/rss.xml');
         });
 
-        $criarFeed = app(CriarNovoFeed::class);
+        $criarFeed = $this->getInstance(CriarNovoFeed::class);
         $criarFeed->executar();
 
-        $criarFeedRepetido = app(CriarNovoFeed::class);
+        $criarFeedRepetido = $this->getInstance(CriarNovoFeed::class);
         $criarFeedRepetido->executar();
     }
 }

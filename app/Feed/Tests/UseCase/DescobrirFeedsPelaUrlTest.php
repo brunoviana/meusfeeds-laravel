@@ -2,11 +2,9 @@
 
 namespace App\Feed\Tests\UseCase;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-use App\Feed\Tests\TestCase;
 use DMS\PHPUnitExtensions\ArraySubset\Assert;
 
+use App\Feed\Tests\TestCase;
 use App\Feed\UseCases\DescobrirFeedsPelaUrl;
 use App\Feed\Requests\DescobrirFeedsPelaUrlRequest;
 use App\Feed\Responses\DescobrirFeedsPelaUrlResponse;
