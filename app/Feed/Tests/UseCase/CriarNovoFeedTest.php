@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Feature\App\Feed;
+namespace App\Feed\Tests\UseCase;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use Tests\TestCase;
+use App\Feed\Tests\TestCase;
 
 use App\Feed\UseCases\CriarNovoFeed;
 use App\Feed\Requests\CriarNovoFeedRequest;
