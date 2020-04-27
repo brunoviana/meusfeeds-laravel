@@ -1,10 +1,10 @@
 <?php
 
-namespace Framework\Http\Resources;
+namespace Framework\Http\Resources\Feed;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Feed extends JsonResource
+class FeedResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

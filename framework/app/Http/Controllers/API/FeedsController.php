@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 use Framework\Http\Controllers\Controller;
 use Framework\Models\Feed as FeedModel;
 use Framework\Adapters\Repositories\FeedRepositoryAdapter;
-use Framework\Http\Resources\Feed as FeedResource;
+use Framework\Adapters\Feed\Services\BuscadorDeFeedsService\FeedIoAdapter;
+use Framework\Http\Resources\Feed\FeedResource;
+use Framework\Http\Resources\Feed\FeedsDescobertosResource;
 
 use App\Feed\UseCases\CriarNovoFeed;
 use App\Feed\Requests\CriarNovoFeedRequest;
-use App\Feed\Responses\CriarNovoFeedResponse;
 use App\Feed\Exceptions\FeedJaExisteException;
+
+use App\Feed\Requests\DescobrirFeedsPelaUrlRequest;
+use App\Feed\UseCases\DescobrirFeedsPelaUrl;
 
 use Domain\Feed\Entities\Feed;
 
@@ -94,5 +98,27 @@ class FeedsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function descobrir(Request $request)
+    {
+        $descobrirFeedsRequest = new DescobrirFeedsPelaUrlRequest(
+            $request->input('url')
+        );
+
+        $buscadorDeFeed = app(FeedIoAdapter::class);
+
+        $descobrirFeeds = new DescobrirFeedsPelaUrl(
+            $descobrirFeedsRequest,
+            $buscadorDeFeed
+        );
+
+        $response = $descobrirFeeds->executar();
+
+        $feeds = $response->feeds();
+
+        return (new FeedsDescobertosResource(collect($feeds)))
+                    ->response()
+                    ->setStatusCode(200);
     }
 }
