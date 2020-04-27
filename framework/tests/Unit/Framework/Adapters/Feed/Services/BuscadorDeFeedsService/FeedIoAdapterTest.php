@@ -8,50 +8,93 @@ use Tests\TestCase;
 
 use Framework\Adapters\Feed\Services\BuscadorDeFeedsService\FeedIoAdapter;
 
-// use Framework\Models\Feed as FeedModel;
-
-// use App\Feed\Responses\CriarNovoFeedResponse;
-
-// use Domain\Feed\Entities\Feed;
-
 class FeedIoAdapterTest extends TestCase
 {
     use RefreshDatabase;
 
     public function test_FeedIoAdapter_Deve_Buscar_Feeds_Com_Sucesso()
     {
+        $this->criaFeedIoMocks();
+
         $feedAdapter = app(FeedIoAdapter::class);
 
-        $feedAdapter->buscar('https://brunoviana.dev');
+        $result = $feedAdapter->buscar('https://brunoviana.dev');
 
-        // dd($feedAdapter);
-        // $feedIo = \FeedIo\Factory::create()->getFeedIo();
-
-        // dd($feedIo);
+        $this->assertCount(1, $result);
+        $this->assertArraySubset([
+            'titulo' => 'Blog do Bruno',
+            'link_rss' => 'https://brunoviana.dev',
+            'descricao' => 'Este é o meu blog',
+            'ultimos_artigos' => [
+                'Artigo 1',
+                'Artigo 2',
+                'Artigo 3',
+            ]
+        ], $result[0]);
     }
 
-    // public function test_FeedRepository_Deve_Feed_Buscar_Pelo_Link()
-    // {
-    //     factory(FeedModel::class, 1)->create([
-    //         'titulo' => 'Blog do Bruno',
-    //         'link_rss' => 'https://brunoviana.dev/rss.xml'
-    //     ]);
+    public function test_FeedIoAdapter_Deve_Retornar_Apenas_3_Artigos()
+    {
+        $this->criaFeedIoMocks([
+            'feed_itens' => [
+                'Artigo 1',
+                'Artigo 2',
+                'Artigo 3',
+                'Artigo 4',
+                'Artigo 5',
+            ]
+        ]);
 
-    //     $repository = new FeedRepositoryAdapter();
-    //     $feed = $repository->buscarPeloLink('https://brunoviana.dev/rss.xml');
+        $feedAdapter = app(FeedIoAdapter::class);
 
-    //     $this->assertInstanceOf(Feed::class, $feed);
-    //     $this->assertEquals('Blog do Bruno', $feed->titulo());
-    // }
+        $result = $feedAdapter->buscar('https://brunoviana.dev');
 
-    // public function test_FeedRepository_Deve_Savar_E_Retornar_Response()
-    // {
-    //     $feed = new Feed('Blog do Bruno', 'https://brunoviana.dev/rss.xml');
+        $this->assertCount(3, $result[0]['ultimos_artigos']);
+    }
 
-    //     $repository = new FeedRepositoryAdapter();
-    //     $id = $repository->save($feed);
+    public function criaFeedIoMocks($params = [])
+    {
+        $params = array_merge([
+            'feed_rss' => '/rss.xml',
+            'feed_title' => 'Blog do Bruno',
+            'feed_link' => 'https://brunoviana.dev',
+            'feed_description' => 'Este é o meu blog',
+            'feed_itens' => [
+                'Artigo 1',
+                'Artigo 2',
+                'Artigo 3',
+            ]
+        ], $params);
 
-    //     $this->assertEquals(1, $id);
-    //     $this->assertCount(1, FeedModel::all());
-    // }
+        $artigoFeedMock = app(\FeedIo\Feed::class);
+
+        foreach ($params['feed_itens'] as $feedItem) {
+            $artigoMock = $this->mock(\FeedIo\Feed\Item::class, function ($mock) use ($feedItem) {
+                $mock->shouldReceive('getTitle')->andReturn($feedItem);
+            });
+
+            $artigoFeedMock->add($artigoMock);
+        }
+
+        $feedResultMock = $this->mock(\FeedIo\FeedInterface::class, function ($mock) use ($params) {
+            $mock->shouldReceive('getTitle')->andReturn($params['feed_title']);
+            $mock->shouldReceive('getLink')->andReturn($params['feed_link']);
+            $mock->shouldReceive('getDescription')->andReturn($params['feed_description']);
+        });
+
+        $readResult = $this->mock(\FeedIo\Reader\Result::class, function ($mock) use ($artigoFeedMock, $feedResultMock) {
+            $mock->shouldReceive('getFeed')->andReturn(
+                $artigoFeedMock,
+                $feedResultMock
+            );
+        });
+
+        $this->mock(\FeedIo\FeedIo::class, function ($mock) use ($readResult, $params) {
+            $mock->shouldReceive('discover')->andReturn([
+                $params['feed_rss']
+            ]);
+
+            $mock->shouldReceive('read')->andReturn($readResult);
+        });
+    }
 }

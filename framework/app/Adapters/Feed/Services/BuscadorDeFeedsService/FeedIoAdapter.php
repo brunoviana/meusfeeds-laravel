@@ -34,9 +34,8 @@ class FeedIoAdapter implements BuscadorDeFeedsServiceInterface
 
             $ultimosArtigos = [];
 
-            // Só quero os 3 primeiros
             foreach ($result->getFeed() as $indice => $artigo) {
-                if ($indice == 3) {
+                if ($indice == 3) { // Só quero os 3 primeiros
                     break;
                 }
 
