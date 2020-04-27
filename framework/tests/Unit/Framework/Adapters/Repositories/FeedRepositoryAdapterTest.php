@@ -31,7 +31,7 @@ class FeedRepositoryAdapterTest extends TestCase
         $this->assertEquals('Blog do Bruno', $feed->titulo());
     }
 
-    public function test_FeedRepository_Deve_Savar_E_Retornar_Response()
+    public function test_FeedRepository_Deve_Salvar_E_Retornar_Response()
     {
         $feed = new Feed('Blog do Bruno', 'https://brunoviana.dev/rss.xml');
 
