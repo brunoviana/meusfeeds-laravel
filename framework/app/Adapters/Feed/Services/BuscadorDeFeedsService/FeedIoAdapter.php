@@ -15,41 +15,64 @@ class FeedIoAdapter implements BuscadorDeFeedsServiceInterface
         $this->feedIo = $feedIo;
     }
 
-    public function buscar(string $url) : array
+    public function corrigeUrlDaBusca($url)
     {
         if (substr($url, -1) != '/') {
             $url .= '/';
         }
 
-        $feeds = $this->feedIo->discover($url);
+        return $url;
+    }
 
-        $feedsEncontrados = [];
+    public function corrigeUrlDoFeed($url, $feedUrl)
+    {
+        if (substr($feedUrl, 0, 4) != 'http') {
+            $feedUrl = $url . $feedUrl;
+        }
 
-        foreach ($feeds as $feed) {
-            if (substr($feed, 0, 4) != 'http') {
-                $feed = $url . $feed;
-            }
+        return $feedUrl;
+    }
 
-            $result = $this->feedIo->read($feed);
+    public function montaArrayDeFeed($feed)
+    {
+        return [
+            'titulo' => $feed->getTitle(),
+            'link_rss' => $feed->getLink(),
+            'descricao' => $feed->getDescription(),
+        ];
+    }
+
+    public function buscar(string $url) : array
+    {
+        $url = $this->corrigeUrlDaBusca($url);
+
+        $feedsDescobertos = $this->feedIo->discover($url);
+
+        $feeds = [];
+
+        foreach ($feedsDescobertos as $feed) {
+            $feedUrl = $this->corrigeUrlDoFeed($url, $feed);
+
+            $feedsEncontrados = $this->feedIo->read($feed);
 
             $ultimosArtigos = [];
 
-            foreach ($result->getFeed() as $indice => $artigo) {
-                if ($indice == 3) { // Só quero os 3 primeiros
+            foreach ($feedsEncontrados->getFeed() as $indice => $artigo) {
+                if ($indice == 3) {
                     break;
                 }
 
                 $ultimosArtigos[] = $artigo->getTitle();
             }
 
-            $feedsEncontrados[] = [
-                'titulo' => $result->getFeed()->getTitle(),
-                'link_rss' => $result->getFeed()->getLink(),
-                'descricao' => $result->getFeed()->getDescription(),
-                'ultimos_artigos' => $ultimosArtigos,
-            ];
+            $feeds[] = array_merge(
+                $this->montaArrayDeFeed($feedsEncontrados->getFeed()),
+                [
+                    'ultimos_artigos' => $ultimosArtigos
+                ]
+            );
         }
 
-        return $feedsEncontrados;
+        return $feeds;
     }
 }
