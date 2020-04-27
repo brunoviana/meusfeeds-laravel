@@ -2,8 +2,6 @@
 
 namespace App\Feed\Tests\UseCase;
 
-use DMS\PHPUnitExtensions\ArraySubset\Assert;
-
 use App\Feed\UseCases\DescobrirFeedsPelaUrl;
 use App\Feed\Requests\DescobrirFeedsPelaUrlRequest;
 use App\Feed\Responses\DescobrirFeedsPelaUrlResponse;
@@ -44,7 +42,7 @@ trait DescobrirFeedsPelaUrlTest
 
         $this->assertInstanceOf(DescobrirFeedsPelaUrlResponse::class, $response);
         $this->assertIsArray($response->feeds());
-        Assert::assertArraySubset([
+        $this->assertArraySubset([
             'titulo' => 'Blog do Bruno',
             'link_rss' => 'https://brunoviana.dev/',
             'descricao' => 'Este é meu blog',
