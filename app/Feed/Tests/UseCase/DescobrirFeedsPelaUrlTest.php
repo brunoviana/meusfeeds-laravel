@@ -4,22 +4,25 @@ namespace App\Feed\Tests\UseCase;
 
 use DMS\PHPUnitExtensions\ArraySubset\Assert;
 
-use App\Feed\Tests\TestCase;
 use App\Feed\UseCases\DescobrirFeedsPelaUrl;
 use App\Feed\Requests\DescobrirFeedsPelaUrlRequest;
 use App\Feed\Responses\DescobrirFeedsPelaUrlResponse;
 use App\Feed\Interfaces\Services\BuscadorDeFeedsServiceInterface;
 
-class DescobrirFeedsPelaUrlTest extends TestCase
+trait DescobrirFeedsPelaUrlTest
 {
+    abstract protected function makeMock($class, $assertions);
+
+    abstract protected function getInstance($class);
+
     public function test_Deve_Descobrir_Feeds_Pela_Url_Com_Sucesso()
     {
-        $this->mock(DescobrirFeedsPelaUrlRequest::class, function ($mock) {
+        $this->makeMock(DescobrirFeedsPelaUrlRequest::class, function ($mock) {
             $mock->shouldReceive('url')
                     ->andReturn('https://brunoviana.dev/');
         });
 
-        $this->mock(BuscadorDeFeedsServiceInterface::class, function ($mock) {
+        $this->makeMock(BuscadorDeFeedsServiceInterface::class, function ($mock) {
             $mock->shouldReceive('buscar')
                     ->andReturn([
                         [
@@ -35,7 +38,7 @@ class DescobrirFeedsPelaUrlTest extends TestCase
                     ]);
         });
 
-        $descobrirFeeds = app(DescobrirFeedsPelaUrl::class);
+        $descobrirFeeds = $this->getInstance(DescobrirFeedsPelaUrl::class);
 
         $response = $descobrirFeeds->executar();
 

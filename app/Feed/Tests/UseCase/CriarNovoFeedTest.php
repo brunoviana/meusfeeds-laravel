@@ -2,7 +2,6 @@
 
 namespace App\Feed\Tests\UseCase;
 
-use App\Feed\Tests\TestCase;
 use App\Feed\UseCases\CriarNovoFeed;
 use App\Feed\Requests\CriarNovoFeedRequest;
 use App\Feed\Responses\CriarNovoFeedResponse;
@@ -11,8 +10,12 @@ use App\Feed\Interfaces\Repositories\FeedRepositoryInterface;
 
 use Domain\Feed\Entities\Feed;
 
-class CriarNovoFeedTest extends TestCase
+trait CriarNovoFeedTest
 {
+    abstract protected function makeMock($class, $assertions);
+
+    abstract protected function getInstance($class);
+    
     public function test_Deve_Criar_Novo_Feed_Com_Sucesso()
     {
         $this->makeMock(FeedRepositoryInterface::class, function ($mock) {
@@ -51,7 +54,7 @@ class CriarNovoFeedTest extends TestCase
             $mock->shouldNotReceive('save');
         });
 
-        $this->mock(CriarNovoFeedRequest::class, function ($mock) {
+        $this->makeMock(CriarNovoFeedRequest::class, function ($mock) {
             $mock->shouldReceive('titulo')
                     ->andReturn('Novo Feed');
 
