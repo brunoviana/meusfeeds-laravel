@@ -2,18 +2,40 @@
 
 namespace Domain\Feed\Entities;
 
+use Domain\Feed\ValueObjects\ArtigoList;
+use Domain\Feed\ValueObjects\Data;
+use Domain\Feed\Interfaces\Services\BuscadorDeArtigosServiceInterface;
+
 class Feed
 {
-    private $id;
+    private int $id;
 
-    private $titulo;
+    private string $titulo;
 
-    private $linkRss;
+    private string $linkRss;
 
-    public function __construct(string $titulo, string $linkRss)
-    {
+    private ArtigoList $artigos;
+    
+    private Data $ultimaAtualizacao;
+
+    private BuscadorDeArtigosServiceInterface $buscadorDeArtigoService;
+
+    public function __construct(
+        string $titulo,
+        string $linkRss,
+        BuscadorDeArtigosServiceInterface $buscadorDeArtigoService,
+        $ultimaAtualizacao = null
+    ) {
         $this->titulo = $titulo;
         $this->linkRss = $linkRss;
+        $this->buscadorDeArtigoService = $buscadorDeArtigoService;
+        $this->artigos = new ArtigoList();
+
+        if (!$ultimaAtualizacao) {
+            $ultimaAtualizacao = new Data();
+        }
+
+        $this->ultimaAtualizacao = $ultimaAtualizacao;
     }
 
     public function id($id=null)
@@ -33,5 +55,28 @@ class Feed
     public function linkRss()
     {
         return $this->linkRss;
+    }
+
+    public function artigos() : ArtigoList
+    {
+        return $this->artigos;
+    }
+
+    public function ultimaAtualizacao() : Data
+    {
+        return $this->ultimaAtualizacao;
+    }
+
+    public function atualizar() : void
+    {
+        $this->artigos = $this->buscadorDeArtigoService->buscar(
+            $this->ultimaAtualizacao
+        );
+        
+        $this->ultimaAtualizacao = new Data(
+            date('Y'),
+            date('m'),
+            date('d'),
+        );
     }
 }

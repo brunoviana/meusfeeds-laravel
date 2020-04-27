@@ -10,9 +10,14 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function makeMock($class, $assetions)
+    public function makeMock($class, $assetions=null)
     {
         return $this->mock($class, $assetions);
+    }
+
+    public function makePartialMock($class, $assetions=null)
+    {
+        return $this->partialMock($class, $assetions);
     }
 
     public function getInstance($class)
