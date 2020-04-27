@@ -2,7 +2,7 @@
 
 namespace Framework\Adapters\Repositories;
 
-use App\Feed\Interfaces\Repositories\FeedRepositoryInterface;
+use Domain\Feed\Interfaces\Repositories\FeedRepositoryInterface;
 use App\Feed\Responses\CriarNovoFeedResponse;
 
 use Domain\Feed\Entities\Feed;

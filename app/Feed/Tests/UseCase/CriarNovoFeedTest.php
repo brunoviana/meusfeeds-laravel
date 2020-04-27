@@ -6,7 +6,7 @@ use App\Feed\UseCases\CriarNovoFeed;
 use App\Feed\Requests\CriarNovoFeedRequest;
 use App\Feed\Responses\CriarNovoFeedResponse;
 use App\Feed\Exceptions\FeedJaExisteException;
-use App\Feed\Interfaces\Repositories\FeedRepositoryInterface;
+use Domain\Feed\Interfaces\Repositories\FeedRepositoryInterface;
 
 use Domain\Feed\Entities\Feed;
 
