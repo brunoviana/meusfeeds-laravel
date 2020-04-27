@@ -2,16 +2,16 @@
 
 namespace Tests\Unit\Framework\Adapters\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Domain\Feed\Entities\Feed;
+use Domain\Feed\Interfaces\Services\BuscadorDeArtigosServiceInterface;
 
-use Tests\TestCase;
+use App\Feed\Responses\CriarNovoFeedResponse;
 
 use Framework\Adapters\Repositories\FeedRepositoryAdapter;
 use Framework\Models\Feed as FeedModel;
 
-use App\Feed\Responses\CriarNovoFeedResponse;
-
-use Domain\Feed\Entities\Feed;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class FeedRepositoryAdapterTest extends TestCase
 {
@@ -33,7 +33,11 @@ class FeedRepositoryAdapterTest extends TestCase
 
     public function test_FeedRepository_Deve_Salvar_E_Retornar_Response()
     {
-        $feed = new Feed('Blog do Bruno', 'https://brunoviana.dev/rss.xml');
+        $feed = new Feed(
+            'Blog do Bruno',
+            'https://brunoviana.dev/rss.xml',
+            $this->makeMock(BuscadorDeArtigosServiceInterface::class)
+        );
 
         $repository = new FeedRepositoryAdapter();
         $id = $repository->save($feed);

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use Domain\Feed\Entities\Feed as FeedEntity;
 
+use Framework\Adapters\Feed\Services\BuscadorDeArtigosService;
+
 class Feed extends Model
 {
     public function map(FeedEntity $feed)
@@ -18,9 +20,15 @@ class Feed extends Model
 
     public function entity() : FeedEntity
     {
-        $feed = new FeedEntity($this->titulo, $this->link_rss);
+        $feed = new FeedEntity(
+            $this->titulo,
+            $this->link_rss,
+            app(BuscadorDeArtigosService::class)
+        );
 
-        $feed->id($this->id);
+        if ($this->id) {
+            $feed->id($this->id);
+        }
 
         return $feed;
     }

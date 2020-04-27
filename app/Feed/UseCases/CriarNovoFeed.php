@@ -2,12 +2,13 @@
 
 namespace App\Feed\UseCases;
 
+use Domain\Feed\Interfaces\Repositories\FeedRepositoryInterface;
+use Domain\Feed\Interfaces\Services\BuscadorDeArtigosServiceInterface;
+use Domain\Feed\Entities\Feed;
+
 use App\Feed\Requests\CriarNovoFeedRequest;
 use App\Feed\Responses\CriarNovoFeedResponse;
-use Domain\Feed\Interfaces\Repositories\FeedRepositoryInterface;
 use App\Feed\Exceptions\FeedJaExisteException;
-
-use Domain\Feed\Entities\Feed;
 
 class CriarNovoFeed
 {
@@ -15,10 +16,16 @@ class CriarNovoFeed
 
     private FeedRepositoryInterface $feedRepository;
 
-    public function __construct(CriarNovoFeedRequest $request, FeedRepositoryInterface $feedRepository)
-    {
+    private BuscadorDeArtigosServiceInterface $buscadorDeArtigosService;
+
+    public function __construct(
+        CriarNovoFeedRequest $request,
+        FeedRepositoryInterface $feedRepository,
+        BuscadorDeArtigosServiceInterface $buscadorDeArtigosService
+    ) {
         $this->request = $request;
         $this->feedRepository = $feedRepository;
+        $this->buscadorDeArtigosService = $buscadorDeArtigosService;
     }
 
     public function executar()
@@ -31,7 +38,8 @@ class CriarNovoFeed
 
         $feed = new Feed(
             $this->request->titulo(),
-            $this->request->linkRss()
+            $this->request->linkRss(),
+            $this->buscadorDeArtigosService
         );
 
         $id = $this->feedRepository->save($feed);

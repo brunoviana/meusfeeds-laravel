@@ -2,14 +2,7 @@
 
 namespace Framework\Http\Controllers\API;
 
-use Illuminate\Http\Request;
-
-use Framework\Http\Controllers\Controller;
-use Framework\Models\Feed as FeedModel;
-use Framework\Adapters\Repositories\FeedRepositoryAdapter;
-use Framework\Adapters\Feed\Services\BuscadorDeFeedsService\FeedIoAdapter;
-use Framework\Http\Resources\Feed\FeedResource;
-use Framework\Http\Resources\Feed\FeedsDescobertosResource;
+use Domain\Feed\Entities\Feed;
 
 use App\Feed\UseCases\CriarNovoFeed;
 use App\Feed\Requests\CriarNovoFeedRequest;
@@ -18,7 +11,15 @@ use App\Feed\Exceptions\FeedJaExisteException;
 use App\Feed\Requests\DescobrirFeedsPelaUrlRequest;
 use App\Feed\UseCases\DescobrirFeedsPelaUrl;
 
-use Domain\Feed\Entities\Feed;
+use Framework\Http\Controllers\Controller;
+use Framework\Models\Feed as FeedModel;
+use Framework\Adapters\Repositories\FeedRepositoryAdapter;
+use Framework\Adapters\Feed\Services\BuscadorDeFeedsService\FeedIoAdapter;
+use Framework\Http\Resources\Feed\FeedResource;
+use Framework\Http\Resources\Feed\FeedsDescobertosResource;
+use Framework\Adapters\Feed\Services\BuscadorDeArtigosService;
+
+use Illuminate\Http\Request;
 
 class FeedsController extends Controller
 {
@@ -47,7 +48,11 @@ class FeedsController extends Controller
 
         $feedRepositoryAdapter = new FeedRepositoryAdapter();
 
-        $criarFeed = new CriarNovoFeed($criarFeedRequest, $feedRepositoryAdapter);
+        $criarFeed = new CriarNovoFeed(
+            $criarFeedRequest,
+            $feedRepositoryAdapter,
+            app(BuscadorDeArtigosService::class)
+        );
 
         try {
             $criarFeedResponse = $criarFeed->executar();

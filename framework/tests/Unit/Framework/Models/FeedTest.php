@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Framework\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-use Tests\TestCase;
+use Domain\Feed\Entities\Feed;
+use Domain\Feed\Interfaces\Services\BuscadorDeArtigosServiceInterface;
 
 use Framework\Models\Feed as FeedModel;
 
-use Domain\Feed\Entities\Feed;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class FeedTest extends TestCase
 {
@@ -16,7 +16,11 @@ class FeedTest extends TestCase
 
     public function test_FeedModel_Deve_Mapear_Entidade_Com_Sucesso()
     {
-        $feed = new Feed('Blog do Bruno', 'https://brunoviana.dev/rss.xml');
+        $feed = new Feed(
+            'Blog do Bruno',
+            'https://brunoviana.dev/rss.xml',
+            $this->makeMock(BuscadorDeArtigosServiceInterface::class)
+        );
 
         $feedModel = new FeedModel();
         $feedModel->map($feed);
