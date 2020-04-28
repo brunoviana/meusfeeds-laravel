@@ -75,6 +75,8 @@ trait AtualizarFeedTest
                     ->andReturn(
                         Feed::novo('Blod do Bruno', 'https://brunoviana.dev')
                     );
+
+            $mock->shouldReceive('save');
         });
 
         $this->makeMock(AtualizarFeedRequest::class, function ($mock) {

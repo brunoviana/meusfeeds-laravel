@@ -43,8 +43,6 @@ class BuscadorDeArtigosService
                 new Autor($artigo['autor']),
                 new Data($d[0], $d[1], $d[2])
             );
-
-            break;
         }
 
         return $artigoList;

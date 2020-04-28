@@ -23,7 +23,7 @@ class BuscadorDeFeedsServiceTest extends TestCase
         $this->assertCount(1, $result);
         $this->assertArraySubset([
             'titulo' => 'Blog do Bruno',
-            'link_rss' => 'https://brunoviana.dev',
+            'link_rss' => 'https://brunoviana.dev/rss.xml',
             'descricao' => 'Este é o meu blog',
             'ultimos_artigos' => [
                 'Artigo 1',
