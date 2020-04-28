@@ -11,7 +11,13 @@ interface FeedRepositoryInterface
      */
     public function buscar($id) : Feed;
 
-    public function buscarPeloLink(string $link);
+    /**
+     * @throes FeedNaoEncontradoException se feed não existe
+     */
+    public function buscarPeloLink(string $link) : Feed;
 
+    /**
+     * @returns int Id do feed no banco
+     */
     public function save(Feed $feed) : int;
 }

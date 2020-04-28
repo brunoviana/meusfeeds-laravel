@@ -8,6 +8,7 @@ use Domain\Feed\Entities\Feed;
 use App\Feed\Requests\CriarNovoFeedRequest;
 use App\Feed\Responses\CriarNovoFeedResponse;
 use App\Feed\Exceptions\FeedJaExisteException;
+use App\Feed\Exceptions\FeedNaoEncontradoException;
 
 class CriarNovoFeed
 {
@@ -58,12 +59,12 @@ class CriarNovoFeed
 
     public function falharSeFeedJaExistir()
     {
-        $feed = $this->feedRepository->buscarPeloLink($this->request->linkRss());
-
-        if ($feed) {
-            throw new FeedJaExisteException('Já existe um feed com esse link');
+        try {
+            $this->feedRepository->buscarPeloLink($this->request->linkRss());
+        } catch (FeedNaoEncontradoException $e) {
+            return;
         }
 
-        return $feed;
+        throw new FeedJaExisteException('Já existe um feed com esse link');
     }
 }

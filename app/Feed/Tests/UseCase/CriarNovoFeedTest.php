@@ -9,6 +9,7 @@ use App\Feed\UseCases\CriarNovoFeed;
 use App\Feed\Requests\CriarNovoFeedRequest;
 use App\Feed\Responses\CriarNovoFeedResponse;
 use App\Feed\Exceptions\FeedJaExisteException;
+use App\Feed\Exceptions\FeedNaoEncontradoException;
 
 trait CriarNovoFeedTest
 {
@@ -16,7 +17,7 @@ trait CriarNovoFeedTest
     {
         $this->makeMock(FeedRepositoryInterface::class, function ($mock) {
             $mock->shouldReceive('buscarPeloLink')
-                    ->andReturn(null);
+                    ->andThrow(new FeedNaoEncontradoException());
 
             $mock->shouldReceive('save')
                     ->andReturn(1);
