@@ -66,7 +66,7 @@ trait BuscadorDeArtigosServiceTest
             }
         );
 
-        $feed = new Feed('Meu blog', 'https://brunoviana.dev');
+        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev');
         $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
 
         $buscadorDeArtigos->buscarEAtualizar($feed);
@@ -87,7 +87,7 @@ trait BuscadorDeArtigosServiceTest
             }
         );
 
-        $feed = new Feed('Meu blog', 'https://brunoviana.dev', new Data(2020, 01, 01));
+        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev', new Data(2020, 01, 01));
         $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
 
         $buscadorDeArtigos->buscarEAtualizar($feed);

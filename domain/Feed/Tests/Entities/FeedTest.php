@@ -12,7 +12,7 @@ trait FeedTest
 {
     public function test_Novo_Feed_Deve_Comecar_Com_Zero_Artigos()
     {
-        $feed = new Feed(
+        $feed = Feed::novo(
             'Blog do Bruno',
             'https://brunoviana.dev'
         );
@@ -23,7 +23,7 @@ trait FeedTest
 
     public function test_Novo_Feed_Deve_Ter_Data_Vazia_Se_Nao_Especificado()
     {
-        $feed = new Feed(
+        $feed = Feed::novo(
             'Blog do Bruno',
             'https://brunoviana.dev'
         );
@@ -34,7 +34,7 @@ trait FeedTest
 
     public function test_Deve_Mudar_Data_De_Ultima_Atualizacao_Quando_Adicionar_Artigo()
     {
-        $feed = new Feed(
+        $feed = Feed::novo(
             'Blog do Bruno',
             'https://brunoviana.dev'
         );

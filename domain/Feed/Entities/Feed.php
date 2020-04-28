@@ -18,7 +18,12 @@ class Feed
     
     private Data $ultimaAtualizacao;
 
-    public function __construct(string $titulo, string $linkRss, $ultimaAtualizacao = null)
+    public static function novo(string $titulo, string $linkRss, $ultimaAtualizacao = null)
+    {
+        return new self($titulo, $linkRss, $ultimaAtualizacao);
+    }
+
+    private function __construct(string $titulo, string $linkRss, $ultimaAtualizacao = null)
     {
         $this->titulo = $titulo;
         $this->linkRss = $linkRss;
