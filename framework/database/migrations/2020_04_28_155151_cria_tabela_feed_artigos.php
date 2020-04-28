@@ -21,7 +21,7 @@ class CriaTabelaFeedArtigos extends Migration
             $table->string('autor');
             $table->date('data_publicacao');
             $table->integer('lido');
-            $table->bigInteger('feed_id');
+            $table->bigInteger('feed_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('feed_id')->references('id')->on('feeds')->onDelete('cascade');
