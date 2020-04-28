@@ -8,14 +8,18 @@ use Domain\Feed\ValueObjects\Autor;
 use Domain\Feed\Entities\Feed;
 
 use App\Feed\Interfaces\Adapters\BuscadorDeArtigosAdapterInterface;
+use App\Feed\Services\BuscadorDeArtigosService\ValidadorDeResponse;
 
 class BuscadorDeArtigosService
 {
     protected $buscadorAdapter;
+    
+    protected $validadorDeResponse;
 
     public function __construct(BuscadorDeArtigosAdapterInterface $buscadorAdapter)
     {
         $this->buscadorAdapter = $buscadorAdapter;
+        $this->validadorDeResponse = new ValidadorDeResponse;
     }
 
     public function buscarAPartirDe(string $link, Data $aPartirDe) : ArtigoList
@@ -24,6 +28,8 @@ class BuscadorDeArtigosService
             $link,
             $aPartirDe->vazio() ? '' : $aPartirDe->formatoPadrao()
         );
+
+        $this->validadorDeResponse->validar($artigosEncontrados);
 
         $artigoList = new ArtigoList();
 

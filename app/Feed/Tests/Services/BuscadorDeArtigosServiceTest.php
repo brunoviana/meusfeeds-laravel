@@ -9,6 +9,7 @@ use Domain\Feed\ValueObjects\Autor;
 use Domain\Feed\Entities\Feed;
 
 use App\Feed\Services\BuscadorDeArtigosService;
+use App\Feed\Exceptions\ResponseInvalidoException;
 use App\Feed\Interfaces\Adapters\BuscadorDeArtigosAdapterInterface;
 
 trait BuscadorDeArtigosServiceTest
@@ -123,6 +124,28 @@ trait BuscadorDeArtigosServiceTest
         // $this->assertListaDeArtigos($feed->artigos());
     }
 
+    public function test_Deve_Falhar_Se_Resposta_Do_Adapter_E_Invalida()
+    {
+        $this->expectException(ResponseInvalidoException::class);
+
+        $dadosDoArtigoErrado = $this->dadosDoArtigoErrado();
+
+        $this->makeMock(
+            BuscadorDeArtigosAdapterInterface::class,
+            function ($mock) use ($dadosDoArtigoErrado) {
+                $mock->shouldReceive('buscar')
+                    ->with('https://brunoviana.dev/rss.xml', '')
+                    ->andReturn([ $dadosDoArtigoErrado ]);
+            }
+        );
+
+        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev/rss.xml', new Data());
+        
+        $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
+
+        $buscadorDeArtigos->buscarEAtualizar($feed);
+    }
+
     public function assertListaDeArtigos($artigos)
     {
         $this->assertInstanceOf(ArtigoList::class, $artigos);
@@ -147,6 +170,17 @@ trait BuscadorDeArtigosServiceTest
             'link' => 'https://brunoviana.dev/primeiro-artigo',
             'autor' => 'Bruno Viana',
             'data_publicacao' => '2020-01-01'
+        ];
+    }
+
+    public function dadosDoArtigoErrado()
+    {
+        return [
+            'Titulo' => 'Meu primeiro artigo',
+            'Descricao' => 'Neste artigo você verá como fiz meu primeiro artigo',
+            'Link' => 'https://brunoviana.dev/primeiro-artigo',
+            'Autor' => 'Bruno Viana',
+            'Data_publicacao' => '2020-01-01'
         ];
     }
 }
