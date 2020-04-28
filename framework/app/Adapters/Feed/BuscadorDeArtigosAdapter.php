@@ -32,7 +32,7 @@ class BuscadorDeArtigosAdapter implements BuscadorDeArtigosAdapterInterface
                 'titulo' => $item->getTitle(),
                 'descricao' => $item->getDescription(),
                 'link' => $item->getLink(),
-                'autor' => (string) $item->getAuthor()->getName(),
+                'autor' => $item->getAuthor() ? (string) $item->getAuthor()->getName() : '',
                 'data_publicacao' => $item->getLastModified()->format('Y-m-d'),
             ];
         }
