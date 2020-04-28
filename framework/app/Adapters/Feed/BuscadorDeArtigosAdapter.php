@@ -20,7 +20,7 @@ class BuscadorDeArtigosAdapter implements BuscadorDeArtigosAdapterInterface
     public function buscar(string $link, string $aPartirDe = '') : array
     {
         if (!empty($aPartirDe)) {
-            $result = $this->feedIo->readSince($link, new \DateTime($aPartirDe));
+            $result = $this->feedIo->readSince($link, (new \DateTime($aPartirDe))->modify('-1 day'));
         } else {
             $result = $this->feedIo->read($link);
         }

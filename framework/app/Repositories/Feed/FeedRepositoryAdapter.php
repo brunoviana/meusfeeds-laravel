@@ -41,9 +41,13 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
 
         $feedModel->save();
 
-        $feedModel->artigos()->delete();
+        $novosLinks = $this->descobrirNovosLinks($feed, $feedModel);
 
         foreach ($feed->artigos() as $artigo) {
+            if (!in_array($artigo->link(), $novosLinks)) {
+                continue;
+            }
+
             $feedModel->artigos()->create([
                 'titulo' => $artigo->titulo(),
                 'descricao' => $artigo->descricao(),
@@ -59,6 +63,23 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
         );
 
         return $feedModel->id;
+    }
+
+    protected function descobrirNovosLinks($feed, $feedModel)
+    {
+        $linksNoBanco = $feedModel->artigos()
+                ->select('link')
+                ->get()
+                ->pluck('link')
+                ->toArray();
+
+        $linksNaEntidade = [];
+
+        foreach ($feed->artigos() as $artigo) {
+            $linksNaEntidade[] = $artigo->link();
+        }
+
+        return array_diff($linksNaEntidade, $linksNoBanco);
     }
 
     public function dataDaUltimaAtualizacao(Feed $feed) : Data
