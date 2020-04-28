@@ -6,8 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 use Domain\Feed\Entities\Feed as FeedEntity;
 
+use Framework\Models\Feed\Artigo;
+
 class Feed extends Model
 {
+    public function artigos()
+    {
+        return $this->hasMany(Artigo::class);
+    }
+
     public function map(FeedEntity $feed)
     {
         $this->titulo = $feed->titulo();

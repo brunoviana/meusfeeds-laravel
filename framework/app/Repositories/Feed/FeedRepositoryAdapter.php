@@ -39,6 +39,19 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
         $feedModel->map($feed);
         $feedModel->save();
 
+        $feedModel->artigos()->delete();
+
+        foreach ($feed->artigos() as $artigo) {
+            $artigo = $feedModel->artigos()->create([
+                'titulo' => $artigo->titulo(),
+                'descricao' => $artigo->descricao(),
+                'link' => $artigo->link(),
+                'autor' => $artigo->autor()->nome(),
+                'data_publicacao' => $artigo->dataPublicacao()->formatoPadrao(),
+                'lido' => (int) $artigo->lido(),
+            ]);
+        }
+
         return $feedModel->id;
     }
 }
