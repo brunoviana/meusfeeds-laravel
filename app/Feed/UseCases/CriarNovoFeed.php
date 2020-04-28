@@ -25,23 +25,43 @@ class CriarNovoFeed
 
     public function executar()
     {
+        $this->falharSeFeedJaExistir();
+
+        $feed = $this->criaNovoFeed();
+
+        $this->salvarFeed($feed);
+
+        return $this->responder($feed);
+    }
+
+    public function criaNovoFeed()
+    {
+        return Feed::novo(
+            $this->request->titulo(),
+            $this->request->linkRss()
+        );
+    }
+
+    public function responder(Feed $feed)
+    {
+        return new CriarNovoFeedResponse($feed);
+    }
+
+    public function salvarFeed(Feed $feed)
+    {
+        $id = $this->feedRepository->save($feed);
+
+        $feed->id($id);
+    }
+
+    public function falharSeFeedJaExistir()
+    {
         $feed = $this->feedRepository->buscarPeloLink($this->request->linkRss());
 
         if ($feed) {
             throw new FeedJaExisteException('Já existe um feed com esse link');
         }
 
-        $feed = Feed::novo(
-            $this->request->titulo(),
-            $this->request->linkRss()
-        );
-
-        $id = $this->feedRepository->save($feed);
-
-        $feed->id($id);
-
-        $response = new CriarNovoFeedResponse($feed);
-
-        return $response;
+        return $feed;
     }
 }
