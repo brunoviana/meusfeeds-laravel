@@ -51,22 +51,4 @@ class Feed
     {
         return $this->artigos;
     }
-
-    public function adicionarArtigo(
-        string $titulo,
-        string $descricao,
-        string $link,
-        Autor $autor,
-        Data $dataPublicacao,
-        int $lido = 0
-    ) {
-        $this->artigos->adicionar(
-            $titulo,
-            $descricao,
-            $link,
-            $autor,
-            $dataPublicacao,
-            $lido
-        );
-    }
 }
