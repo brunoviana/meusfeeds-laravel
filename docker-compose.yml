@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  reader:
+
+    build:
+      context: ./.container
+      dockerfile: dockerfile
+
+    restart: unless-stopped
+
+    working_dir: /var/www
+
+    container_name: reader
+
+    ports:
+      - 80:80
+
+    volumes:
+      - ./.container/dev/php.ini:/etc/php/7.2/fpm/conf.d/php.ini
+      - ./.container/dev/nginx.conf:/etc/nginx/sites-available/default
+      - reader-volume:/var/www
+volumes:
+  
+  reader-volume:
+    driver_opts:
+        type: "nfs"
+        o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
+        device: ":/Users/brunoviana/htdocs/reader"
