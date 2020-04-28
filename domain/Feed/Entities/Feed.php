@@ -8,7 +8,7 @@ use Domain\Feed\ValueObjects\Autor;
 
 class Feed
 {
-    private int $id;
+    private int $id = 0;
 
     private string $titulo;
 

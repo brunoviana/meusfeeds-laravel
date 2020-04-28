@@ -3,8 +3,11 @@
 namespace Tests\Framework\Unit\Repositories;
 
 use Domain\Feed\Entities\Feed;
+use Domain\Feed\ValueObjects\Autor;
+use Domain\Feed\ValueObjects\Data;
 
 use Framework\Models\Feed as FeedModel;
+use Framework\Models\Feed\Artigo as ArtigoModel;
 use App\Feed\Exceptions\FeedNaoEncontradoException;
 use Framework\Repositories\Feed\FeedRepositoryAdapter;
 
@@ -77,6 +80,57 @@ class FeedRepositoryAdapterTest extends TestCase
 
         $this->assertEquals(1, $id);
         $this->assertCount(1, FeedModel::all());
+    }
+
+    public function test_FeedRepository_Deve_Salvar_Artigos_Tambem()
+    {
+        $feed = Feed::novo(
+            'Blog do Bruno',
+            'https://brunoviana.dev/rss.xml'
+        );
+
+        $feed->artigos()->adicionar(
+            'Titulo do Artigo',
+            'Descrição do Artigo',
+            'http://link.co.br',
+            new Autor('Autor do Artigo'),
+            new Data(2020, 10, 10)
+        );
+
+        $repository = new FeedRepositoryAdapter();
+        $id = $repository->save($feed);
+
+        $this->assertEquals(1, $id);
+        $this->assertCount(1, FeedModel::all());
+        $this->assertCount(1, ArtigoModel::all());
+    }
+
+    public function test_FeedRepository_Deve_Sempre_Recriar_Artigos_Ao_Salvar()
+    {
+        $feed = Feed::novo(
+            'Blog do Bruno',
+            'https://brunoviana.dev/rss.xml'
+        );
+
+        $feed->artigos()->adicionar(
+            'Titulo do Artigo',
+            'Descrição do Artigo',
+            'http://link.co.br',
+            new Autor('Autor do Artigo'),
+            new Data(2020, 10, 10)
+        );
+
+        $repository = new FeedRepositoryAdapter();
+
+        $repository->save($feed);
+
+        $this->assertCount(1, ArtigoModel::all());
+        $this->assertEquals(1, ArtigoModel::all()->first()->id);
+
+        $repository->save($feed);
+
+        $this->assertCount(1, ArtigoModel::all());
+        $this->assertEquals(2, ArtigoModel::all()->first()->id);
     }
 
     public function test_FeedRepository_Deve_Mapear_Entidade_Com_Sucesso()

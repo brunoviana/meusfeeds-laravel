@@ -42,7 +42,7 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
         $feedModel->artigos()->delete();
 
         foreach ($feed->artigos() as $artigo) {
-            $artigo = $feedModel->artigos()->create([
+            $feedModel->artigos()->create([
                 'titulo' => $artigo->titulo(),
                 'descricao' => $artigo->descricao(),
                 'link' => $artigo->link(),
@@ -52,11 +52,21 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
             ]);
         }
 
+        $feed->id(
+            $feedModel->id
+        );
+
         return $feedModel->id;
     }
+
     public function criaModel(Feed $feed)
     {
-        $feedModel = new FeedModel();
+        $feedModel = FeedModel::find($feed->id());
+
+        if (!$feedModel) {
+            $feedModel = new FeedModel();
+        }
+
         $feedModel->titulo = $feed->titulo();
         $feedModel->link_rss = $feed->linkRss();
 
