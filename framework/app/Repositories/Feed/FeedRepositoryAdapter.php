@@ -3,13 +3,12 @@
 namespace Framework\Repositories\Feed;
 
 use Domain\Feed\Entities\Feed;
-use Domain\Feed\ValueObjects\Data;
-use Domain\Feed\ValueObjects\Autor;
 use Domain\Feed\Interfaces\Repositories\FeedRepositoryInterface;
 
 use App\Feed\Exceptions\FeedNaoEncontradoException;
 
 use Framework\Models\Feed as FeedModel;
+use Framework\Mappers\FeedMapper;
 
 class FeedRepositoryAdapter implements FeedRepositoryInterface
 {
@@ -21,7 +20,7 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
             throw new FeedNaoEncontradoException('Não foi possível encontrar Feed com id '.$id);
         }
 
-        return $this->criaEntidade($feedModel);
+        return FeedMapper::criaEntidade($feedModel);
     }
 
     public function buscarPeloLink(string $link) : Feed
@@ -32,12 +31,12 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
             throw new FeedNaoEncontradoException('Não foi possível encontrar Feed com link '.$link);
         }
 
-        return $this->criaEntidade($feedModel);
+        return FeedMapper::criaEntidade($feedModel);
     }
 
     public function save(Feed $feed) : int
     {
-        $feedModel = $this->criaModel($feed);
+        $feedModel = FeedMapper::criaModel($feed);
 
         $feedModel->save();
 
@@ -59,46 +58,5 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
         );
 
         return $feedModel->id;
-    }
-
-    public function criaModel(Feed $feed)
-    {
-        $feedModel = FeedModel::find($feed->id());
-
-        if (!$feedModel) {
-            $feedModel = new FeedModel();
-        }
-
-        $feedModel->titulo = $feed->titulo();
-        $feedModel->link_rss = $feed->linkRss();
-
-        return $feedModel;
-    }
-
-    public function criaEntidade(FeedModel $model)
-    {
-        $feed = Feed::novo(
-            $model->titulo,
-            $model->link_rss
-        );
-
-        if ($model->id) {
-            $feed->id($model->id);
-        }
-
-        foreach ($model->artigos as $artigoModel) {
-            $d = explode('-', $artigoModel->data_publicacao);
-
-            $feed->artigos()->adicionar(
-                $artigoModel->titulo,
-                $artigoModel->descricao,
-                $artigoModel->link,
-                new Autor($artigoModel->autor),
-                new Data($d[0], $d[1], $d[2]),
-                $artigoModel->lido
-            );
-        }
-
-        return $feed;
     }
 }

@@ -6,9 +6,10 @@ use Domain\Feed\Entities\Feed;
 use Domain\Feed\ValueObjects\Autor;
 use Domain\Feed\ValueObjects\Data;
 
+use App\Feed\Exceptions\FeedNaoEncontradoException;
+
 use Framework\Models\Feed as FeedModel;
 use Framework\Models\Feed\Artigo as ArtigoModel;
-use App\Feed\Exceptions\FeedNaoEncontradoException;
 use Framework\Repositories\Feed\FeedRepositoryAdapter;
 
 use Tests\TestCase;
@@ -155,33 +156,5 @@ class FeedRepositoryAdapterTest extends TestCase
         $feed = $repository->buscar($feedModel->id);
 
         $this->assertCount(1, $feed->artigos());
-    }
-
-    public function test_FeedRepository_Deve_Mapear_Entidade_Com_Sucesso()
-    {
-        $feed = Feed::novo(
-            'Blog do Bruno',
-            'https://brunoviana.dev/rss.xml'
-        );
-
-        $repository = new FeedRepositoryAdapter();
-
-        $feedModel = $repository->criaModel($feed);
-
-        $this->assertEquals('Blog do Bruno', $feedModel->titulo);
-        $this->assertEquals('https://brunoviana.dev/rss.xml', $feedModel->link_rss);
-    }
-
-    public function test_FeedRepository_Deve_Retornar_Entitade_Corretamente()
-    {
-        $feedModel = new FeedModel();
-        $feedModel->titulo = 'Blog do Bruno';
-        $feedModel->link_rss = 'https://brunoviana.dev/rss.xml';
-
-        $repository = new FeedRepositoryAdapter();
-        $feed = $repository->criaEntidade($feedModel);
-
-        $this->assertEquals('Blog do Bruno', $feed->titulo());
-        $this->assertEquals('https://brunoviana.dev/rss.xml', $feed->linkRss());
     }
 }
