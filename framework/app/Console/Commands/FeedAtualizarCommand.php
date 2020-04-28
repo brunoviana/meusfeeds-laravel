@@ -55,11 +55,7 @@ class FeedAtualizarCommand extends Command
                 $buscadorDeArtigos
             );
 
-            $response = $atualizaFeed->executar();
-            $feedAtualizado = $response->feed();
-
-            $repositoryAdapter->save($feedAtualizado);
+            $atualizaFeed->executar();
         }
-        //
     }
 }
