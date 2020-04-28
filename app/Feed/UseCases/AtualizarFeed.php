@@ -19,8 +19,8 @@ class AtualizarFeed
     protected $buscadorDeArtigos;
 
     public function __construct(
-        FeedRepositoryInterface $feedRepository,
         AtualizarFeedRequest $request,
+        FeedRepositoryInterface $feedRepository,
         BuscadorDeArtigosAdapterInterface $buscadorDeArtigosAdapter
     ) {
         $this->feedRepository = $feedRepository;
