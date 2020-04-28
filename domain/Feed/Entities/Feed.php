@@ -15,25 +15,17 @@ class Feed
     private string $linkRss;
 
     private ArtigoList $artigos;
-    
-    private Data $ultimaAtualizacao;
 
-    public static function novo(string $titulo, string $linkRss, $ultimaAtualizacao = null) : Feed
+    public static function novo(string $titulo, string $linkRss) : Feed
     {
-        return new self($titulo, $linkRss, $ultimaAtualizacao);
+        return new self($titulo, $linkRss);
     }
 
-    private function __construct(string $titulo, string $linkRss, $ultimaAtualizacao = null)
+    private function __construct(string $titulo, string $linkRss)
     {
         $this->titulo = $titulo;
         $this->linkRss = $linkRss;
         $this->artigos = new ArtigoList();
-
-        if (!$ultimaAtualizacao) {
-            $ultimaAtualizacao = new Data();
-        }
-
-        $this->ultimaAtualizacao = $ultimaAtualizacao;
     }
 
     public function id($id=null)
@@ -58,19 +50,6 @@ class Feed
     public function artigos() : ArtigoList
     {
         return $this->artigos;
-    }
-
-    public function ultimaAtualizacao($data = null) : Data
-    {
-        if ($data && !is_a($data, Data::class)) {
-            throw new \RuntimeException('Parametro passado deve ser do tipo '.Data::class);
-        }
-
-        if ($data) {
-            $this->ultimaAtualizacao = $data;
-        }
-        
-        return $this->ultimaAtualizacao;
     }
 
     public function adicionarArtigo(
