@@ -74,8 +74,6 @@ class BuscadorDeArtigosService
             $feed->ultimaAtualizacao(),
         );
 
-        // $feed->artigos()->limpar();
-
         foreach ($artigos as $artigo) {
             $feed->adicionarArtigo(
                 $artigo->titulo(),

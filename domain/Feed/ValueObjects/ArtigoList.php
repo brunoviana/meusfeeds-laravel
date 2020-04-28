@@ -28,11 +28,6 @@ class ArtigoList implements \Iterator, \Countable
         );
     }
 
-    public function limpar()
-    {
-        $this->artigos = [];
-    }
-
     public function primeiro()
     {
         if (count($this->artigos)) {
