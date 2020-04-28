@@ -9,3 +9,9 @@ $factory->define(\Framework\Models\Feed::class, function (Faker $faker) {
         //
     ];
 });
+
+$factory->define(\Framework\Models\Feed\Artigo::class, function (Faker $faker) {
+    return [
+        //
+    ];
+});

@@ -133,6 +133,30 @@ class FeedRepositoryAdapterTest extends TestCase
         $this->assertEquals(2, ArtigoModel::all()->first()->id);
     }
 
+    public function test_FeedRepository_Deve_Trazer_Artigos_Ao_Buscar_Feed()
+    {
+        $feedModel = factory(FeedModel::class, 1)->create([
+            'titulo' => 'Blog do Bruno',
+            'link_rss' => 'https://brunoviana.dev/rss.xml'
+        ])->first();
+
+        $artigoModel = factory(ArtigoModel::class, 1)->create([
+            'titulo' => 'Titulo do Artigo',
+            'descricao' => 'Descrição do Artigo',
+            'link' => 'http://link.co.br',
+            'autor' => 'Autor',
+            'data_publicacao' => '2020-10-10',
+            'lido' => 0,
+            'feed_id' => $feedModel->id
+        ])->first();
+
+        $repository = new FeedRepositoryAdapter();
+
+        $feed = $repository->buscar($feedModel->id);
+
+        $this->assertCount(1, $feed->artigos());
+    }
+
     public function test_FeedRepository_Deve_Mapear_Entidade_Com_Sucesso()
     {
         $feed = Feed::novo(
