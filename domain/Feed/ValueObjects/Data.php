@@ -17,6 +17,15 @@ class Data
         $this->dia = $dia;
     }
 
+    public static function agora()
+    {
+        return new self(
+            date('Y'),
+            date('m'),
+            date('d')
+        );
+    }
+
     public function ano()
     {
         return $this->ano;
@@ -34,7 +43,7 @@ class Data
 
     public function vazio()
     {
-        return $this->dia && $this->mes && $this->ano;
+        return !($this->dia && $this->mes && $this->ano);
     }
 
     public function formatoPadrao()
