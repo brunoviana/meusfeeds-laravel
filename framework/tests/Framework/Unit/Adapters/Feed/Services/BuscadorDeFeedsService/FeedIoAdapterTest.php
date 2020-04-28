@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
+namespace Tests\Framework\Unit\Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

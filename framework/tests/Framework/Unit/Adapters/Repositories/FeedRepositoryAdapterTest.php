@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Framework\Adapters\Repositories;
+namespace Tests\Framework\Unit\Framework\Adapters\Repositories;
 
 use Domain\Feed\Entities\Feed;
 

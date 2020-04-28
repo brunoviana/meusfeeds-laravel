@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domain\Feed\Services;
+namespace Tests\Domain\Feed\Services;
 
 use Tests\TestCase;
 use Domain\Feed\Tests\Services\BuscadorDeArtigosServiceTest as BuscadorDeArtigosServiceTestTrait;
