@@ -41,7 +41,6 @@ class BuscadorDeFeedsService implements BuscadorDeFeedsServiceInterface
     {
         return [
             'titulo' => $feed->getTitle(),
-            'link_rss' => $feed->getLink(),
             'descricao' => $feed->getDescription(),
         ];
     }
@@ -72,6 +71,7 @@ class BuscadorDeFeedsService implements BuscadorDeFeedsServiceInterface
             $feeds[] = array_merge(
                 $this->montaArrayDeFeed($feedsEncontrados->getFeed()),
                 [
+                    'link_rss' => $feedUrl,
                     'ultimos_artigos' => $ultimosArtigos
                 ]
             );

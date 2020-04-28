@@ -38,14 +38,33 @@ class BuscadorDeArtigosService
 
             $artigoList->adicionar(
                 $artigo['titulo'],
-                $artigo['descricao'],
+                $this->limparELimitarDescricao($artigo['descricao']),
                 $artigo['link'],
                 new Autor($artigo['autor']),
                 new Data($d[0], $d[1], $d[2])
             );
+
+            break;
         }
 
         return $artigoList;
+    }
+
+    public function limparELimitarDescricao($descricao)
+    {
+        if (!$descricao) {
+            return '';
+        }
+        
+        $semHtml = strip_tags($descricao);
+        
+        preg_match('#.*[\.\?!]#', $semHtml, $limitado);
+
+        if (isset($limitado[0])) {
+            return trim($limitado[0]);
+        }
+
+        return substr(trim($semHtml), 0, 200);
     }
 
     public function buscarEAtualizar(Feed $feed)
@@ -54,6 +73,8 @@ class BuscadorDeArtigosService
             $feed->linkRss(),
             $feed->ultimaAtualizacao(),
         );
+
+        // $feed->artigos()->limpar();
 
         foreach ($artigos as $artigo) {
             $feed->adicionarArtigo(

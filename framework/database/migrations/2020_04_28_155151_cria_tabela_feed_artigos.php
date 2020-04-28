@@ -16,7 +16,7 @@ class CriaTabelaFeedArtigos extends Migration
         Schema::create('feed_artigos', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('descricao');
+            $table->text('descricao');
             $table->string('link');
             $table->string('autor');
             $table->date('data_publicacao');
