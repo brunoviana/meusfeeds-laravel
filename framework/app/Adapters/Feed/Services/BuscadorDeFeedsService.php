@@ -26,6 +26,10 @@ class BuscadorDeFeedsService implements BuscadorDeFeedsServiceInterface
 
     public function corrigeUrlDoFeed($url, $feedUrl)
     {
+        if (substr($feedUrl, 0, 1) == '/') {
+            $feedUrl = substr($feedUrl, 1);
+        }
+
         if (substr($feedUrl, 0, 4) != 'http') {
             $feedUrl = $url . $feedUrl;
         }
@@ -53,7 +57,7 @@ class BuscadorDeFeedsService implements BuscadorDeFeedsServiceInterface
         foreach ($feedsDescobertos as $feed) {
             $feedUrl = $this->corrigeUrlDoFeed($url, $feed);
 
-            $feedsEncontrados = $this->feedIo->read($feed);
+            $feedsEncontrados = $this->feedIo->read($feedUrl);
 
             $ultimosArtigos = [];
 
