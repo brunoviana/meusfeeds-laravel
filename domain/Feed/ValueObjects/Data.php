@@ -32,6 +32,11 @@ class Data
         return $this->dia;
     }
 
+    public function vazio()
+    {
+        return $this->dia && $this->mes && $this->ano;
+    }
+
     public function formatoPadrao()
     {
         return implode('-', [

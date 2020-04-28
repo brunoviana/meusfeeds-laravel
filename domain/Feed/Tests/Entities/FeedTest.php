@@ -93,7 +93,8 @@ trait FeedTest
                     new Data(2020, 1, 1)
                 );
 
-                $mock->shouldReceive('buscar')->andReturn($artigoList);
+                $mock->shouldReceive('buscar')
+                        ->andReturn($artigoList);
             }
         );
     }

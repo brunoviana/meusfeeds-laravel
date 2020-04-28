@@ -3,7 +3,9 @@
 namespace Domain\Feed\Entities;
 
 use Domain\Feed\ValueObjects\ArtigoList;
+use Domain\Feed\ValueObjects\Artigo;
 use Domain\Feed\ValueObjects\Data;
+use Domain\Feed\ValueObjects\Autor;
 use Domain\Feed\Interfaces\Services\BuscadorDeArtigosServiceInterface;
 
 class Feed
@@ -18,17 +20,17 @@ class Feed
     
     private Data $ultimaAtualizacao;
 
-    private BuscadorDeArtigosServiceInterface $buscadorDeArtigoService;
+    // private BuscadorDeArtigosServiceInterface $buscadorDeArtigoService;
 
     public function __construct(
         string $titulo,
         string $linkRss,
-        BuscadorDeArtigosServiceInterface $buscadorDeArtigoService,
+        // BuscadorDeArtigosServiceInterface $buscadorDeArtigoService,
         $ultimaAtualizacao = null
     ) {
         $this->titulo = $titulo;
         $this->linkRss = $linkRss;
-        $this->buscadorDeArtigoService = $buscadorDeArtigoService;
+        // $this->buscadorDeArtigoService = $buscadorDeArtigoService;
         $this->artigos = new ArtigoList();
 
         if (!$ultimaAtualizacao) {
@@ -36,6 +38,24 @@ class Feed
         }
 
         $this->ultimaAtualizacao = $ultimaAtualizacao;
+    }
+
+    public function adicionarArtigo(
+        string $titulo,
+        string $descricao,
+        string $link,
+        Autor $autor,
+        Data $dataPublicacao,
+        int $lido = 0
+    ) {
+        $this->artigos->adicionar(
+            $titulo,
+            $descricao,
+            $link,
+            $autor,
+            $dataPublicacao,
+            $lido
+        );
     }
 
     public function id($id=null)
@@ -67,16 +87,16 @@ class Feed
         return $this->ultimaAtualizacao;
     }
 
-    public function atualizar() : void
-    {
-        $this->artigos = $this->buscadorDeArtigoService->buscar(
-            $this->ultimaAtualizacao
-        );
+    // public function atualizar() : void
+    // {
+    //     $this->artigos = $this->buscadorDeArtigoService->buscar(
+    //         $this->ultimaAtualizacao
+    //     );
         
-        $this->ultimaAtualizacao = new Data(
-            date('Y'),
-            date('m'),
-            date('d'),
-        );
-    }
+    //     $this->ultimaAtualizacao = new Data(
+    //         date('Y'),
+    //         date('m'),
+    //         date('d'),
+    //     );
+    // }
 }
