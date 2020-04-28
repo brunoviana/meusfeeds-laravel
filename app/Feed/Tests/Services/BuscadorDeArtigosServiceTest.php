@@ -1,14 +1,15 @@
 <?php
 
-namespace Domain\Feed\Tests\Services;
+namespace App\Feed\Tests\Services;
 
 use Domain\Feed\ValueObjects\ArtigoList;
 use Domain\Feed\ValueObjects\Artigo;
 use Domain\Feed\ValueObjects\Data;
 use Domain\Feed\ValueObjects\Autor;
 use Domain\Feed\Entities\Feed;
-use Domain\Feed\Services\BuscadorDeArtigosService;
-use Domain\Feed\Interfaces\Adapters\BuscadorDeArtigosAdapterInterface;
+
+use App\Feed\Services\BuscadorDeArtigosService;
+use App\Feed\Interfaces\Adapters\BuscadorDeArtigosAdapterInterface;
 
 trait BuscadorDeArtigosServiceTest
 {

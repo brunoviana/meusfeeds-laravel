@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Feed\Interfaces\Adapters;
+namespace App\Feed\Interfaces\Adapters;
 
 interface BuscadorDeArtigosAdapterInterface
 {

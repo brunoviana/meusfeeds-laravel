@@ -1,12 +1,13 @@
 <?php
 
-namespace Domain\Feed\Services;
+namespace App\Feed\Services;
 
 use Domain\Feed\ValueObjects\ArtigoList;
 use Domain\Feed\ValueObjects\Data;
 use Domain\Feed\ValueObjects\Autor;
 use Domain\Feed\Entities\Feed;
-use Domain\Feed\Interfaces\Adapters\BuscadorDeArtigosAdapterInterface;
+
+use App\Feed\Interfaces\Adapters\BuscadorDeArtigosAdapterInterface;
 
 class BuscadorDeArtigosService
 {
