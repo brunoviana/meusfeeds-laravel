@@ -18,7 +18,7 @@ class Feed
     
     private Data $ultimaAtualizacao;
 
-    public static function novo(string $titulo, string $linkRss, $ultimaAtualizacao = null)
+    public static function novo(string $titulo, string $linkRss, $ultimaAtualizacao = null) : Feed
     {
         return new self($titulo, $linkRss, $ultimaAtualizacao);
     }
@@ -60,8 +60,16 @@ class Feed
         return $this->artigos;
     }
 
-    public function ultimaAtualizacao() : Data
+    public function ultimaAtualizacao($data = null) : Data
     {
+        if ($data && !is_a($data, Data::class)) {
+            throw new \RuntimeException('Parametro passado deve ser do tipo '.Data::class);
+        }
+
+        if ($data) {
+            $this->ultimaAtualizacao = $data;
+        }
+        
         return $this->ultimaAtualizacao;
     }
 
@@ -81,7 +89,5 @@ class Feed
             $dataPublicacao,
             $lido
         );
-
-        $this->ultimaAtualizacao = Data::agora();
     }
 }

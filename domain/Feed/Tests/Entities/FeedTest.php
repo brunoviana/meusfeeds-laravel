@@ -5,8 +5,6 @@ namespace Domain\Feed\Tests\Entities;
 use Domain\Feed\Entities\Feed;
 use Domain\Feed\ValueObjects\ArtigoList;
 use Domain\Feed\ValueObjects\Data;
-use Domain\Feed\ValueObjects\Autor;
-use Domain\Feed\Interfaces\Services\BuscadorDeArtigosServiceInterface;
 
 trait FeedTest
 {
@@ -32,23 +30,15 @@ trait FeedTest
         $this->assertTrue($feed->ultimaAtualizacao()->vazio());
     }
 
-    public function test_Deve_Mudar_Data_De_Ultima_Atualizacao_Quando_Adicionar_Artigo()
+    public function test_Deve_Disparar_Erro_Se_Data_Atualizacao_E_Invalida()
     {
+        $this->expectException(\RuntimeException::class);
+
         $feed = Feed::novo(
             'Blog do Bruno',
             'https://brunoviana.dev'
         );
         
-        $this->assertEquals('0000-00-00', $feed->ultimaAtualizacao()->formatoPadrao());
-
-        $feed->adicionarArtigo(
-            'Titulo do Artigo',
-            'Descricap do Artigo',
-            'http://link-do-artigo',
-            new Autor('Autor do Artigo'),
-            new Data(2020, 01, 01)
-        );
-
-        $this->assertEquals(date('Y-m-d'), $feed->ultimaAtualizacao()->formatoPadrao());
+        $feed->ultimaAtualizacao('2020-01-01');
     }
 }

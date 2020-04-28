@@ -20,7 +20,7 @@ class BuscadorDeArtigosService
     public function buscarAPartirDe(Data $aPartirDe) : ArtigoList
     {
         $artigosEncontrados = $this->buscadorAdapter->buscar(
-            $aPartirDe->vazio() ? $aPartirDe->formatoPadrao() : ''
+            $aPartirDe->vazio() ? '' : $aPartirDe->formatoPadrao()
         );
 
         $artigoList = new ArtigoList();
@@ -54,5 +54,9 @@ class BuscadorDeArtigosService
                 $artigo->lido(),
             );
         }
+
+        $feed->ultimaAtualizacao(
+            Data::agora()
+        );
     }
 }

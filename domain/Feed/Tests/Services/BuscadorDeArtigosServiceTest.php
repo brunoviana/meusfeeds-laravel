@@ -2,7 +2,6 @@
 
 namespace Domain\Feed\Tests\Services;
 
-// use Domain\Feed\Entities\Feed;
 use Domain\Feed\ValueObjects\ArtigoList;
 use Domain\Feed\ValueObjects\Artigo;
 use Domain\Feed\ValueObjects\Data;
@@ -93,6 +92,31 @@ trait BuscadorDeArtigosServiceTest
         $buscadorDeArtigos->buscarEAtualizar($feed);
 
         $this->assertListaDeArtigos($feed->artigos());
+    }
+
+    public function test_Deve_Setar_Data_De_Atualizacao_No_Feed_Depois_Que_Atualizar()
+    {
+        $dadosDoArtigo = $this->dadosDoArtigo();
+
+        $this->makeMock(
+            BuscadorDeArtigosAdapterInterface::class,
+            function ($mock) use ($dadosDoArtigo) {
+                $mock->shouldReceive('buscar')
+                    ->with('')
+                    ->andReturn([ $dadosDoArtigo ]);
+            }
+        );
+
+        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev', new Data());
+        $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
+
+        $this->assertEquals('0000-00-00', $feed->ultimaAtualizacao()->formatoPadrao());
+
+        $buscadorDeArtigos->buscarEAtualizar($feed);
+        
+        $this->assertEquals(date('Y-m-d'), $feed->ultimaAtualizacao()->formatoPadrao());
+
+        // $this->assertListaDeArtigos($feed->artigos());
     }
 
     public function assertListaDeArtigos($artigos)
