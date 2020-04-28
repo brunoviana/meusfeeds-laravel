@@ -3,7 +3,6 @@
 namespace App\Feed\UseCases;
 
 use Domain\Feed\Interfaces\Repositories\FeedRepositoryInterface;
-use Domain\Feed\Interfaces\Services\BuscadorDeArtigosServiceInterface;
 use Domain\Feed\Entities\Feed;
 
 use App\Feed\Requests\CriarNovoFeedRequest;
@@ -16,16 +15,12 @@ class CriarNovoFeed
 
     private FeedRepositoryInterface $feedRepository;
 
-    private BuscadorDeArtigosServiceInterface $buscadorDeArtigosService;
-
     public function __construct(
         CriarNovoFeedRequest $request,
-        FeedRepositoryInterface $feedRepository,
-        BuscadorDeArtigosServiceInterface $buscadorDeArtigosService
+        FeedRepositoryInterface $feedRepository
     ) {
         $this->request = $request;
         $this->feedRepository = $feedRepository;
-        $this->buscadorDeArtigosService = $buscadorDeArtigosService;
     }
 
     public function executar()
@@ -36,7 +31,7 @@ class CriarNovoFeed
             throw new FeedJaExisteException('Já existe um feed com esse link');
         }
 
-        $feed = new Feed(
+        $feed = Feed::novo(
             $this->request->titulo(),
             $this->request->linkRss(),
             $this->buscadorDeArtigosService

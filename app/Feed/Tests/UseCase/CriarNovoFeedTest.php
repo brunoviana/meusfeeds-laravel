@@ -3,7 +3,6 @@
 namespace App\Feed\Tests\UseCase;
 
 use Domain\Feed\Interfaces\Repositories\FeedRepositoryInterface;
-use Domain\Feed\Interfaces\Services\BuscadorDeArtigosServiceInterface;
 use Domain\Feed\Entities\Feed;
 
 use App\Feed\UseCases\CriarNovoFeed;
@@ -13,14 +12,8 @@ use App\Feed\Exceptions\FeedJaExisteException;
 
 trait CriarNovoFeedTest
 {
-    abstract protected function makeMock($class, $assertions=null);
-
-    abstract protected function getInstance($class);
-    
     public function test_Deve_Criar_Novo_Feed_Com_Sucesso()
     {
-        $this->makeMock(BuscadorDeArtigosServiceInterface::class);
-        
         $this->makeMock(FeedRepositoryInterface::class, function ($mock) {
             $mock->shouldReceive('buscarPeloLink')
                     ->andReturn(null);
@@ -50,15 +43,12 @@ trait CriarNovoFeedTest
     {
         $this->expectException(FeedJaExisteException::class);
 
-        $buscadorDeArtigosMock = $this->makeMock(BuscadorDeArtigosServiceInterface::class);
-
-        $this->makeMock(FeedRepositoryInterface::class, function ($mock) use ($buscadorDeArtigosMock) {
+        $this->makeMock(FeedRepositoryInterface::class, function ($mock) {
             $mock->shouldReceive('buscarPeloLink')
                     ->andReturn(
-                        new Feed(
+                        Feed::novo(
                             'Novo Feed',
-                            'https://brunoviana.dev/rss.xml',
-                            $buscadorDeArtigosMock
+                            'https://brunoviana.dev/rss.xml'
                         )
                     );
 
