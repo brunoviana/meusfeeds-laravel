@@ -1,12 +1,12 @@
 <?php
 
-namespace Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
+namespace Framework\Adapters\Feed\Services;
 
 use FeedIo\FeedIo;
 
 use App\Feed\Interfaces\Services\BuscadorDeFeedsServiceInterface;
 
-class FeedIoAdapter implements BuscadorDeFeedsServiceInterface
+class BuscadorDeFeedsService implements BuscadorDeFeedsServiceInterface
 {
     private $feedIo;
 

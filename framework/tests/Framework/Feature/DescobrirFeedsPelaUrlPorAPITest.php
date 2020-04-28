@@ -5,13 +5,13 @@ namespace Tests\Framework\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-use Framework\Adapters\Feed\Services\BuscadorDeFeedsService\FeedIoAdapter;
+use Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
 
 class DescobrirFeedsPelaUrlPorAPITest extends TestCase
 {
     public function test_Api_Deve_Criar_Feed_Com_Sucesso()
     {
-        $this->mock(FeedIoAdapter::class, function ($mock) {
+        $this->mock(BuscadorDeFeedsService::class, function ($mock) {
             $mock->shouldReceive('buscar')->andReturn([
                 [
                     'titulo' => 'Blog do Bruno',

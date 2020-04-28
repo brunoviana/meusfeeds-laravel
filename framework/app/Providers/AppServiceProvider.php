@@ -4,7 +4,7 @@ namespace Framework\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use Framework\Adapters\Feed\Services\BuscadorDeFeedsService\FeedIoAdapter;
+use Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,12 +15,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(FeedIoAdapter::class, function ($app) {
-            return new FeedIoAdapter(
-                $app->make(\FeedIo\FeedIo::class)
-            );
-        });
-
         $this->app->bind(\FeedIo\FeedIo::class, function ($app) {
             return \FeedIo\Factory::create()->getFeedIo();
         });

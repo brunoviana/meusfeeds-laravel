@@ -6,17 +6,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use Tests\TestCase;
 
-use Framework\Adapters\Feed\Services\BuscadorDeFeedsService\FeedIoAdapter;
+use Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
 
-class FeedIoAdapterTest extends TestCase
+class BuscadorDeFeedsServiceTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_FeedIoAdapter_Deve_Buscar_Feeds_Com_Sucesso()
+    public function test_Deve_Buscar_Feeds_Com_Sucesso()
     {
         $this->criaFeedIoMocks();
 
-        $feedAdapter = app(FeedIoAdapter::class);
+        $feedAdapter = app(BuscadorDeFeedsService::class);
 
         $result = $feedAdapter->buscar('https://brunoviana.dev');
 
@@ -33,7 +33,7 @@ class FeedIoAdapterTest extends TestCase
         ], $result[0]);
     }
 
-    public function test_FeedIoAdapter_Deve_Retornar_Apenas_3_Artigos()
+    public function test_Deve_Retornar_Apenas_3_Artigos()
     {
         $this->criaFeedIoMocks([
             'feed_itens' => [
@@ -45,7 +45,7 @@ class FeedIoAdapterTest extends TestCase
             ]
         ]);
 
-        $feedAdapter = app(FeedIoAdapter::class);
+        $feedAdapter = app(BuscadorDeFeedsService::class);
 
         $result = $feedAdapter->buscar('https://brunoviana.dev');
 
