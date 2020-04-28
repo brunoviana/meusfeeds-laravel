@@ -17,12 +17,12 @@ class BuscadorDeArtigosAdapter implements BuscadorDeArtigosAdapterInterface
         $this->feedIo = $feedIo;
     }
 
-    public function buscar(Feed $feed, string $aPartirDe = '') : array
+    public function buscar(string $link, string $aPartirDe = '') : array
     {
         if (!empty($aPartirDe)) {
-            $result = $this->feedIo->readSince($feed->linkRss(), new \DateTime($aPartirDe));
+            $result = $this->feedIo->readSince($link, new \DateTime($aPartirDe));
         } else {
-            $result = $this->feedIo->read($feed->linkRss());
+            $result = $this->feedIo->read($link);
         }
 
         $artigosEncontrados = [];

@@ -18,9 +18,10 @@ class BuscadorDeArtigosService
         $this->buscadorAdapter = $buscadorAdapter;
     }
 
-    public function buscarAPartirDe(Data $aPartirDe) : ArtigoList
+    public function buscarAPartirDe(string $link, Data $aPartirDe) : ArtigoList
     {
         $artigosEncontrados = $this->buscadorAdapter->buscar(
+            $link,
             $aPartirDe->vazio() ? '' : $aPartirDe->formatoPadrao()
         );
 
@@ -43,7 +44,10 @@ class BuscadorDeArtigosService
 
     public function buscarEAtualizar(Feed $feed)
     {
-        $artigos = $this->buscarAPartirDe($feed->ultimaAtualizacao());
+        $artigos = $this->buscarAPartirDe(
+            $feed->linkRss(),
+            $feed->ultimaAtualizacao(),
+        );
 
         foreach ($artigos as $artigo) {
             $feed->adicionarArtigo(

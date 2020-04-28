@@ -6,5 +6,5 @@ use Domain\Feed\Entities\Feed;
 
 interface BuscadorDeArtigosAdapterInterface
 {
-    public function buscar(Feed $feed, string $aPartirDe = '') : array;
+    public function buscar(string $link, string $aPartirDe = '') : array;
 }

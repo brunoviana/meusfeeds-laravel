@@ -14,15 +14,11 @@ class BuscadorDeArtigosAdapterTest extends TestCase
 
     public function test_Deve_Buscar_Todos_Os_Artigos_Com_Sucesso()
     {
-        $feedModel = $this->criaFeedNoBancoDeDados();
-
         $this->criaFeedIoMocks();
 
         $adapter = app(BuscadorDeArtigosAdapter::class);
 
-        $result = $adapter->buscar(
-            $feedModel->entity()
-        );
+        $result = $adapter->buscar('https://brunoviana.dev/rss.xml');
 
         $this->assertCount(1, $result);
         $this->assertArraySubset($this->dadosArtigo(), $result[0]);
@@ -30,24 +26,14 @@ class BuscadorDeArtigosAdapterTest extends TestCase
 
     public function test_Deve_Buscar_Artigos_A_Partir_Da_Data_Com_Sucesso()
     {
-        $feedModel = $this->criaFeedNoBancoDeDados();
-
         $this->criaFeedIoMocks(true);
 
         $adapter = app(BuscadorDeArtigosAdapter::class);
 
-        $result = $adapter->buscar($feedModel->entity(), '2020-01-01');
+        $result = $adapter->buscar('https://brunoviana.dev/rss.xml', '2020-01-01');
 
         $this->assertCount(1, $result);
         $this->assertArraySubset($this->dadosArtigo(), $result[0]);
-    }
-
-    public function criaFeedNoBancoDeDados()
-    {
-        return factory(FeedModel::class, 1)->create([
-            'titulo' => 'Blog do Bruno',
-            'link_rss' => 'https://brunoviana.dev/rss.xml'
-        ])->first();
     }
 
     public function dadosArtigo()

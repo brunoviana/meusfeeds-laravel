@@ -21,14 +21,14 @@ trait BuscadorDeArtigosServiceTest
             BuscadorDeArtigosAdapterInterface::class,
             function ($mock) use ($dadosDoArtigo) {
                 $mock->shouldReceive('buscar')
-                    ->with('')
+                    ->with('https://brunoviana.dev/rss.xml', '')
                     ->andReturn([ $dadosDoArtigo ]);
             }
         );
 
         $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
 
-        $artigos = $buscadorDeArtigos->buscarAPartirDe(new Data());
+        $artigos = $buscadorDeArtigos->buscarAPartirDe('https://brunoviana.dev/rss.xml', new Data());
 
         $this->assertListaDeArtigos($artigos);
     }
@@ -41,14 +41,17 @@ trait BuscadorDeArtigosServiceTest
             BuscadorDeArtigosAdapterInterface::class,
             function ($mock) use ($dadosDoArtigo) {
                 $mock->shouldReceive('buscar')
-                    ->with('2020-01-01')
+                    ->with('https://brunoviana.dev/rss.xml', '2020-01-01')
                     ->andReturn([ $dadosDoArtigo ]);
             }
         );
 
         $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
 
-        $artigos = $buscadorDeArtigos->buscarAPartirDe(new Data(2020, 01, 01));
+        $artigos = $buscadorDeArtigos->buscarAPartirDe(
+            'https://brunoviana.dev/rss.xml',
+            new Data(2020, 01, 01)
+        );
 
         $this->assertListaDeArtigos($artigos);
     }
@@ -61,12 +64,12 @@ trait BuscadorDeArtigosServiceTest
             BuscadorDeArtigosAdapterInterface::class,
             function ($mock) use ($dadosDoArtigo) {
                 $mock->shouldReceive('buscar')
-                    ->with('')
+                    ->with('https://brunoviana.dev/rss.xml', '')
                     ->andReturn([ $dadosDoArtigo ]);
             }
         );
 
-        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev');
+        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev/rss.xml');
         $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
 
         $buscadorDeArtigos->buscarEAtualizar($feed);
@@ -82,12 +85,12 @@ trait BuscadorDeArtigosServiceTest
             BuscadorDeArtigosAdapterInterface::class,
             function ($mock) use ($dadosDoArtigo) {
                 $mock->shouldReceive('buscar')
-                    ->with('2020-01-01')
+                    ->with('https://brunoviana.dev/rss.xml', '2020-01-01')
                     ->andReturn([ $dadosDoArtigo ]);
             }
         );
 
-        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev', new Data(2020, 01, 01));
+        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev/rss.xml', new Data(2020, 01, 01));
         $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
 
         $buscadorDeArtigos->buscarEAtualizar($feed);
@@ -103,12 +106,12 @@ trait BuscadorDeArtigosServiceTest
             BuscadorDeArtigosAdapterInterface::class,
             function ($mock) use ($dadosDoArtigo) {
                 $mock->shouldReceive('buscar')
-                    ->with('')
+                    ->with('https://brunoviana.dev/rss.xml', '')
                     ->andReturn([ $dadosDoArtigo ]);
             }
         );
 
-        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev', new Data());
+        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev/rss.xml', new Data());
         $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
 
         $this->assertEquals('0000-00-00', $feed->ultimaAtualizacao()->formatoPadrao());
