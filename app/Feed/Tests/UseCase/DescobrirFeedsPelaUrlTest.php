@@ -9,10 +9,6 @@ use App\Feed\Interfaces\Services\BuscadorDeFeedsServiceInterface;
 
 trait DescobrirFeedsPelaUrlTest
 {
-    abstract protected function makeMock($class, $assertions);
-
-    abstract protected function getInstance($class);
-
     public function test_Deve_Descobrir_Feeds_Pela_Url_Com_Sucesso()
     {
         $this->makeMock(DescobrirFeedsPelaUrlRequest::class, function ($mock) {
