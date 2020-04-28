@@ -19,6 +19,7 @@ class BuscadorDeArtigosAdapter implements BuscadorDeArtigosAdapterInterface
 
     public function buscar(string $link, string $aPartirDe = '') : array
     {
+        dd($link);
         if (!empty($aPartirDe)) {
             $result = $this->feedIo->readSince($link, new \DateTime($aPartirDe));
         } else {
@@ -32,9 +33,11 @@ class BuscadorDeArtigosAdapter implements BuscadorDeArtigosAdapterInterface
                 'titulo' => $item->getTitle(),
                 'descricao' => $item->getDescription(),
                 'link' => $item->getLink(),
-                'autor' => $item->getAuthor()->getName(),
+                'autor' => (string) $item->getAuthor()->getName(),
                 'data_publicacao' => $item->getLastModified()->format('Y-m-d'),
             ];
+
+            dd($artigosEncontrados);
         }
 
         return $artigosEncontrados;
