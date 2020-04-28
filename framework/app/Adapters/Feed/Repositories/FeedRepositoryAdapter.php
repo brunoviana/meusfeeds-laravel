@@ -1,9 +1,8 @@
 <?php
 
-namespace Framework\Adapters\Repositories;
+namespace Framework\Adapters\Feed\Repositories;
 
 use Domain\Feed\Interfaces\Repositories\FeedRepositoryInterface;
-use App\Feed\Responses\CriarNovoFeedResponse;
 
 use Domain\Feed\Entities\Feed;
 

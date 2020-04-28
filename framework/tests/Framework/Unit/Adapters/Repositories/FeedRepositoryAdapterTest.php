@@ -4,9 +4,7 @@ namespace Tests\Framework\Unit\Framework\Adapters\Repositories;
 
 use Domain\Feed\Entities\Feed;
 
-use App\Feed\Responses\CriarNovoFeedResponse;
-
-use Framework\Adapters\Repositories\FeedRepositoryAdapter;
+use Framework\Adapters\Feed\Repositories\FeedRepositoryAdapter;
 use Framework\Models\Feed as FeedModel;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
