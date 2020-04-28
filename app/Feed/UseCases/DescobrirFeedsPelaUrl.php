@@ -22,11 +22,16 @@ class DescobrirFeedsPelaUrl
 
     public function executar()
     {
-        $feeds = $this->buscadorDeFeeds->buscar(
+        $feedsEncontrados = $this->encontrarFeeds();
+
+        return $this->responder($feedsEncontrados);
+    }
+
+    public function encontrarFeeds()
+    {
+        return $this->buscadorDeFeeds->buscar(
             $this->url()
         );
-
-        return $this->responder($feeds);
     }
 
     public function responder($feeds)
