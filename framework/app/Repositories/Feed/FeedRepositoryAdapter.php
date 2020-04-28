@@ -19,7 +19,7 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
             throw new FeedNaoEncontradoException('Não foi possível encontrar Feed com id '.$id);
         }
 
-        return $feedModel->entity();
+        return $this->criaEntidade($feedModel);
     }
 
     public function buscarPeloLink(string $link) : Feed
@@ -30,13 +30,13 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
             throw new FeedNaoEncontradoException('Não foi possível encontrar Feed com link '.$link);
         }
 
-        return $feedModel->entity();
+        return $this->criaEntidade($feedModel);
     }
 
     public function save(Feed $feed) : int
     {
-        $feedModel = new FeedModel();
-        $feedModel->map($feed);
+        $feedModel = $this->criaModel($feed);
+
         $feedModel->save();
 
         $feedModel->artigos()->delete();
@@ -53,5 +53,27 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
         }
 
         return $feedModel->id;
+    }
+    public function criaModel(Feed $feed)
+    {
+        $feedModel = new FeedModel();
+        $feedModel->titulo = $feed->titulo();
+        $feedModel->link_rss = $feed->linkRss();
+
+        return $feedModel;
+    }
+
+    public function criaEntidade(FeedModel $model)
+    {
+        $feed = Feed::novo(
+            $model->titulo,
+            $model->link_rss
+        );
+
+        if ($model->id) {
+            $feed->id($model->id);
+        }
+
+        return $feed;
     }
 }

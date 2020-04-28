@@ -14,26 +14,4 @@ class Feed extends Model
     {
         return $this->hasMany(Artigo::class);
     }
-
-    public function map(FeedEntity $feed)
-    {
-        $this->titulo = $feed->titulo();
-        $this->link_rss = $feed->linkRss();
-
-        return $this;
-    }
-
-    public function entity() : FeedEntity
-    {
-        $feed = FeedEntity::novo(
-            $this->titulo,
-            $this->link_rss
-        );
-
-        if ($this->id) {
-            $feed->id($this->id);
-        }
-
-        return $feed;
-    }
 }
