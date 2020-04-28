@@ -9,7 +9,7 @@ interface FeedRepositoryInterface
     /**
      * @throes FeedNaoEncontradoException se feed não existe
      */
-    public function buscar($id) : Feed;
+    public function buscar(int $id) : Feed;
 
     /**
      * @throes FeedNaoEncontradoException se feed não existe
