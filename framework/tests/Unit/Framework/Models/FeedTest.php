@@ -3,7 +3,6 @@
 namespace Tests\Unit\Framework\Models;
 
 use Domain\Feed\Entities\Feed;
-use Domain\Feed\Interfaces\Services\BuscadorDeArtigosServiceInterface;
 
 use Framework\Models\Feed as FeedModel;
 
@@ -16,10 +15,9 @@ class FeedTest extends TestCase
 
     public function test_FeedModel_Deve_Mapear_Entidade_Com_Sucesso()
     {
-        $feed = new Feed(
+        $feed = Feed::novo(
             'Blog do Bruno',
-            'https://brunoviana.dev/rss.xml',
-            $this->makeMock(BuscadorDeArtigosServiceInterface::class)
+            'https://brunoviana.dev/rss.xml'
         );
 
         $feedModel = new FeedModel();

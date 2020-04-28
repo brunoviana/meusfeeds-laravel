@@ -3,7 +3,6 @@
 namespace Tests\Unit\Framework\Adapters\Repositories;
 
 use Domain\Feed\Entities\Feed;
-use Domain\Feed\Interfaces\Services\BuscadorDeArtigosServiceInterface;
 
 use App\Feed\Responses\CriarNovoFeedResponse;
 
@@ -33,10 +32,9 @@ class FeedRepositoryAdapterTest extends TestCase
 
     public function test_FeedRepository_Deve_Salvar_E_Retornar_Response()
     {
-        $feed = new Feed(
+        $feed = Feed::novo(
             'Blog do Bruno',
-            'https://brunoviana.dev/rss.xml',
-            $this->makeMock(BuscadorDeArtigosServiceInterface::class)
+            'https://brunoviana.dev/rss.xml'
         );
 
         $repository = new FeedRepositoryAdapter();

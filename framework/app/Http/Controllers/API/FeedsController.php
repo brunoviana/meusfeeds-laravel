@@ -17,7 +17,6 @@ use Framework\Adapters\Repositories\FeedRepositoryAdapter;
 use Framework\Adapters\Feed\Services\BuscadorDeFeedsService\FeedIoAdapter;
 use Framework\Http\Resources\Feed\FeedResource;
 use Framework\Http\Resources\Feed\FeedsDescobertosResource;
-use Framework\Adapters\Feed\Services\BuscadorDeArtigosService;
 
 use Illuminate\Http\Request;
 
@@ -50,8 +49,7 @@ class FeedsController extends Controller
 
         $criarFeed = new CriarNovoFeed(
             $criarFeedRequest,
-            $feedRepositoryAdapter,
-            app(BuscadorDeArtigosService::class)
+            $feedRepositoryAdapter
         );
 
         try {

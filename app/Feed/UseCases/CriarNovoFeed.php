@@ -33,8 +33,7 @@ class CriarNovoFeed
 
         $feed = Feed::novo(
             $this->request->titulo(),
-            $this->request->linkRss(),
-            $this->buscadorDeArtigosService
+            $this->request->linkRss()
         );
 
         $id = $this->feedRepository->save($feed);
