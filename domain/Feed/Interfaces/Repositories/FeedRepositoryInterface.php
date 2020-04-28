@@ -3,6 +3,7 @@
 namespace Domain\Feed\Interfaces\Repositories;
 
 use Domain\Feed\Entities\Feed;
+use Domain\Feed\ValueObjects\Data;
 
 interface FeedRepositoryInterface
 {
@@ -20,4 +21,10 @@ interface FeedRepositoryInterface
      * @returns int Id do feed no banco
      */
     public function save(Feed $feed) : int;
+
+    /**
+     * Retorna data da última vez que os artigos do
+     * feed foram atualizados.
+     */
+    public function dataDaUltimaAtualizacao(Feed $feed) : Data;
 }

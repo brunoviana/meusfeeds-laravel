@@ -39,7 +39,8 @@ class AtualizarFeed
 
     public function buscarEAtualizar(Feed $feed)
     {
-        $this->buscadorDeArtigos->buscarEAtualizar($feed);
+        $dataDaUltimaAtualizacao = $this->feedRepository->dataDaUltimaAtualizacao($feed);
+        $this->buscadorDeArtigos->buscarEAtualizar($feed, $dataDaUltimaAtualizacao);
         $this->feedRepository->save($feed);
     }
 

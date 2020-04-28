@@ -70,6 +70,11 @@ trait AtualizarFeedTest
     public function criaMocksParaInjetarNaUseCase()
     {
         $this->makeMock(FeedRepositoryInterface::class, function ($mock) {
+            $mock->shouldReceive('dataDaUltimaAtualizacao')
+                    ->andReturn(
+                        new Data()
+                    );
+
             $mock->shouldReceive('buscar')
                     ->with(1)
                     ->andReturn(

@@ -65,11 +65,11 @@ class BuscadorDeArtigosService
         return substr(trim($semHtml), 0, 200);
     }
 
-    public function buscarEAtualizar(Feed $feed)
+    public function buscarEAtualizar(Feed $feed, Data $aPartirDe)
     {
         $artigos = $this->buscarAPartirDe(
             $feed->linkRss(),
-            $feed->ultimaAtualizacao(),
+            $aPartirDe,
         );
 
         foreach ($artigos as $artigo) {
@@ -82,9 +82,5 @@ class BuscadorDeArtigosService
                 $artigo->lido(),
             );
         }
-
-        $feed->ultimaAtualizacao(
-            Data::agora()
-        );
     }
 }
