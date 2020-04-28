@@ -11,12 +11,12 @@ use App\Feed\Exceptions\FeedJaExisteException;
 use App\Feed\Requests\DescobrirFeedsPelaUrlRequest;
 use App\Feed\UseCases\DescobrirFeedsPelaUrl;
 
-use Framework\Http\Controllers\Controller;
 use Framework\Models\Feed as FeedModel;
-use Framework\Adapters\Feed\Repositories\FeedRepositoryAdapter;
-use Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
+use Framework\Http\Controllers\Controller;
 use Framework\Http\Resources\Feed\FeedResource;
+use Framework\Repositories\Feed\FeedRepositoryAdapter;
 use Framework\Http\Resources\Feed\FeedsDescobertosResource;
+use Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
 
 use Illuminate\Http\Request;
 
