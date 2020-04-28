@@ -3,6 +3,7 @@
 namespace Framework\Repositories\Feed;
 
 use Domain\Feed\Entities\Feed;
+use Domain\Feed\ValueObjects\Data;
 use Domain\Feed\Interfaces\Repositories\FeedRepositoryInterface;
 
 use App\Feed\Exceptions\FeedNaoEncontradoException;
@@ -58,5 +59,22 @@ class FeedRepositoryAdapter implements FeedRepositoryInterface
         );
 
         return $feedModel->id;
+    }
+
+    public function dataDaUltimaAtualizacao(Feed $feed) : Data
+    {
+        $feedModel = FeedMapper::criaModel($feed);
+
+        $ultimoArtigo = $feedModel->artigos->last();
+
+        if ($ultimoArtigo) {
+            return new Data(
+                $ultimoArtigo->created_at->format('Y'),
+                $ultimoArtigo->created_at->format('m'),
+                $ultimoArtigo->created_at->format('d')
+            );
+        }
+
+        return new Data();
     }
 }

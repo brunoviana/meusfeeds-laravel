@@ -73,7 +73,7 @@ trait BuscadorDeArtigosServiceTest
         $feed = Feed::novo('Meu blog', 'https://brunoviana.dev/rss.xml');
         $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
 
-        $buscadorDeArtigos->buscarEAtualizar($feed);
+        $buscadorDeArtigos->buscarEAtualizar($feed, new Data());
 
         $this->assertListaDeArtigos($feed->artigos());
     }
@@ -91,37 +91,12 @@ trait BuscadorDeArtigosServiceTest
             }
         );
 
-        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev/rss.xml', new Data(2020, 01, 01));
+        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev/rss.xml');
         $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
 
-        $buscadorDeArtigos->buscarEAtualizar($feed);
+        $buscadorDeArtigos->buscarEAtualizar($feed, new Data(2020, 01, 01));
 
         $this->assertListaDeArtigos($feed->artigos());
-    }
-
-    public function test_Deve_Setar_Data_De_Atualizacao_No_Feed_Depois_Que_Atualizar()
-    {
-        $dadosDoArtigo = $this->dadosDoArtigo();
-
-        $this->makeMock(
-            BuscadorDeArtigosAdapterInterface::class,
-            function ($mock) use ($dadosDoArtigo) {
-                $mock->shouldReceive('buscar')
-                    ->with('https://brunoviana.dev/rss.xml', '')
-                    ->andReturn([ $dadosDoArtigo ]);
-            }
-        );
-
-        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev/rss.xml', new Data());
-        $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
-
-        $this->assertEquals('0000-00-00', $feed->ultimaAtualizacao()->formatoPadrao());
-
-        $buscadorDeArtigos->buscarEAtualizar($feed);
-        
-        $this->assertEquals(date('Y-m-d'), $feed->ultimaAtualizacao()->formatoPadrao());
-
-        // $this->assertListaDeArtigos($feed->artigos());
     }
 
     public function test_Deve_Falhar_Se_Resposta_Do_Adapter_E_Invalida()
@@ -139,11 +114,11 @@ trait BuscadorDeArtigosServiceTest
             }
         );
 
-        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev/rss.xml', new Data());
+        $feed = Feed::novo('Meu blog', 'https://brunoviana.dev/rss.xml');
         
         $buscadorDeArtigos = $this->getInstance(BuscadorDeArtigosService::class);
 
-        $buscadorDeArtigos->buscarEAtualizar($feed);
+        $buscadorDeArtigos->buscarEAtualizar($feed, new Data());
     }
 
     public function assertListaDeArtigos($artigos)

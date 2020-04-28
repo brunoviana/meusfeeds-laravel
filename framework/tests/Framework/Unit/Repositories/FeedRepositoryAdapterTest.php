@@ -157,4 +157,46 @@ class FeedRepositoryAdapterTest extends TestCase
 
         $this->assertCount(1, $feed->artigos());
     }
+
+    public function test_FeedRepository_Deve_Retornar_Data_Da_Ultima_Atualizacao()
+    {
+        $feedModel = factory(FeedModel::class, 1)->create([
+            'titulo' => 'Blog do Bruno',
+            'link_rss' => 'https://brunoviana.dev/rss.xml'
+        ])->first();
+
+        $artigoModel = factory(ArtigoModel::class, 1)->create([
+            'titulo' => 'Titulo do Artigo',
+            'descricao' => 'Descrição do Artigo',
+            'link' => 'http://link.co.br',
+            'autor' => 'Autor',
+            'data_publicacao' => '2020-10-10',
+            'lido' => 0,
+            'feed_id' => $feedModel->id
+        ])->first();
+
+        $repository = new FeedRepositoryAdapter();
+        $feed = $repository->buscarPeloLink('https://brunoviana.dev/rss.xml');
+
+        $this->assertEquals(
+            $artigoModel->created_at->format('Y-m-d'),
+            $repository->dataDaUltimaAtualizacao($feed)->formatoPadrao()
+        );
+    }
+
+    public function test_FeedRepository_Deve_Retornar_Data_Vazia()
+    {
+        $feedModel = factory(FeedModel::class, 1)->create([
+            'titulo' => 'Blog do Bruno',
+            'link_rss' => 'https://brunoviana.dev/rss.xml'
+        ])->first();
+
+        $repository = new FeedRepositoryAdapter();
+        $feed = $repository->buscarPeloLink('https://brunoviana.dev/rss.xml');
+
+        $this->assertInstanceOf(Feed::class, $feed);
+        $this->assertTrue(
+            $repository->dataDaUltimaAtualizacao($feed)->vazio()
+        );
+    }
 }
