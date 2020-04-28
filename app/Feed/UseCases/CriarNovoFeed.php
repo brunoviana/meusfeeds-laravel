@@ -27,14 +27,14 @@ class CriarNovoFeed
     {
         $this->falharSeFeedJaExistir();
 
-        $feed = $this->criaNovoFeed();
-
-        $this->salvarFeed($feed);
+        $feed = $this->salvarFeed(
+            $this->novoFeed()
+        );
 
         return $this->responder($feed);
     }
 
-    public function criaNovoFeed()
+    public function novoFeed()
     {
         return Feed::novo(
             $this->request->titulo(),
@@ -52,6 +52,8 @@ class CriarNovoFeed
         $id = $this->feedRepository->save($feed);
 
         $feed->id($id);
+
+        return $feed;
     }
 
     public function falharSeFeedJaExistir()
