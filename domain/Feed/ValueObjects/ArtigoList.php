@@ -10,6 +10,8 @@ class ArtigoList implements \Iterator, \Countable
 {
     private $artigos = [];
 
+    private $primeiroIndice = null;
+
     public function adicionar(
         string $titulo,
         string $descricao,
@@ -18,7 +20,13 @@ class ArtigoList implements \Iterator, \Countable
         Data $dataPublicacao,
         int $lido = 0
     ) {
-        $this->artigos[] = new Artigo(
+        $indice = md5($link);
+
+        if (!$this->primeiroIndice) {
+            $this->primeiroIndice = $indice;
+        }
+
+        $this->artigos[$indice] = new Artigo(
             $titulo,
             $descricao,
             $link,
@@ -30,8 +38,10 @@ class ArtigoList implements \Iterator, \Countable
 
     public function primeiro()
     {
-        if (count($this->artigos)) {
-            return $this->artigos[0];
+        $indice = $this->primeiroIndice;
+
+        if ($indice) {
+            return $this->artigos[$indice];
         }
 
         return null;

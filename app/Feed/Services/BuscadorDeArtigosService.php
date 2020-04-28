@@ -73,7 +73,7 @@ class BuscadorDeArtigosService
         );
 
         foreach ($artigos as $artigo) {
-            $feed->adicionarArtigo(
+            $feed->artigos()->adicionar(
                 $artigo->titulo(),
                 $artigo->descricao(),
                 $artigo->link(),
