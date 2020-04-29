@@ -5,6 +5,7 @@ namespace Feed\Tests\Domain\Services;
 use Feed\Domain\Entities\Feed;
 use Feed\Domain\Entities\Artigo;
 use Feed\Domain\Services\FeedService;
+use Feed\Domain\Exceptions\FeedJaExisteException;
 use Feed\Tests\TestAdapters\Domain\ExtratoDeFeedsFake;
 use Feed\Tests\TestAdapters\Domain\FeedRepositoryFake;
 use Feed\Tests\TestAdapters\Domain\ArtigoRepositoryFake;
@@ -74,6 +75,27 @@ class FeedServiceTest extends TestCase
         $this->assertEquals(1, $feed->id());
         $this->assertEquals('Blog do Bruno', $feed->titulo());
         $this->assertEquals('https://brunoviana.dev/rss.xml', $feed->linkRss());
+    }
+
+    public function test_Deve_Falhar_Se_Feed_Ja_Existir()
+    {
+        $this->expectException(FeedJaExisteException::class);
+        
+        $feedService = new FeedService();
+
+        $feedService->setBuscadorDeArtigos($this->buscadorDeArtigosFake);
+        $feedService->setFeedRepository($this->feedRepositoryFake);
+        $feedService->setArtigoRepository($this->artigoRepositoryFake);
+        
+        $feedService->criarNovoFeed(
+            'Blog do Bruno',
+            'https://brunoviana.dev/rss.xml'
+        );
+        
+        $feedService->criarNovoFeed(
+            'Blog do Bruno',
+            'https://brunoviana.dev/rss.xml'
+        );
     }
 
     public function test_Deve_Pegar_Todos_Os_Artigos_Quando_Adicionar_Novo_Feed()

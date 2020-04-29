@@ -49,35 +49,4 @@ class CriarNovoFeedTest extends TestCase
         $this->assertEquals('Blog do Bruno', $resposta->feed()->titulo());
         $this->assertEquals('https://brunoviana.dev/rss.xml', $resposta->feed()->linkRss());
     }
-
-    public function test_Deve_Validar_Feed_Ja_Existente()
-    {
-        // $this->expectException(FeedJaExisteException::class);
-
-        // $this->makeMock(FeedRepositoryInterface::class, function ($mock) {
-        //     $mock->shouldReceive('buscarPeloLink')
-        //             ->andReturn(
-        //                 Feed::novo(
-        //                     'Novo Feed',
-        //                     'https://brunoviana.dev/rss.xml'
-        //                 )
-        //             );
-
-        //     $mock->shouldNotReceive('save');
-        // });
-
-        // $this->makeMock(CriarNovoFeedRequest::class, function ($mock) {
-        //     $mock->shouldReceive('titulo')
-        //             ->andReturn('Novo Feed');
-
-        //     $mock->shouldReceive('linkRss')
-        //             ->andReturn('https://brunoviana.dev/rss.xml');
-        // });
-
-        // $criarFeed = $this->getInstance(CriarNovoFeed::class);
-        // $criarFeed->executar();
-
-        // $criarFeedRepetido = $this->getInstance(CriarNovoFeed::class);
-        // $criarFeedRepetido->executar();
-    }
 }
