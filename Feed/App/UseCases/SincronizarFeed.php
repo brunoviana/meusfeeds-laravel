@@ -8,6 +8,7 @@ use Feed\Domain\Interfaces\ArtigoRepositoryInterface;
 use Feed\Domain\Interfaces\BuscadorDeArtigosInterface;
 
 use Feed\App\Requests\SincronizarFeedRequest;
+use Feed\App\Exceptions\FeedNaoEncontradoException;
 
 class SincronizarFeed
 {
@@ -46,9 +47,15 @@ class SincronizarFeed
 
     public function feed()
     {
-        return $this->feedRepository->buscar(
+        $feed = $this->feedRepository->buscar(
             $this->feedId()
         );
+
+        if (!$feed) {
+            throw new FeedNaoEncontradoException('O feed não existe.');
+        }
+
+        return $feed;
     }
 
     public function feedId()
