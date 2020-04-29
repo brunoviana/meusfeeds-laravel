@@ -5,14 +5,22 @@
          colors="true"
 >
     <testsuites>
-        <testsuite name="Unit">
+        <testsuite name="Domain">
+            <directory suffix="Test.php">../*/Tests</directory>
+        </testsuite>
+
+        <testsuite name="Feed">
+            <directory suffix="Test.php">../Feed/Tests</directory>
+        </testsuite>
+
+        <!-- <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Domain</directory>
             <directory suffix="Test.php">./tests/Framework/Unit</directory>
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/App</directory>
             <directory suffix="Test.php">./tests/Framework/Feature</directory>
-        </testsuite>
+        </testsuite> -->
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
