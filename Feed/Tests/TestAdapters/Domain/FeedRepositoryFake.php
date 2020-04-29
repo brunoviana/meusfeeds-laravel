@@ -9,6 +9,17 @@ class FeedRepositoryFake implements FeedRepositoryInterface
 {
     private $feeds = [];
 
+    public function buscar(int $id)
+    {
+        foreach ($this->feeds as $feed) {
+            if ($feed->id() == $id) {
+                return $feed;
+            }
+        }
+
+        return null;
+    }
+
     public function buscarPeloLink(string $link)
     {
         foreach ($this->feeds as $feed) {

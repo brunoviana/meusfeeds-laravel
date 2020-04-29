@@ -6,6 +6,7 @@ use Feed\Domain\Entities\Feed;
 use Feed\Domain\Entities\Artigo;
 use Feed\Domain\Services\FeedService;
 use Feed\Domain\Exceptions\FeedJaExisteException;
+
 use Feed\Tests\TestAdapters\Domain\ExtratoDeFeedsFake;
 use Feed\Tests\TestAdapters\Domain\FeedRepositoryFake;
 use Feed\Tests\TestAdapters\Domain\ArtigoRepositoryFake;
