@@ -27,7 +27,7 @@ class FeedServiceTest extends TestCase
         $this->extratorDeFeedFake = new ExtratoDeFeedsFake();
         $this->feedRepositoryFake = new FeedRepositoryFake();
         $this->artigoRepositoryFake = new ArtigoRepositoryFake();
-        $this->buscadorDeArtigos = new BuscadorDeArtigosFake();
+        $this->buscadorDeArtigosFake = new BuscadorDeArtigosFake();
     }
 
     public function test_Deve_Buscar_Feeds_Disponiveis_Da_Url()
@@ -61,7 +61,7 @@ class FeedServiceTest extends TestCase
     {
         $feedService = new FeedService();
 
-        $feedService->setBuscadorDeArtigos($this->buscadorDeArtigos);
+        $feedService->setBuscadorDeArtigos($this->buscadorDeArtigosFake);
         $feedService->setFeedRepository($this->feedRepositoryFake);
         $feedService->setArtigoRepository($this->artigoRepositoryFake);
         
@@ -80,7 +80,7 @@ class FeedServiceTest extends TestCase
     {
         $feedService = new FeedService();
 
-        $feedService->setBuscadorDeArtigos($this->buscadorDeArtigos);
+        $feedService->setBuscadorDeArtigos($this->buscadorDeArtigosFake);
         $feedService->setFeedRepository($this->feedRepositoryFake);
         $feedService->setArtigoRepository($this->artigoRepositoryFake);
         
@@ -107,7 +107,7 @@ class FeedServiceTest extends TestCase
 
         $feedService = new FeedService();
 
-        $feedService->setBuscadorDeArtigos($this->buscadorDeArtigos);
+        $feedService->setBuscadorDeArtigos($this->buscadorDeArtigosFake);
         $feedService->setArtigoRepository($this->artigoRepositoryFake);
 
         $feedService->sincronizarNovosArtigos($feed);
