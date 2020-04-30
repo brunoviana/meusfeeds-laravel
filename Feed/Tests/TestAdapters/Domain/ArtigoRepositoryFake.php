@@ -3,7 +3,7 @@
 namespace Feed\Tests\TestAdapters\Domain;
 
 use Feed\Domain\Entities\Artigo;
-use Feed\Domain\Interfaces\ArtigoRepositoryInterface;
+use Feed\Domain\Repositories\ArtigoRepositoryInterface;
 
 class ArtigoRepositoryFake implements ArtigoRepositoryInterface
 {

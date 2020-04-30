@@ -3,7 +3,7 @@
 namespace Feed\App\UseCases;
 
 use Feed\Domain\Services\FeedService;
-use Feed\Domain\Interfaces\ArtigoRepositoryInterface;
+use Feed\Domain\Repositories\ArtigoRepositoryInterface;
 use Feed\Domain\Interfaces\BuscadorDeArtigosInterface;
 
 use Feed\App\Requests\SincronizarFeedRequest;

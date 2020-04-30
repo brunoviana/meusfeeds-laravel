@@ -3,8 +3,8 @@
 namespace Feed\Domain\Services;
 
 use Feed\Domain\Interfaces\ExtratorDeFeedsInterface;
-use Feed\Domain\Interfaces\FeedRepositoryInterface;
-use Feed\Domain\Interfaces\ArtigoRepositoryInterface;
+use Feed\Domain\Repositories\FeedRepositoryInterface;
+use Feed\Domain\Repositories\ArtigoRepositoryInterface;
 use Feed\Domain\Interfaces\BuscadorDeArtigosInterface;
 
 class Service

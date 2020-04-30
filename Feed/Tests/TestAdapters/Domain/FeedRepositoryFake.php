@@ -3,7 +3,7 @@
 namespace Feed\Tests\TestAdapters\Domain;
 
 use Feed\Domain\Entities\Feed;
-use Feed\Domain\Interfaces\FeedRepositoryInterface;
+use Feed\Domain\Repositories\FeedRepositoryInterface;
 
 class FeedRepositoryFake implements FeedRepositoryInterface
 {

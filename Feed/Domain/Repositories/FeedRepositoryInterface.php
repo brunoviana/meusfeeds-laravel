@@ -1,6 +1,6 @@
 <?php
 
-namespace Feed\Domain\Interfaces;
+namespace Feed\Domain\Repositories;
 
 use Feed\Domain\Entities\Feed;
 
