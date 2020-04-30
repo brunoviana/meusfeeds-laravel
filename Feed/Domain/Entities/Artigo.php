@@ -25,16 +25,19 @@ class Artigo
 
     private int $lido;
 
+    private int $feedId;
+
     public static function novo(
         string $titulo,
         string $descricao,
         string $link,
         Autor $autor,
         Data $dataPublicacao,
+        int $feedId = 0,
         int $lido = self::NAO_LIDO
     ) : Artigo
     {
-        return new self($titulo, $descricao, $link, $autor, $dataPublicacao, $lido);
+        return new self($titulo, $descricao, $link, $autor, $dataPublicacao, $feedId, $lido);
     }
 
     private function __construct(
@@ -43,6 +46,7 @@ class Artigo
         string $link,
         Autor $autor,
         Data $dataPublicacao,
+        int $feedId = 0,
         int $lido = 0
     ) {
         $this->titulo = $titulo;
@@ -50,6 +54,7 @@ class Artigo
         $this->link = $link;
         $this->autor = $autor;
         $this->dataPublicacao = $dataPublicacao;
+        $this->feedId = $feedId;
         $this->lido = $lido;
     }
 
@@ -98,5 +103,10 @@ class Artigo
         }
 
         return (bool) $this->lido;
+    }
+
+    public function feedId()
+    {
+        return $this->feedId;
     }
 }

@@ -18,6 +18,7 @@ class ArtigoTest extends TestCase
             'https://brunoviana.net/hello-world',
             new Autor('Bruno Viana'),
             new Data(2020, 01, 01),
+            0,
             Artigo::NAO_LIDO
         );
         
@@ -32,6 +33,7 @@ class ArtigoTest extends TestCase
             'https://brunoviana.net/hello-world',
             new Autor('Bruno Viana'),
             new Data(2020, 01, 01),
+            0,
             Artigo::NAO_LIDO
         );
         $artigo->id(1);
@@ -49,6 +51,7 @@ class ArtigoTest extends TestCase
             'https://brunoviana.net/hello-world',
             new Autor('Bruno Viana'),
             new Data(2020, 01, 01),
+            0,
             Artigo::NAO_LIDO
         );
 
@@ -64,6 +67,7 @@ class ArtigoTest extends TestCase
             'https://brunoviana.net/hello-world',
             new Autor('Bruno Viana'),
             new Data(2020, 01, 01),
+            0,
             Artigo::NAO_LIDO
         );
 
@@ -78,6 +82,7 @@ class ArtigoTest extends TestCase
             'https://brunoviana.net/hello-world',
             new Autor('Bruno Viana'),
             new Data(2020, 01, 01),
+            0,
             Artigo::NAO_LIDO
         );
 
@@ -92,6 +97,7 @@ class ArtigoTest extends TestCase
             'https://brunoviana.net/hello-world',
             new Autor('Bruno Viana'),
             new Data(2020, 01, 01),
+            0,
             Artigo::NAO_LIDO
         );
 
@@ -106,6 +112,7 @@ class ArtigoTest extends TestCase
             'https://brunoviana.net/hello-world',
             new Autor('Bruno Viana'),
             new Data(2020, 01, 01),
+            0,
             Artigo::NAO_LIDO
         );
 
@@ -121,6 +128,7 @@ class ArtigoTest extends TestCase
             'https://brunoviana.net/hello-world',
             new Autor('Bruno Viana'),
             new Data(2020, 01, 01),
+            0,
             Artigo::NAO_LIDO
         );
 
@@ -136,6 +144,7 @@ class ArtigoTest extends TestCase
             'https://brunoviana.net/hello-world',
             new Autor('Bruno Viana'),
             new Data(2020, 01, 01),
+            0,
             Artigo::NAO_LIDO
         );
 
@@ -150,6 +159,7 @@ class ArtigoTest extends TestCase
             'https://brunoviana.net/hello-world',
             new Autor('Bruno Viana'),
             new Data(2020, 01, 01),
+            0,
             Artigo::NAO_LIDO
         );
 
@@ -166,11 +176,27 @@ class ArtigoTest extends TestCase
             'https://brunoviana.net/hello-world',
             new Autor('Bruno Viana'),
             new Data(2020, 01, 01),
+            0,
             Artigo::LIDO
         );
 
         $artigo->lido(Artigo::NAO_LIDO);
 
         $this->assertFalse($artigo->lido());
+    }
+
+    public function test_Deve_Retornar_Id_Do_Feed_Corretamente()
+    {
+        $artigo = Artigo::novo(
+            'Hello World',
+            'Meu primeiro artigo',
+            'https://brunoviana.net/hello-world',
+            new Autor('Bruno Viana'),
+            new Data(2020, 01, 01),
+            1,
+            Artigo::LIDO
+        );
+
+        $this->assertEquals(1, $artigo->feedId());
     }
 }

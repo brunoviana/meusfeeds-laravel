@@ -23,8 +23,6 @@ class CriaTabelaArtigos extends Migration
             $table->integer('lido');
             $table->bigInteger('feed_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('feed_id')->references('id')->on('feeds')->onDelete('cascade');
         });
     }
 

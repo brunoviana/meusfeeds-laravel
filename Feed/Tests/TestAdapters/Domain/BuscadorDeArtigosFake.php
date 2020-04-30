@@ -20,6 +20,7 @@ class BuscadorDeArtigosFake implements BuscadorDeArtigosInterface
                     'https://brunoviana.net/hello-world',
                     new Autor('Bruno Viana'),
                     new Data(2020, 01, 01),
+                    $feed->id(),
                     Artigo::NAO_LIDO
                 ),
                 Artigo::novo(
@@ -28,6 +29,7 @@ class BuscadorDeArtigosFake implements BuscadorDeArtigosInterface
                     'https://brunoviana.net/hello-brasil',
                     new Autor('Bruno Viana'),
                     new Data(2020, 02, 01),
+                    $feed->id(),
                     Artigo::NAO_LIDO
                 ),
                 Artigo::novo(
@@ -36,6 +38,7 @@ class BuscadorDeArtigosFake implements BuscadorDeArtigosInterface
                     'https://brunoviana.net/hello-ceara',
                     new Autor('Bruno Viana'),
                     new Data(2020, 03, 01),
+                    $feed->id(),
                     Artigo::NAO_LIDO
                 ),
             ];
@@ -54,6 +57,7 @@ class BuscadorDeArtigosFake implements BuscadorDeArtigosInterface
                     'https://brunoviana.net/hello-world',
                     new Autor('Bruno Viana'),
                     new Data(2020, 01, 01),
+                    $feed->id(),
                     Artigo::LIDO
                 ),
             ];
