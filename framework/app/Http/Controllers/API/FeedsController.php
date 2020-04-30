@@ -2,17 +2,18 @@
 
 namespace Framework\Http\Controllers\API;
 
-use Domain\Feed\Entities\Feed;
+use Feed\Domain\Exceptions\FeedJaExisteException;
 
-use App\Feed\UseCases\CriarNovoFeed;
-use App\Feed\Requests\CriarNovoFeedRequest;
-use App\Feed\Exceptions\FeedJaExisteException;
+use Feed\App\UseCases\CriarNovoFeed;
+use Feed\App\Requests\CriarNovoFeedRequest;
 
 use Framework\Models\Feed as FeedModel;
 use Framework\Services\ExtratorDeFeeds;
+use Framework\Services\BuscadorDeArtigos;
 use Framework\Http\Controllers\Controller;
+use Framework\Repositories\FeedRepository;
+use Framework\Repositories\ArtigoRepository;
 use Framework\Http\Resources\Feed\FeedResource;
-use Framework\Repositories\Feed\FeedRepositoryAdapter;
 use Framework\Http\Resources\Feed\FeedsDescobertosResource;
 
 use Illuminate\Http\Request;
@@ -42,11 +43,11 @@ class FeedsController extends Controller
             $httpRequest->input('link_rss')
         );
 
-        $feedRepositoryAdapter = new FeedRepositoryAdapter();
-
         $criarFeed = new CriarNovoFeed(
             $criarFeedRequest,
-            $feedRepositoryAdapter
+            app(FeedRepository::class),
+            app(ArtigoRepository::class),
+            app(BuscadorDeArtigos::class)
         );
 
         try {
