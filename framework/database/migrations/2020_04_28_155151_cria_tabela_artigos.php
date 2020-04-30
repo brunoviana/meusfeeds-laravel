@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CriaTabelaFeedArtigos extends Migration
+class CriaTabelaArtigos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CriaTabelaFeedArtigos extends Migration
      */
     public function up()
     {
-        Schema::create('feed_artigos', function (Blueprint $table) {
+        Schema::create('artigos', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
             $table->text('descricao');
@@ -35,6 +35,6 @@ class CriaTabelaFeedArtigos extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('artigos');
     }
 }

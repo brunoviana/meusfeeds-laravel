@@ -1,12 +1,10 @@
 <?php
 
-namespace Framework\Models\Feed;
+namespace Framework\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Artigo extends Model
 {
-    protected $table = 'feed_artigos';
-
     protected $guarded = [];
 }
