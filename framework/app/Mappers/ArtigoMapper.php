@@ -24,7 +24,7 @@ class ArtigoMapper
         $artigoModel->link = $artigo->link();
         $artigoModel->autor = $artigo->autor()->nome();
         $artigoModel->data_publicacao = $artigo->dataPublicacao()->formatoPadrao();
-        $artigoModel->lido = (int) $artigo->descricao();
+        $artigoModel->lido = (int) $artigo->lido();
         $artigoModel->feed_id = (int) $artigo->feedId();
 
         return $artigoModel;
