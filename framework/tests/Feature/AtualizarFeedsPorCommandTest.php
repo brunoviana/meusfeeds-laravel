@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Framework\Feature;
+namespace Tests\Feature;
 
 use Feed\Domain\Entities\Artigo;
 use Feed\Domain\ValueObjects\Data;
