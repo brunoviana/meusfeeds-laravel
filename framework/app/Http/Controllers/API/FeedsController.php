@@ -8,15 +8,12 @@ use App\Feed\UseCases\CriarNovoFeed;
 use App\Feed\Requests\CriarNovoFeedRequest;
 use App\Feed\Exceptions\FeedJaExisteException;
 
-use App\Feed\Requests\DescobrirFeedsPelaUrlRequest;
-use App\Feed\UseCases\DescobrirFeedsPelaUrl;
-
 use Framework\Models\Feed as FeedModel;
+use Framework\Services\ExtratorDeFeeds;
 use Framework\Http\Controllers\Controller;
 use Framework\Http\Resources\Feed\FeedResource;
 use Framework\Repositories\Feed\FeedRepositoryAdapter;
 use Framework\Http\Resources\Feed\FeedsDescobertosResource;
-use Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
 
 use Illuminate\Http\Request;
 
@@ -105,20 +102,11 @@ class FeedsController extends Controller
 
     public function descobrir(Request $request)
     {
-        $descobrirFeedsRequest = new DescobrirFeedsPelaUrlRequest(
+        $extratorDeFeeds = app(ExtratorDeFeeds::class);
+
+        $feeds = $extratorDeFeeds->extrair(
             $request->input('url')
         );
-
-        $buscadorDeFeed = app(BuscadorDeFeedsService::class);
-
-        $descobrirFeeds = new DescobrirFeedsPelaUrl(
-            $descobrirFeedsRequest,
-            $buscadorDeFeed
-        );
-
-        $response = $descobrirFeeds->executar();
-
-        $feeds = $response->feeds();
 
         return (new FeedsDescobertosResource(collect($feeds)))
                     ->response()

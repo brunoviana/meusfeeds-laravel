@@ -1,18 +1,18 @@
 <?php
 
-namespace Tests\Framework\Feature;
+namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-use Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
+use Framework\Services\ExtratorDeFeeds;
 
 class DescobrirFeedsPelaUrlPorAPITest extends TestCase
 {
-    public function test_Api_Deve_Criar_Feed_Com_Sucesso()
+    public function test_Api_Deve_Descobrir_Feeds_Com_Sucesso()
     {
-        $this->mock(BuscadorDeFeedsService::class, function ($mock) {
-            $mock->shouldReceive('buscar')->andReturn([
+        $this->mock(ExtratorDeFeeds::class, function ($mock) {
+            $mock->shouldReceive('extrair')->andReturn([
                 [
                     'titulo' => 'Blog do Bruno',
                     'link_rss' => 'https://brunoviana.dev/',
