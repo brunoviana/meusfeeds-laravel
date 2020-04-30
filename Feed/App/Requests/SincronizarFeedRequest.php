@@ -2,17 +2,19 @@
 
 namespace Feed\App\Requests;
 
+use Feed\Domain\Entities\Feed;
+
 class SincronizarFeedRequest
 {
-    private int $feedId;
+    private Feed $feed;
 
-    public function __construct(int $feedId)
+    public function __construct(Feed $feed)
     {
-        $this->feedId = $feedId;
+        $this->feed = $feed;
     }
 
-    public function feedId()
+    public function feed()
     {
-        return $this->feedId;
+        return $this->feed;
     }
 }

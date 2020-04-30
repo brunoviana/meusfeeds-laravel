@@ -3,12 +3,10 @@
 namespace Feed\App\UseCases;
 
 use Feed\Domain\Services\FeedService;
-use Feed\Domain\Interfaces\FeedRepositoryInterface;
 use Feed\Domain\Interfaces\ArtigoRepositoryInterface;
 use Feed\Domain\Interfaces\BuscadorDeArtigosInterface;
 
 use Feed\App\Requests\SincronizarFeedRequest;
-use Feed\App\Exceptions\FeedNaoEncontradoException;
 
 class SincronizarFeed
 {
@@ -18,16 +16,12 @@ class SincronizarFeed
 
     private $artigoRepository;
 
-    private $feedRepository;
-
     public function __construct(
         SincronizarFeedRequest $request,
-        FeedRepositoryInterface $feedRepository,
         ArtigoRepositoryInterface $artigoRepository,
         BuscadorDeArtigosInterface $buscadorDeArtigos
     ) {
         $this->request = $request;
-        $this->feedRepository = $feedRepository;
         $this->artigoRepository = $artigoRepository;
         $this->buscadorDeArtigos = $buscadorDeArtigos;
     }
@@ -38,7 +32,6 @@ class SincronizarFeed
 
         $feedService->setBuscadorDeArtigos($this->buscadorDeArtigos);
         $feedService->setArtigoRepository($this->artigoRepository);
-        $feedService->setFeedRepository($this->feedRepository);
 
         $feedService->sincronizarNovosArtigos(
             $this->feed()
@@ -47,19 +40,6 @@ class SincronizarFeed
 
     public function feed()
     {
-        $feed = $this->feedRepository->buscar(
-            $this->feedId()
-        );
-
-        if (!$feed) {
-            throw new FeedNaoEncontradoException('O feed não existe.');
-        }
-
-        return $feed;
-    }
-
-    public function feedId()
-    {
-        return $this->request->feedId();
+        return $this->request->feed();
     }
 }

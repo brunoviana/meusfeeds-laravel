@@ -7,9 +7,7 @@ use Feed\Domain\Entities\Artigo;
 
 use Feed\App\UseCases\SincronizarFeed;
 use Feed\App\Requests\SincronizarFeedRequest;
-use Feed\App\Exceptions\FeedNaoEncontradoException;
 
-use Feed\Tests\TestAdapters\Domain\FeedRepositoryFake;
 use Feed\Tests\TestAdapters\Domain\ArtigoRepositoryFake;
 use Feed\Tests\TestAdapters\Domain\BuscadorDeArtigosFake;
 
@@ -27,7 +25,6 @@ class SincronizarFeedTest extends TestCase
 
     public function setUp() : void
     {
-        $this->feedRepositoryFake = new FeedRepositoryFake();
         $this->artigoRepositoryFake = new ArtigoRepositoryFake();
         $this->buscadorDeArtigosFake = new BuscadorDeArtigosFake();
     }
@@ -39,13 +36,10 @@ class SincronizarFeedTest extends TestCase
             'https://brunoviana.dev/rss.xml'
         );
 
-        $this->feedRepositoryFake->salvar($feed);
-
         $sincronizaFeed = new SincronizarFeed(
             new SincronizarFeedRequest(
-                $feed->id()
+                $feed
             ),
-            $this->feedRepositoryFake,
             $this->artigoRepositoryFake,
             $this->buscadorDeArtigosFake
         );
@@ -57,19 +51,5 @@ class SincronizarFeedTest extends TestCase
         $this->assertIsArray($artigos);
         $this->assertCount(1, $artigos);
         $this->assertInstanceOf(Artigo::class, $artigos[0]);
-    }
-
-    public function test_Deve_Falhar_Se_Feed_Nao_Existir()
-    {
-        $this->expectException(FeedNaoEncontradoException::class);
-
-        $sincronizaFeed = new SincronizarFeed(
-            new SincronizarFeedRequest(1),
-            $this->feedRepositoryFake,
-            $this->artigoRepositoryFake,
-            $this->buscadorDeArtigosFake
-        );
-
-        $sincronizaFeed->executar();
     }
 }
