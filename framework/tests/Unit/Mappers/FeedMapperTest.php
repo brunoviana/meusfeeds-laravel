@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Framework\Unit\Mappers;
+namespace Tests\Unit\Mappers;
 
-use Domain\Feed\Entities\Feed;
+use Feed\Domain\Entities\Feed;
 
 use Framework\Mappers\FeedMapper;
 use Framework\Models\Feed as FeedModel;
