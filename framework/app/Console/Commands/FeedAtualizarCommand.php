@@ -2,12 +2,13 @@
 
 namespace Framework\Console\Commands;
 
-use App\Feed\UseCases\AtualizarFeed;
-use App\Feed\Requests\AtualizarFeedRequest;
+use Feed\App\UseCases\SincronizarFeed;
+use Feed\App\Requests\SincronizarFeedRequest;
 
+use Framework\Mappers\FeedMapper;
 use Framework\Models\Feed as FeedModel;
-use Framework\Adapters\Feed\BuscadorDeArtigosAdapter;
-use Framework\Repositories\Feed\FeedRepositoryAdapter;
+use Framework\Services\BuscadorDeArtigos;
+use Framework\Repositories\ArtigoRepository;
 
 use Illuminate\Console\Command;
 
@@ -45,17 +46,20 @@ class FeedAtualizarCommand extends Command
     public function handle()
     {
         foreach (FeedModel::all() as $feedModel) {
-            $atualizaFeedRequest = new AtualizarFeedRequest($feedModel->id);
-            $repositoryAdapter = app(FeedRepositoryAdapter::class);
-            $buscadorDeArtigos = app(BuscadorDeArtigosAdapter::class);
+            $sincronizarFeedRequest = new SincronizarFeedRequest(
+                FeedMapper::criaEntidade($feedModel)
+            );
 
-            $atualizaFeed = new AtualizarFeed(
-                $atualizaFeedRequest,
-                $repositoryAdapter,
+            $artigoRepository = app(ArtigoRepository::class);
+            $buscadorDeArtigos = app(BuscadorDeArtigos::class);
+
+            $sincronizarFeed = new SincronizarFeed(
+                $sincronizarFeedRequest,
+                $artigoRepository,
                 $buscadorDeArtigos
             );
 
-            $atualizaFeed->executar();
+            $sincronizarFeed->executar();
         }
     }
 }

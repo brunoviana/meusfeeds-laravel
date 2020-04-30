@@ -9,6 +9,8 @@ use Framework\Services\ExtratorDeFeeds;
 
 class DescobrirFeedsPelaUrlPorAPITest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_Api_Deve_Descobrir_Feeds_Com_Sucesso()
     {
         $this->mock(ExtratorDeFeeds::class, function ($mock) {
