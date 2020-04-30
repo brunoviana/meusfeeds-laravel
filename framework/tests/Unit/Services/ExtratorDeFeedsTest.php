@@ -1,14 +1,13 @@
 <?php
 
-namespace Tests\Framework\Unit\Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
+namespace Tests\Unit\Services;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Framework\Services\ExtratorDeFeeds;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
-
-class BuscadorDeFeedsServiceTest extends TestCase
+class ExtratorDeFeedsTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -16,9 +15,9 @@ class BuscadorDeFeedsServiceTest extends TestCase
     {
         $this->criaFeedIoMocks();
 
-        $feedAdapter = app(BuscadorDeFeedsService::class);
+        $feedAdapter = app(ExtratorDeFeeds::class);
 
-        $result = $feedAdapter->buscar('https://brunoviana.dev');
+        $result = $feedAdapter->extrair('https://brunoviana.dev');
 
         $this->assertCount(1, $result);
         $this->assertArraySubset([
@@ -45,9 +44,9 @@ class BuscadorDeFeedsServiceTest extends TestCase
             ]
         ]);
 
-        $feedAdapter = app(BuscadorDeFeedsService::class);
+        $feedAdapter = app(ExtratorDeFeeds::class);
 
-        $result = $feedAdapter->buscar('https://brunoviana.dev');
+        $result = $feedAdapter->extrair('https://brunoviana.dev');
 
         $this->assertCount(3, $result[0]['ultimos_artigos']);
     }

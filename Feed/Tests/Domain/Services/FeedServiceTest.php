@@ -7,7 +7,6 @@ use Feed\Domain\Entities\Artigo;
 use Feed\Domain\Services\FeedService;
 use Feed\Domain\Exceptions\FeedJaExisteException;
 
-use Feed\Tests\TestAdapters\Domain\ExtratoDeFeedsFake;
 use Feed\Tests\TestAdapters\Domain\FeedRepositoryFake;
 use Feed\Tests\TestAdapters\Domain\ArtigoRepositoryFake;
 use Feed\Tests\TestAdapters\Domain\BuscadorDeArtigosFake;
@@ -15,9 +14,7 @@ use Feed\Tests\TestAdapters\Domain\BuscadorDeArtigosFake;
 use Tests\TestCase;
 
 class FeedServiceTest extends TestCase
-{
-    protected $extratorDeFeedFake;
-    
+{    
     protected $feedRepositoryFake;
     
     protected $artigoRepositoryFake;
@@ -26,37 +23,9 @@ class FeedServiceTest extends TestCase
 
     public function setUp() : void
     {
-        $this->extratorDeFeedFake = new ExtratoDeFeedsFake();
         $this->feedRepositoryFake = new FeedRepositoryFake();
         $this->artigoRepositoryFake = new ArtigoRepositoryFake();
         $this->buscadorDeArtigosFake = new BuscadorDeArtigosFake();
-    }
-
-    public function test_Deve_Buscar_Feeds_Disponiveis_Da_Url()
-    {
-        $url = 'https://brunoviana.dev';
-
-        $feedService = new FeedService();
-        $feedService->setExtratorDeFeeds($this->extratorDeFeedFake);
-
-        $feeds = $feedService->procurarFeedsPelaUrl($url);
-
-        $this->assertIsArray($feeds);
-        $this->assertCount(1, $feeds);
-        $this->assertInstanceOf(Feed::class, $feeds[0]);
-    }
-
-    public function test_Deve_Retornar_Array_Vazio_Se_Nao_Achar_Nada()
-    {
-        $url = 'https://brunoviana.dev.nao.achar.nada';
-
-        $feedService = new FeedService();
-        $feedService->setExtratorDeFeeds($this->extratorDeFeedFake);
-
-        $feeds = $feedService->procurarFeedsPelaUrl($url);
-
-        $this->assertIsArray($feeds);
-        $this->assertCount(0, $feeds);
     }
 
     public function test_Deve_Criar_Novo_Feed_Com_Sucesso()

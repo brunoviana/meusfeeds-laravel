@@ -7,11 +7,6 @@ use Feed\Domain\Exceptions\FeedJaExisteException;
 
 class FeedService extends Service
 {
-    public function procurarFeedsPelaUrl(string $url)
-    {
-        return $this->getExtratorDeFeeds()->extrair($url);
-    }
-
     public function criarNovoFeed(string $titulo, string $linkRss)
     {
         $feedEncontrado = $this->getFeedRepository()->buscarPeloLink(

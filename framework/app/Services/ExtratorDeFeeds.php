@@ -1,12 +1,10 @@
 <?php
 
-namespace Framework\Adapters\Feed\Services;
+namespace Framework\Services;
 
 use FeedIo\FeedIo;
 
-use App\Feed\Interfaces\Services\BuscadorDeFeedsServiceInterface;
-
-class BuscadorDeFeedsService implements BuscadorDeFeedsServiceInterface
+class ExtratorDeFeeds
 {
     private $feedIo;
 
@@ -45,7 +43,7 @@ class BuscadorDeFeedsService implements BuscadorDeFeedsServiceInterface
         ];
     }
 
-    public function buscar(string $url) : array
+    public function extrair(string $url) : array
     {
         $url = $this->corrigeUrlDaBusca($url);
 
