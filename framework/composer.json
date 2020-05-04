@@ -37,7 +37,8 @@
     "autoload": {
         "psr-4": {
             "Framework\\": "app/",
-            "Feed\\": "../Feed/"
+            "Feed\\": "../Feed/",
+            "Usuario\\": "../Usuario/"
         },
         "classmap": [
             "database/seeds",
