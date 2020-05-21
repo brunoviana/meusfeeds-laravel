@@ -16,3 +16,35 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/feeds', function () {
+    return view('feeds');
+});
+
+#### Tailwind UI - Exemplos ####
+Route::get('/exemplo/home', function () {
+    return view('exemplo.home');
+})->name('exemplo.home');
+
+Route::get('/exemplo/login', function () {
+    return view('exemplo.auth.login');
+})->name('exemplo.login');
+
+Route::post('/exemplo/auth', function () {
+    return redirect()->route('exemplo.team');
+})->name('exemplo.dummyauth');
+
+Route::get('/exemplo/teams', function () {
+    return view('exemplo.resources.team');
+})->name('exemplo.team');
+
+Route::get('/exemplo/teams/detail', function () {
+    return view('exemplo.resources.teamdetail');
+})->name('exemplo.teamdetail');
+
+Route::get('/exemplo/teams/edit', function () {
+    $applications = ['Backend Engineer', 'Frontend Engineer', 'QA Engineer', 'Project Manager'];
+    $availabilities = ['soon', '1-month', 'closed'];
+    $workingPreferences = ['on site', 'remote'];
+    return view('exemplo.resources.teamedit', compact('applications', 'availabilities', 'workingPreferences'));
+})->name('exemplo.teamedit');
