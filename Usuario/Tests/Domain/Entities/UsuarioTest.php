@@ -12,8 +12,7 @@ class UsuarioTest extends TestCase
     {
         $usuario = Usuario::novo(
             'Bruno Viana',
-            'brunoviana@gmail.com',
-            '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+            'brunoviana@gmail.com'
         );
 
         $this->assertEquals(0, $usuario->id());
@@ -23,8 +22,7 @@ class UsuarioTest extends TestCase
     {
         $usuario = Usuario::novo(
             'Bruno Viana',
-            'brunoviana@gmail.com',
-            '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+            'brunoviana@gmail.com'
         );
 
         $usuario->id(1);
@@ -38,8 +36,7 @@ class UsuarioTest extends TestCase
 
         $usuario = Usuario::novo(
             'Bruno Viana',
-            'brunoviana@gmail.com',
-            '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+            'brunoviana@gmail.com'
         );
 
         $usuario->id(1);
@@ -50,32 +47,19 @@ class UsuarioTest extends TestCase
     {
         $usuario = Usuario::novo(
             'Bruno Viana',
-            'brunoviana@gmail.com',
-            '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+            'brunoviana@gmail.com'
         );
 
-        $this->assertEquals('Bruno Viana', $usuario->titulo());
+        $this->assertEquals('Bruno Viana', $usuario->nome());
     }
 
     public function test_Usuario_Deve_Retornar_Email_Correto()
     {
         $usuario = Usuario::novo(
             'Bruno Viana',
-            'brunoviana@gmail.com',
-            '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+            'brunoviana@gmail.com'
         );
 
         $this->assertEquals('brunoviana@gmail.com', $usuario->email());
-    }
-
-    public function test_Usuario_Deve_Retornar_Hash_Da_Senha_Correto()
-    {
-        $usuario = Usuario::novo(
-            'Bruno Viana',
-            'brunoviana@gmail.com',
-            '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
-        );
-
-        $this->assertEquals('$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', $usuario->hashSenha());
     }
 }

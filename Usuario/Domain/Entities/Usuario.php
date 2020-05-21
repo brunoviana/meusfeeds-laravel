@@ -6,22 +6,19 @@ class Usuario
 {
     private int $id = 0;
 
-    private string $titulo;
+    private string $nome;
 
     private string $email;
 
-    private string $hashSenha;
-
-    public static function novo(string $titulo, string $email, string $hashSenha)
+    public static function novo(string $nome, string $email)
     {
-        return new self($titulo, $email, $hashSenha);
+        return new self($nome, $email);
     }
 
-    private function __construct(string $titulo, string $email, string $hashSenha)
+    private function __construct(string $nome, string $email)
     {
-        $this->titulo = $titulo;
+        $this->nome = $nome;
         $this->email = $email;
-        $this->hashSenha = $hashSenha;
     }
 
     public function id($id = null)
@@ -37,18 +34,13 @@ class Usuario
         return $this->id;
     }
 
-    public function titulo()
+    public function nome()
     {
-        return $this->titulo;
+        return $this->nome;
     }
 
     public function email()
     {
         return $this->email;
-    }
-
-    public function hashSenha()
-    {
-        return $this->hashSenha;
     }
 }
