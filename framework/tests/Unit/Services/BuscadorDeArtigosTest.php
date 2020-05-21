@@ -2,15 +2,15 @@
 
 namespace Tests\Unit\Services;
 
+use Tests\TestCase;
 use Feed\Domain\Entities\Feed;
-use Feed\Domain\Entities\Artigo;
 
+use Feed\Domain\Entities\Artigo;
 use Framework\Models\Feed as FeedModel;
 use Framework\Services\BuscadorDeArtigos;
 use Framework\Repositories\FeedRepository;
-use Framework\Models\Artigo as ArtigoModel;
 
-use Tests\TestCase;
+use Framework\Models\Artigo as ArtigoModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class BuscadorDeArtigosTest extends TestCase

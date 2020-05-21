@@ -2,14 +2,14 @@
 
 namespace Tests\Unit\Mappers;
 
+use Tests\TestCase;
 use Feed\Domain\Entities\Artigo;
 use Feed\Domain\ValueObjects\Data;
+
 use Feed\Domain\ValueObjects\Autor;
-
 use Framework\Mappers\ArtigoMapper;
-use Framework\Models\Artigo as ArtigoModel;
 
-use Tests\TestCase;
+use Framework\Models\Artigo as ArtigoModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ArtigoMapperTest extends TestCase

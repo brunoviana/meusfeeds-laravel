@@ -2,11 +2,9 @@
 
 namespace Framework\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-use Domain\Feed\Entities\Feed as FeedEntity;
-
 use Framework\Models\Feed\Artigo;
+
+use Illuminate\Database\Eloquent\Model;
 
 class Feed extends Model
 {

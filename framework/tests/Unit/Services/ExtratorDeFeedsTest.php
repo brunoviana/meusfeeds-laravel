@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Services;
 
-use Framework\Services\ExtratorDeFeeds;
-
 use Tests\TestCase;
+
+use Framework\Services\ExtratorDeFeeds;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExtratorDeFeedsTest extends TestCase

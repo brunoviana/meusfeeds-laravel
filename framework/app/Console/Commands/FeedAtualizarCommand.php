@@ -2,15 +2,15 @@
 
 namespace Framework\Console\Commands;
 
-use Feed\App\UseCases\SincronizarFeed;
-use Feed\App\Requests\SincronizarFeedRequest;
-
+use Illuminate\Console\Command;
 use Framework\Mappers\FeedMapper;
+
+use Feed\App\UseCases\SincronizarFeed;
 use Framework\Models\Feed as FeedModel;
 use Framework\Services\BuscadorDeArtigos;
 use Framework\Repositories\ArtigoRepository;
 
-use Illuminate\Console\Command;
+use Feed\App\Requests\SincronizarFeedRequest;
 
 class FeedAtualizarCommand extends Command
 {

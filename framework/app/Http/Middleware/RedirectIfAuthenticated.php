@@ -2,9 +2,9 @@
 
 namespace Framework\Http\Middleware;
 
-use Framework\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Framework\Providers\RouteServiceProvider;
 
 class RedirectIfAuthenticated
 {

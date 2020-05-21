@@ -4,12 +4,12 @@ namespace Feed\App\UseCases;
 
 use Feed\Domain\Entities\Feed;
 use Feed\Domain\Services\FeedService;
-use Feed\Domain\Repositories\FeedRepositoryInterface;
-use Feed\Domain\Interfaces\BuscadorDeArtigosInterface;
-use Feed\Domain\Repositories\ArtigoRepositoryInterface;
-
 use Feed\App\Requests\CriarNovoFeedRequest;
 use Feed\App\Responses\CriarNovoFeedResponse;
+use Feed\Domain\Repositories\FeedRepositoryInterface;
+
+use Feed\Domain\Interfaces\BuscadorDeArtigosInterface;
+use Feed\Domain\Repositories\ArtigoRepositoryInterface;
 
 class CriarNovoFeed
 {
@@ -47,7 +47,7 @@ class CriarNovoFeed
         $feedService->setBuscadorDeArtigos($this->buscadorDeArtigos);
         $feedService->setFeedRepository($this->feedRepository);
         $feedService->setArtigoRepository($this->artigoRepository);
-        
+
         return $feedService->criarNovoFeed(
             $this->request->titulo(),
             $this->request->linkRss()

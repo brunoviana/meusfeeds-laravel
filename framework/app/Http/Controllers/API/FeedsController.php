@@ -2,21 +2,21 @@
 
 namespace Framework\Http\Controllers\API;
 
-use Feed\Domain\Exceptions\FeedJaExisteException;
+use Illuminate\Http\Request;
 
 use Feed\App\UseCases\CriarNovoFeed;
-use Feed\App\Requests\CriarNovoFeedRequest;
-
 use Framework\Models\Feed as FeedModel;
+
 use Framework\Services\ExtratorDeFeeds;
 use Framework\Services\BuscadorDeArtigos;
 use Framework\Http\Controllers\Controller;
 use Framework\Repositories\FeedRepository;
+use Feed\App\Requests\CriarNovoFeedRequest;
 use Framework\Repositories\ArtigoRepository;
 use Framework\Http\Resources\Feed\FeedResource;
-use Framework\Http\Resources\Feed\FeedsDescobertosResource;
+use Feed\Domain\Exceptions\FeedJaExisteException;
 
-use Illuminate\Http\Request;
+use Framework\Http\Resources\Feed\FeedsDescobertosResource;
 
 class FeedsController extends Controller
 {

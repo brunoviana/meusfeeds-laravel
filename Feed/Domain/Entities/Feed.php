@@ -21,7 +21,7 @@ class Feed
         $this->linkRss = $linkRss;
     }
 
-    public function id($id=null)
+    public function id($id = null)
     {
         if (is_int($id)) {
             if ($this->id > 0) {
@@ -30,7 +30,7 @@ class Feed
 
             $this->id = $id;
         }
-        
+
         return $this->id;
     }
 

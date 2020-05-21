@@ -2,11 +2,11 @@
 
 namespace Feed\Tests\Domain\Entities;
 
+use Tests\TestCase;
 use Feed\Domain\Entities\Artigo;
 use Feed\Domain\ValueObjects\Data;
-use Feed\Domain\ValueObjects\Autor;
 
-use Tests\TestCase;
+use Feed\Domain\ValueObjects\Autor;
 
 class ArtigoTest extends TestCase
 {
@@ -21,7 +21,7 @@ class ArtigoTest extends TestCase
             0,
             Artigo::NAO_LIDO
         );
-        
+
         $this->assertEquals(0, $artigo->id());
     }
 
@@ -37,7 +37,7 @@ class ArtigoTest extends TestCase
             Artigo::NAO_LIDO
         );
         $artigo->id(1);
-        
+
         $this->assertEquals(1, $artigo->id());
     }
 

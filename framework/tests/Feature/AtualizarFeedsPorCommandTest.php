@@ -2,16 +2,16 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use Feed\Domain\Entities\Artigo;
 use Feed\Domain\ValueObjects\Data;
+
 use Feed\Domain\ValueObjects\Autor;
-
-use Framework\Services\BuscadorDeArtigos;
-use Framework\Models\Artigo as ArtigoModel;
 use Framework\Models\Feed as FeedModel;
+use Framework\Services\BuscadorDeArtigos;
 
+use Framework\Models\Artigo as ArtigoModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
 class AtualizarFeedsPorCommandTest extends TestCase
 {

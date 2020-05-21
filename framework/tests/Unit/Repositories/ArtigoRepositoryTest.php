@@ -2,15 +2,15 @@
 
 namespace Tests\Unit\Repositories;
 
-use Feed\Domain\Entities\Artigo;
+use Tests\TestCase;
 
+use Feed\Domain\Entities\Artigo;
 use Feed\Domain\ValueObjects\Data;
 use Feed\Domain\ValueObjects\Autor;
 use Framework\Models\Feed as FeedModel;
 use Framework\Models\Artigo as ArtigoModel;
-use Framework\Repositories\ArtigoRepository;
 
-use Tests\TestCase;
+use Framework\Repositories\ArtigoRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ArtigoRepositoryTest extends TestCase

@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Mappers;
 
-use Feed\Domain\Entities\Feed;
-
-use Framework\Mappers\FeedMapper;
-use Framework\Models\Feed as FeedModel;
-
 use Tests\TestCase;
+
+use Feed\Domain\Entities\Feed;
+use Framework\Mappers\FeedMapper;
+
+use Framework\Models\Feed as FeedModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FeedMapperTest extends TestCase

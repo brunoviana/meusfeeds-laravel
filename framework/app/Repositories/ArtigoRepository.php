@@ -3,10 +3,10 @@
 namespace Framework\Repositories;
 
 use Feed\Domain\Entities\Artigo;
-use Feed\Domain\Repositories\ArtigoRepositoryInterface;
+use Framework\Mappers\ArtigoMapper;
 
 use Framework\Models\Artigo as ArtigoModel;
-use Framework\Mappers\ArtigoMapper;
+use Feed\Domain\Repositories\ArtigoRepositoryInterface;
 
 class ArtigoRepository implements ArtigoRepositoryInterface
 {
@@ -14,7 +14,7 @@ class ArtigoRepository implements ArtigoRepositoryInterface
     {
         $artigos = [];
 
-        foreach(ArtigoModel::all() as $artigoModel){
+        foreach (ArtigoModel::all() as $artigoModel) {
             $artigos[] = ArtigoMapper::criaEntidade($artigoModel);
         }
 
@@ -27,7 +27,7 @@ class ArtigoRepository implements ArtigoRepositoryInterface
 
         $artigoModel->save();
 
-        if(!$artigo->id()){
+        if (!$artigo->id()) {
             $artigo->id(
                 $artigoModel->id
             );
@@ -36,7 +36,7 @@ class ArtigoRepository implements ArtigoRepositoryInterface
 
     public function salvarVarios(array $artigos) : void
     {
-        foreach($artigos as $artigo){
+        foreach ($artigos as $artigo) {
             $this->salvar($artigo);
         }
     }

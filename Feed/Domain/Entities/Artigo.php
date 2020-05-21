@@ -35,8 +35,7 @@ class Artigo
         Data $dataPublicacao,
         int $feedId = 0,
         int $lido = self::NAO_LIDO
-    ) : Artigo
-    {
+    ) : Artigo {
         return new self($titulo, $descricao, $link, $autor, $dataPublicacao, $feedId, $lido);
     }
 
@@ -58,7 +57,7 @@ class Artigo
         $this->lido = $lido;
     }
 
-    public function id($id=null)
+    public function id($id = null)
     {
         if (is_int($id)) {
             if ($this->id > 0) {
@@ -67,7 +66,7 @@ class Artigo
 
             $this->id = $id;
         }
-        
+
         return $this->id;
     }
 
@@ -96,9 +95,9 @@ class Artigo
         return $this->dataPublicacao;
     }
 
-    public function lido($lido=null)
+    public function lido($lido = null)
     {
-        if($lido !== null){
+        if ($lido !== null) {
             $this->lido = (bool) $lido;
         }
 

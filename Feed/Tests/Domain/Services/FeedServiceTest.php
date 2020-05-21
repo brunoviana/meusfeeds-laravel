@@ -2,23 +2,23 @@
 
 namespace Feed\Tests\Domain\Services;
 
+use Tests\TestCase;
 use Feed\Domain\Entities\Feed;
 use Feed\Domain\Entities\Artigo;
 use Feed\Domain\Services\FeedService;
-use Feed\Domain\Exceptions\FeedJaExisteException;
 
+use Feed\Domain\Exceptions\FeedJaExisteException;
 use Feed\Tests\TestAdapters\Domain\FeedRepositoryFake;
 use Feed\Tests\TestAdapters\Domain\ArtigoRepositoryFake;
+
 use Feed\Tests\TestAdapters\Domain\BuscadorDeArtigosFake;
 
-use Tests\TestCase;
-
 class FeedServiceTest extends TestCase
-{    
+{
     protected $feedRepositoryFake;
-    
+
     protected $artigoRepositoryFake;
-    
+
     protected $buscadorDeArtigos;
 
     public function setUp() : void
@@ -35,7 +35,7 @@ class FeedServiceTest extends TestCase
         $feedService->setBuscadorDeArtigos($this->buscadorDeArtigosFake);
         $feedService->setFeedRepository($this->feedRepositoryFake);
         $feedService->setArtigoRepository($this->artigoRepositoryFake);
-        
+
         $feed = $feedService->criarNovoFeed(
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
@@ -50,18 +50,18 @@ class FeedServiceTest extends TestCase
     public function test_Deve_Falhar_Se_Feed_Ja_Existir()
     {
         $this->expectException(FeedJaExisteException::class);
-        
+
         $feedService = new FeedService();
 
         $feedService->setBuscadorDeArtigos($this->buscadorDeArtigosFake);
         $feedService->setFeedRepository($this->feedRepositoryFake);
         $feedService->setArtigoRepository($this->artigoRepositoryFake);
-        
+
         $feedService->criarNovoFeed(
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
         );
-        
+
         $feedService->criarNovoFeed(
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
@@ -75,7 +75,7 @@ class FeedServiceTest extends TestCase
         $feedService->setBuscadorDeArtigos($this->buscadorDeArtigosFake);
         $feedService->setFeedRepository($this->feedRepositoryFake);
         $feedService->setArtigoRepository($this->artigoRepositoryFake);
-        
+
         $feedService->criarNovoFeed(
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'

@@ -3,11 +3,10 @@
 namespace Framework\Mappers;
 
 use Feed\Domain\Entities\Artigo;
-use Feed\Domain\ValueObjects\Autor;
 use Feed\Domain\ValueObjects\Data;
+use Feed\Domain\ValueObjects\Autor;
 
 use Framework\Models\Artigo as ArtigoModel;
-use Illuminate\Support\Facades\Auth;
 
 class ArtigoMapper
 {

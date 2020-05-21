@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-
 use Framework\Services\ExtratorDeFeeds;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DescobrirFeedsPelaUrlPorAPITest extends TestCase
 {

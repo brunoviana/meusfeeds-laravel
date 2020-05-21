@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Repositories;
 
-use Feed\Domain\Entities\Feed;
-
-use Framework\Models\Feed as FeedModel;
-use Framework\Repositories\FeedRepository;
-
 use Tests\TestCase;
+
+use Feed\Domain\Entities\Feed;
+use Framework\Models\Feed as FeedModel;
+
+use Framework\Repositories\FeedRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FeedRepositoryTest extends TestCase

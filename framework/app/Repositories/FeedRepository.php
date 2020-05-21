@@ -3,12 +3,10 @@
 namespace Framework\Repositories;
 
 use Feed\Domain\Entities\Feed;
-use Feed\Domain\Repositories\FeedRepositoryInterface;
-
-use App\Feed\Exceptions\FeedNaoEncontradoException;
+use Framework\Mappers\FeedMapper;
 
 use Framework\Models\Feed as FeedModel;
-use Framework\Mappers\FeedMapper;
+use Feed\Domain\Repositories\FeedRepositoryInterface;
 
 class FeedRepository implements FeedRepositoryInterface
 {
@@ -16,7 +14,7 @@ class FeedRepository implements FeedRepositoryInterface
     {
         $feedModel = FeedModel::find($id);
 
-        if($feedModel){
+        if ($feedModel) {
             return FeedMapper::criaEntidade($feedModel);
         }
 
@@ -40,7 +38,7 @@ class FeedRepository implements FeedRepositoryInterface
 
         $feedModel->save();
 
-        if(!$feed->id()){
+        if (!$feed->id()) {
             $feed->id(
                 $feedModel->id
             );

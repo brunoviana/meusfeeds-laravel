@@ -2,9 +2,9 @@
 
 namespace Usuario\Tests\Domain\Services;
 
-use Usuario\Domain\Entities\Usuario;
-
 use Tests\TestCase;
+
+use Usuario\Domain\Entities\Usuario;
 
 class UsuarioServiceTest extends TestCase
 {

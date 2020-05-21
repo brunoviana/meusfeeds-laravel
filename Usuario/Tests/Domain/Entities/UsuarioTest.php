@@ -2,9 +2,9 @@
 
 namespace Usuario\Tests\Domain\Entities;
 
-use Usuario\Domain\Entities\Usuario;
-
 use Tests\TestCase;
+
+use Usuario\Domain\Entities\Usuario;
 
 class UsuarioTest extends TestCase
 {
@@ -15,7 +15,7 @@ class UsuarioTest extends TestCase
             'brunoviana@gmail.com',
             '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
         );
-        
+
         $this->assertEquals(0, $usuario->id());
     }
 
@@ -26,9 +26,9 @@ class UsuarioTest extends TestCase
             'brunoviana@gmail.com',
             '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
         );
-        
+
         $usuario->id(1);
-        
+
         $this->assertEquals(1, $usuario->id());
     }
 
@@ -41,7 +41,7 @@ class UsuarioTest extends TestCase
             'brunoviana@gmail.com',
             '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
         );
-        
+
         $usuario->id(1);
         $usuario->id(2);
     }
@@ -53,7 +53,7 @@ class UsuarioTest extends TestCase
             'brunoviana@gmail.com',
             '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
         );
-        
+
         $this->assertEquals('Bruno Viana', $usuario->titulo());
     }
 
@@ -64,7 +64,7 @@ class UsuarioTest extends TestCase
             'brunoviana@gmail.com',
             '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
         );
-        
+
         $this->assertEquals('brunoviana@gmail.com', $usuario->email());
     }
 
@@ -75,7 +75,7 @@ class UsuarioTest extends TestCase
             'brunoviana@gmail.com',
             '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
         );
-        
+
         $this->assertEquals('$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', $usuario->hashSenha());
     }
 }

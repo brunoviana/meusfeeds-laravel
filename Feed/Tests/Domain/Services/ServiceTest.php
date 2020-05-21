@@ -2,19 +2,19 @@
 
 namespace Feed\Tests\Domain\Services;
 
+use Tests\TestCase;
 use Feed\Domain\Services\Service;
 use Feed\Tests\TestAdapters\Domain\FeedRepositoryFake;
 use Feed\Tests\TestAdapters\Domain\ArtigoRepositoryFake;
+
 use Feed\Tests\TestAdapters\Domain\BuscadorDeArtigosFake;
 
-use Tests\TestCase;
-
 class ServiceTest extends TestCase
-{    
+{
     protected $feedRepositoryFake;
-    
+
     protected $artigoRepositoryFake;
-    
+
     protected $buscadorDeArtigos;
 
     public function setUp() : void

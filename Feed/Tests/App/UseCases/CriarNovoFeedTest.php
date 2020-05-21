@@ -2,24 +2,24 @@
 
 namespace Feed\Tests\App\UseCases;
 
-use Feed\Domain\Entities\Feed;
+use Tests\TestCase;
 
+use Feed\Domain\Entities\Feed;
 use Feed\App\UseCases\CriarNovoFeed;
 use Feed\App\Requests\CriarNovoFeedRequest;
-use Feed\App\Responses\CriarNovoFeedResponse;
 
+use Feed\App\Responses\CriarNovoFeedResponse;
 use Feed\Tests\TestAdapters\Domain\FeedRepositoryFake;
 use Feed\Tests\TestAdapters\Domain\ArtigoRepositoryFake;
-use Feed\Tests\TestAdapters\Domain\BuscadorDeArtigosFake;
 
-use Tests\TestCase;
+use Feed\Tests\TestAdapters\Domain\BuscadorDeArtigosFake;
 
 class CriarNovoFeedTest extends TestCase
 {
     protected $feedRepositoryFake;
-    
+
     protected $artigoRepositoryFake;
-    
+
     protected $buscadorDeArtigos;
 
     public function setUp() : void
@@ -40,7 +40,7 @@ class CriarNovoFeedTest extends TestCase
             $this->artigoRepositoryFake,
             $this->buscadorDeArtigosFake
         );
-        
+
         $resposta = $criarNovoFeed->executar();
 
         $this->assertInstanceOf(CriarNovoFeedResponse::class, $resposta);

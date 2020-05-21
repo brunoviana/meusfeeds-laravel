@@ -2,9 +2,9 @@
 
 namespace Feed\Tests\Domain\Entities;
 
-use Feed\Domain\Entities\Feed;
-
 use Tests\TestCase;
+
+use Feed\Domain\Entities\Feed;
 
 class FeedTest extends TestCase
 {
@@ -14,7 +14,7 @@ class FeedTest extends TestCase
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
         );
-        
+
         $this->assertEquals(0, $feed->id());
     }
 
@@ -24,9 +24,9 @@ class FeedTest extends TestCase
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
         );
-        
+
         $feed->id(1);
-        
+
         $this->assertEquals(1, $feed->id());
     }
 
@@ -38,7 +38,7 @@ class FeedTest extends TestCase
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
         );
-        
+
         $feed->id(1);
         $feed->id(2);
     }
@@ -49,7 +49,7 @@ class FeedTest extends TestCase
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
         );
-        
+
         $this->assertEquals('Blog do Bruno', $feed->titulo());
     }
 
@@ -59,7 +59,7 @@ class FeedTest extends TestCase
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
         );
-        
+
         $this->assertEquals('https://brunoviana.dev/rss.xml', $feed->linkRss());
     }
 }

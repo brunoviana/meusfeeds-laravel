@@ -2,25 +2,25 @@
 
 namespace Feed\Tests\App\UseCases;
 
-use Feed\Domain\Entities\Feed;
-use Feed\Domain\Entities\Artigo;
-
-use Feed\App\UseCases\SincronizarFeed;
-use Feed\App\Requests\SincronizarFeedRequest;
-
-use Feed\Tests\TestAdapters\Domain\ArtigoRepositoryFake;
-use Feed\Tests\TestAdapters\Domain\BuscadorDeArtigosFake;
-
 use Tests\TestCase;
+use Feed\Domain\Entities\Feed;
+
+use Feed\Domain\Entities\Artigo;
+use Feed\App\UseCases\SincronizarFeed;
+
+use Feed\App\Requests\SincronizarFeedRequest;
+use Feed\Tests\TestAdapters\Domain\ArtigoRepositoryFake;
+
+use Feed\Tests\TestAdapters\Domain\BuscadorDeArtigosFake;
 
 class SincronizarFeedTest extends TestCase
 {
     protected $extratorDeFeedFake;
-    
+
     protected $feedRepositoryFake;
-    
+
     protected $artigoRepositoryFake;
-    
+
     protected $buscadorDeArtigos;
 
     public function setUp() : void

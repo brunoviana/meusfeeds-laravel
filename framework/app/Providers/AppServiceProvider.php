@@ -4,8 +4,6 @@ namespace Framework\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use Framework\Adapters\Feed\Services\BuscadorDeFeedsService;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**

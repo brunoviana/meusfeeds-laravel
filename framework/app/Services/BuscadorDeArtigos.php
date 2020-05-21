@@ -2,15 +2,15 @@
 
 namespace Framework\Services;
 
+use FeedIo\FeedIo;
 use Feed\Domain\Entities\Feed;
 use Feed\Domain\Entities\Artigo;
-use Feed\Domain\ValueObjects\Autor;
 use Feed\Domain\ValueObjects\Data;
-use Feed\Domain\Interfaces\BuscadorDeArtigosInterface;
+use Feed\Domain\ValueObjects\Autor;
 
 use Framework\Models\Artigo as ArtigoModel;
 
-use FeedIo\FeedIo;
+use Feed\Domain\Interfaces\BuscadorDeArtigosInterface;
 
 class BuscadorDeArtigos implements BuscadorDeArtigosInterface
 {
@@ -57,7 +57,7 @@ class BuscadorDeArtigos implements BuscadorDeArtigosInterface
                                     ->get()
                                     ->first();
 
-        if(!$ultimoArtigo){
+        if (!$ultimoArtigo) {
             return $this->buscarTodos($feed);
         }
 
@@ -76,7 +76,7 @@ class BuscadorDeArtigos implements BuscadorDeArtigosInterface
                                     ->get()
                                     ->first();
 
-            if($artigo){
+            if ($artigo) {
                 continue;
             }
 
