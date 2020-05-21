@@ -25,6 +25,26 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/login-google', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/callback-google', function () {
+    echo 1;
+    try {
+        $user = Socialite::driver('google')->stateless()->user();
+        echo 2;
+        echo $user->name;
+        echo $user->email;
+        echo 3;
+    } catch (\Exception $e) {
+        echo 5;
+        var_dump($e->getMessage());
+        // return redirect('/login');
+    }
+    echo 4;
+});
+
 #### Tailwind UI - Exemplos ####
 Route::get('/exemplo/home', function () {
     return view('exemplo.home');
