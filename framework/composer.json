@@ -11,15 +11,18 @@
         "php": "^7.2.5",
         "debril/feed-io": "^4.5",
         "fideloper/proxy": "^4.2",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "require-dev": {
         "dms/phpunit-arraysubset-asserts": "0.1.1",
         "facade/ignition": "^2.0",
         "fzaninotto/faker": "^1.9.1",
+        "laravel-frontend-presets/tailwindcss": "^4.1",
         "mockery/mockery": "^1.3.1",
         "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^8.5"
@@ -53,6 +56,12 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "test": "php artisan test",
+        "check-psr2": "phpcs -p --standard=PSR2 app ../*/App ../*/Domain",
+        "check-cs": "vendor/bin/php-cs-fixer fix --config ../.php_cs --using-cache=no -v --dry-run --stop-on-violation",
+        "fix-cs": "vendor/bin/php-cs-fixer fix --config ../.php_cs --using-cache=no",
+        "brew-php7.2": "brew unlink php && brew link php@7.2 --force",
+        "brew-php7.4": "brew unlink php@7.2 && brew link php",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

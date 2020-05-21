@@ -2,29 +2,86 @@ version: '3'
 
 services:
 
-  reader:
-
-    build:
-      context: ./.container
-      dockerfile: dockerfile
+  meus-feeds-php:
+    image: brunoviana/laravel-php-7.4
 
     restart: unless-stopped
 
     working_dir: /var/www
 
-    container_name: reader
-
-    ports:
-      - 80:80
+    container_name: meus-feeds-php
 
     volumes:
-      - ./.container/dev/php.ini:/etc/php/7.2/fpm/conf.d/php.ini
-      - ./.container/dev/nginx.conf:/etc/nginx/sites-available/default
-      - reader-volume:/var/www
-volumes:
+      - meus-feeds-volume:/var/www:delegated
+      - ./.container/dev/php.ini:/etc/php/7.4/fpm/conf.d/php.ini
+    
+    networks:
+      - meus-feeds-network
+
+  meus-feeds-nginx:
+    image: nginx:alpine
+    
+    container_name: meus-feeds-nginx
+    
+    restart: unless-stopped
+    
+    tty: true
+    
+    working_dir: /var/www/
+    
+    ports:
+      - ${NGINX_PORT}:80
+    
+    volumes:
+      # - ./nginx/logs:/var/log/nginx
+      - meus-feeds-volume:/var/www/:delegated
+      - ./.container/dev/nginx.conf:/etc/nginx/conf.d/default.conf
+    
+    networks:
+      - meus-feeds-network
+
+  meus-feeds-db:
+    image: mariadb
+
+    ports:
+      - ${DB_PORT}:3306
+    
+    restart: unless-stopped
+    
+    container_name: meus-feeds-db
+      
+    tty: true
+
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
   
-  reader-volume:
+    volumes:
+      - meus-feeds-dbdata:/var/lib/mysql
+    # - ./mysql/my.cnf:/etc/mysql/my.cnf
+  
+    networks:
+      - meus-feeds-network
+
+  meus-feeds-mailhog:
+    image: mailhog/mailhog
+    
+    ports:
+      - ${MAILHOG_PORT1}:1025
+      - ${MAILHOG_PORT2}:8025
+    
+    networks:
+      - meus-feeds-network
+
+networks:
+  meus-feeds-network:
+    driver: bridge
+
+volumes:  
+  meus-feeds-dbdata:
+    driver: local
+  
+  meus-feeds-volume:
     driver_opts:
         type: "nfs"
         o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
-        device: ":/Users/brunoviana/htdocs/reader"
+        device: ":${PATH_LOCAL}"
