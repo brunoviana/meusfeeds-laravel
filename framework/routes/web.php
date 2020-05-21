@@ -21,6 +21,10 @@ Route::get('/feeds', function () {
     return view('feeds');
 });
 
+Route::get('/login', function () {
+    return view('login');
+});
+
 #### Tailwind UI - Exemplos ####
 Route::get('/exemplo/home', function () {
     return view('exemplo.home');
