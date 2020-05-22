@@ -28,6 +28,9 @@
         "@tailwindcss/ui": "^0.3.0",
         "entypo": "^2.1.0",
         "feather-icons": "^4.28.0",
-        "tailwindcss": "^1.4.4"
+        "tailwindcss": "^1.4.4",
+        "vue": "^2.6.11",
+        "vue-google-login": "^2.0.3",
+        "vue-router": "^3.2.0"
     }
 }

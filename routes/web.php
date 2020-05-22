@@ -13,51 +13,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login-google', function () {
-    return Socialite::driver('google')->redirect();
-});
+Route::get('/{any}', 'SpaController@index')->where('any', '.*');
 
-Route::get('/callback-google', 'AutenticarUsuarioController@google');
+// Route::get('/login-google', function () {
+//     return Socialite::driver('google')->redirect();
+// });
 
-#### Layouts ####
+// Route::get('/callback-google', 'AutenticarUsuarioController@google');
 
-Route::get('/', function () {
-    return view('login');
-});
+// #### Layouts ####
 
-Route::get('/i', function () {
-    return view('feeds');
-});
+// Route::get('/', function () {
+//     return view('login');
+// });
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('/feeds', function () {
+//     return view('feeds');
+// });
 
-#### Tailwind UI - Exemplos ####
+// Route::get('/login', function () {
+//     return view('login');
+// });
 
-Route::get('/exemplo/home', function () {
-    return view('exemplo.home');
-})->name('exemplo.home');
+// #### Tailwind UI - Exemplos ####
 
-Route::get('/exemplo/login', function () {
-    return view('exemplo.auth.login');
-})->name('exemplo.login');
+// Route::get('/exemplo/home', function () {
+//     return view('exemplo.home');
+// })->name('exemplo.home');
 
-Route::post('/exemplo/auth', function () {
-    return redirect()->route('exemplo.team');
-})->name('exemplo.dummyauth');
+// Route::get('/exemplo/login', function () {
+//     return view('exemplo.auth.login');
+// })->name('exemplo.login');
 
-Route::get('/exemplo/teams', function () {
-    return view('exemplo.resources.team');
-})->name('exemplo.team');
+// Route::post('/exemplo/auth', function () {
+//     return redirect()->route('exemplo.team');
+// })->name('exemplo.dummyauth');
 
-Route::get('/exemplo/teams/detail', function () {
-    return view('exemplo.resources.teamdetail');
-})->name('exemplo.teamdetail');
+// Route::get('/exemplo/teams', function () {
+//     return view('exemplo.resources.team');
+// })->name('exemplo.team');
 
-Route::get('/exemplo/teams/edit', function () {
-    $applications = ['Backend Engineer', 'Frontend Engineer', 'QA Engineer', 'Project Manager'];
-    $availabilities = ['soon', '1-month', 'closed'];
-    $workingPreferences = ['on site', 'remote'];
-    return view('exemplo.resources.teamedit', compact('applications', 'availabilities', 'workingPreferences'));
-})->name('exemplo.teamedit');
+// Route::get('/exemplo/teams/detail', function () {
+//     return view('exemplo.resources.teamdetail');
+// })->name('exemplo.teamdetail');
+
+// Route::get('/exemplo/teams/edit', function () {
+//     $applications = ['Backend Engineer', 'Frontend Engineer', 'QA Engineer', 'Project Manager'];
+//     $availabilities = ['soon', '1-month', 'closed'];
+//     $workingPreferences = ['on site', 'remote'];
+//     return view('exemplo.resources.teamedit', compact('applications', 'availabilities', 'workingPreferences'));
+// })->name('exemplo.teamedit');
