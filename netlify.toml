@@ -1,6 +1,6 @@
 [build]
 
-command = "composer install && php artisan export"
+command = "composer install && php artisan export && cp _redirects dist/"
 publish = "dist/"
 
 [build.environment]
