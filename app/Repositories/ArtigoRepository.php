@@ -1,12 +1,12 @@
 <?php
 
-namespace Framework\Repositories;
+namespace App\Repositories;
 
-use Feed\Domain\Entities\Artigo;
-use Framework\Mappers\ArtigoMapper;
+use MeusFeeds\Feeds\Domain\Entities\Artigo;
+use App\Mappers\ArtigoMapper;
 
-use Framework\Models\Artigo as ArtigoModel;
-use Feed\Domain\Repositories\ArtigoRepositoryInterface;
+use App\Models\Artigo as ArtigoModel;
+use MeusFeeds\Feeds\Domain\Repositories\ArtigoRepositoryInterface;
 
 class ArtigoRepository implements ArtigoRepositoryInterface
 {

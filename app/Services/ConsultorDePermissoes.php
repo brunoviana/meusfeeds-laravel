@@ -1,9 +1,9 @@
 <?php
 
-namespace Framework\Services;
+namespace App\Services;
 
-use Framework\Models\EmailPermitido;
-use Usuario\Domain\Interfaces\ConsultorDePermissoesInterface;
+use App\Models\EmailPermitido;
+use MeusFeeds\Usuarios\Domain\Interfaces\ConsultorDePermissoesInterface;
 
 class ConsultorDePermissoes implements ConsultorDePermissoesInterface
 {

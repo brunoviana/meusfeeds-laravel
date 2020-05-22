@@ -4,10 +4,10 @@ namespace Tests\Unit\Repositories;
 
 use Tests\TestCase;
 
-use Usuario\Domain\Entities\Usuario;
-use Framework\Models\Usuario as UsuarioModel;
+use MeusFeeds\Usuarios\Domain\Entities\Usuario;
+use App\Models\Usuario as UsuarioModel;
 
-use Framework\Repositories\UsuarioRepository;
+use App\Repositories\UsuarioRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UsuarioRepositoryTest extends TestCase

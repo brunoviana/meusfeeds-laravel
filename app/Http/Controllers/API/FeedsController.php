@@ -1,22 +1,22 @@
 <?php
 
-namespace Framework\Http\Controllers\API;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 
-use Feed\App\UseCases\CriarNovoFeed;
-use Framework\Models\Feed as FeedModel;
+use MeusFeeds\Feeds\App\UseCases\CriarNovoFeed;
+use App\Models\Feed as FeedModel;
 
-use Framework\Services\ExtratorDeFeeds;
-use Framework\Services\BuscadorDeArtigos;
-use Framework\Http\Controllers\Controller;
-use Framework\Repositories\FeedRepository;
-use Feed\App\Requests\CriarNovoFeedRequest;
-use Framework\Repositories\ArtigoRepository;
-use Framework\Http\Resources\Feed\FeedResource;
-use Feed\Domain\Exceptions\FeedJaExisteException;
+use App\Services\ExtratorDeFeeds;
+use App\Services\BuscadorDeArtigos;
+use App\Http\Controllers\Controller;
+use App\Repositories\FeedRepository;
+use MeusFeeds\Feeds\App\Requests\CriarNovoFeedRequest;
+use App\Repositories\ArtigoRepository;
+use App\Http\Resources\MeusFeeds\Feeds\FeedResource;
+use MeusFeeds\Feeds\Domain\Exceptions\FeedJaExisteException;
 
-use Framework\Http\Resources\Feed\FeedsDescobertosResource;
+use App\Http\Resources\MeusFeeds\Feeds\FeedsDescobertosResource;
 
 class FeedsController extends Controller
 {

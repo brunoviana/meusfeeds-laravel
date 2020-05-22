@@ -1,13 +1,13 @@
 <?php
 
-namespace Framework\Repositories;
+namespace App\Repositories;
 
-use Framework\Mappers\UsuarioMapper;
-use Usuario\Domain\Entities\Usuario;
-use Framework\Models\Usuario as UsuarioModel;
+use App\Mappers\UsuarioMapper;
+use MeusFeeds\Usuarios\Domain\Entities\Usuario;
+use App\Models\Usuario as UsuarioModel;
 
-// use Framework\Models\Feed as FeedModel;
-use Usuario\Domain\Repositories\UsuarioRepositoryInterface;
+// use App\Models\Feed as FeedModel;
+use MeusFeeds\Usuarios\Domain\Repositories\UsuarioRepositoryInterface;
 
 class UsuarioRepository implements UsuarioRepositoryInterface
 {

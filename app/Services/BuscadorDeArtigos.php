@@ -1,16 +1,16 @@
 <?php
 
-namespace Framework\Services;
+namespace App\Services;
 
 use FeedIo\FeedIo;
-use Feed\Domain\Entities\Feed;
-use Feed\Domain\Entities\Artigo;
-use Feed\Domain\ValueObjects\Data;
-use Feed\Domain\ValueObjects\Autor;
+use MeusFeeds\Feeds\Domain\Entities\Feed;
+use MeusFeeds\Feeds\Domain\Entities\Artigo;
+use MeusFeeds\Feeds\Domain\ValueObjects\Data;
+use MeusFeeds\Feeds\Domain\ValueObjects\Autor;
 
-use Framework\Models\Artigo as ArtigoModel;
+use App\Models\Artigo as ArtigoModel;
 
-use Feed\Domain\Interfaces\BuscadorDeArtigosInterface;
+use MeusFeeds\Feeds\Domain\Interfaces\BuscadorDeArtigosInterface;
 
 class BuscadorDeArtigos implements BuscadorDeArtigosInterface
 {

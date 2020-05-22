@@ -1,9 +1,9 @@
 <?php
 
-namespace Framework\Mappers;
+namespace App\Mappers;
 
-use Usuario\Domain\Entities\Usuario;
-use Framework\Models\Usuario as UsuarioModel;
+use MeusFeeds\Usuarios\Domain\Entities\Usuario;
+use App\Models\Usuario as UsuarioModel;
 
 class UsuarioMapper
 {

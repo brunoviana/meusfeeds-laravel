@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Socialite;
 

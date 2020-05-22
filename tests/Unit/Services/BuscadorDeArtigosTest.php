@@ -3,14 +3,14 @@
 namespace Tests\Unit\Services;
 
 use Tests\TestCase;
-use Feed\Domain\Entities\Feed;
+use MeusFeeds\Feeds\Domain\Entities\Feed;
 
-use Feed\Domain\Entities\Artigo;
-use Framework\Models\Feed as FeedModel;
-use Framework\Services\BuscadorDeArtigos;
-use Framework\Repositories\FeedRepository;
+use MeusFeeds\Feeds\Domain\Entities\Artigo;
+use App\Models\Feed as FeedModel;
+use App\Services\BuscadorDeArtigos;
+use App\Repositories\FeedRepository;
 
-use Framework\Models\Artigo as ArtigoModel;
+use App\Models\Artigo as ArtigoModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class BuscadorDeArtigosTest extends TestCase
@@ -99,8 +99,8 @@ class BuscadorDeArtigosTest extends TestCase
     {
         $artigoFeedMock = app(\FeedIo\Feed::class);
 
-        $artigoMock = $this->mock(\FeedIo\Feed\Item::class, function ($mock) {
-            $autor = new \FeedIo\Feed\Item\Author();
+        $artigoMock = $this->mock(\FeedIo\MeusFeeds\Feeds\Item::class, function ($mock) {
+            $autor = new \FeedIo\MeusFeeds\Feeds\Item\Author();
             $autor->setName('Bruno Viana');
 
             $mock->shouldReceive('getTitle')->andReturn('Blog do Bruno');

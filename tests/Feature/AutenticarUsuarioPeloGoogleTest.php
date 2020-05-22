@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Socialite;
 use Tests\TestCase;
-use Usuario\App\UseCases\AutenticarUsuario;
+use MeusFeeds\Usuarios\App\UseCases\AutenticarUsuario;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

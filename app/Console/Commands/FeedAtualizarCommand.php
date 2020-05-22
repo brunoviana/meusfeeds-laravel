@@ -1,16 +1,16 @@
 <?php
 
-namespace Framework\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Framework\Mappers\FeedMapper;
+use App\Mappers\FeedMapper;
 
-use Feed\App\UseCases\SincronizarFeed;
-use Framework\Models\Feed as FeedModel;
-use Framework\Services\BuscadorDeArtigos;
-use Framework\Repositories\ArtigoRepository;
+use MeusFeeds\Feeds\App\UseCases\SincronizarFeed;
+use App\Models\Feed as FeedModel;
+use App\Services\BuscadorDeArtigos;
+use App\Repositories\ArtigoRepository;
 
-use Feed\App\Requests\SincronizarFeedRequest;
+use MeusFeeds\Feeds\App\Requests\SincronizarFeedRequest;
 
 class FeedAtualizarCommand extends Command
 {

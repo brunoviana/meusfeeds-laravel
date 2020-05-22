@@ -4,10 +4,10 @@ namespace Tests\Unit\Repositories;
 
 use Tests\TestCase;
 
-use Feed\Domain\Entities\Feed;
-use Framework\Models\Feed as FeedModel;
+use MeusFeeds\Feeds\Domain\Entities\Feed;
+use App\Models\Feed as FeedModel;
 
-use Framework\Repositories\FeedRepository;
+use App\Repositories\FeedRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FeedRepositoryTest extends TestCase

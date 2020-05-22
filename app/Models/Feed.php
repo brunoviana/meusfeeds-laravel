@@ -1,8 +1,8 @@
 <?php
 
-namespace Framework\Models;
+namespace App\Models;
 
-use Framework\Models\Feed\Artigo;
+use App\Models\MeusFeeds\Feeds\Artigo;
 
 use Illuminate\Database\Eloquent\Model;
 

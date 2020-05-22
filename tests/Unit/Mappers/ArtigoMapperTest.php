@@ -3,13 +3,13 @@
 namespace Tests\Unit\Mappers;
 
 use Tests\TestCase;
-use Feed\Domain\Entities\Artigo;
-use Feed\Domain\ValueObjects\Data;
+use MeusFeeds\Feeds\Domain\Entities\Artigo;
+use MeusFeeds\Feeds\Domain\ValueObjects\Data;
 
-use Feed\Domain\ValueObjects\Autor;
-use Framework\Mappers\ArtigoMapper;
+use MeusFeeds\Feeds\Domain\ValueObjects\Autor;
+use App\Mappers\ArtigoMapper;
 
-use Framework\Models\Artigo as ArtigoModel;
+use App\Models\Artigo as ArtigoModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ArtigoMapperTest extends TestCase

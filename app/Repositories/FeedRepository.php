@@ -1,12 +1,12 @@
 <?php
 
-namespace Framework\Repositories;
+namespace App\Repositories;
 
-use Feed\Domain\Entities\Feed;
-use Framework\Mappers\FeedMapper;
+use MeusFeeds\Feeds\Domain\Entities\Feed;
+use App\Mappers\FeedMapper;
 
-use Framework\Models\Feed as FeedModel;
-use Feed\Domain\Repositories\FeedRepositoryInterface;
+use App\Models\Feed as FeedModel;
+use MeusFeeds\Feeds\Domain\Repositories\FeedRepositoryInterface;
 
 class FeedRepository implements FeedRepositoryInterface
 {

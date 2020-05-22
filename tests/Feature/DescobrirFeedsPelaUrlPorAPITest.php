@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Framework\Services\ExtratorDeFeeds;
+use App\Services\ExtratorDeFeeds;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

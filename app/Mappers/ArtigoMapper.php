@@ -1,12 +1,12 @@
 <?php
 
-namespace Framework\Mappers;
+namespace App\Mappers;
 
-use Feed\Domain\Entities\Artigo;
-use Feed\Domain\ValueObjects\Data;
-use Feed\Domain\ValueObjects\Autor;
+use MeusFeeds\Feeds\Domain\Entities\Artigo;
+use MeusFeeds\Feeds\Domain\ValueObjects\Data;
+use MeusFeeds\Feeds\Domain\ValueObjects\Autor;
 
-use Framework\Models\Artigo as ArtigoModel;
+use App\Models\Artigo as ArtigoModel;
 
 class ArtigoMapper
 {

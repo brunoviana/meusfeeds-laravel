@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a7cc58fed76a2add36dc6e65a74ae0d",
+    "content-hash": "841c40680e4f247fcec0b2f9ea262f93",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -103,6 +103,90 @@
                 "math"
             ],
             "time": "2020-04-15T15:59:35+00:00"
+        },
+        {
+            "name": "brunoviana/meusfeeds-feeds",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brunoviana/meusfeeds-feeds.git",
+                "reference": "19d35e9e2330f3ae62d0a3a5c5fa4754ba340fea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brunoviana/meusfeeds-feeds/zipball/19d35e9e2330f3ae62d0a3a5c5fa4754ba340fea",
+                "reference": "19d35e9e2330f3ae62d0a3a5c5fa4754ba340fea",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "phpunit/phpunit": "~9.0",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "MeusFeeds\\Feeds\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Viana",
+                    "email": "brunoviana@gmail.com",
+                    "homepage": "https://github.com/brunoviana"
+                }
+            ],
+            "description": "Módulo de feeds do Meus Feeds.",
+            "time": "2020-05-22T16:25:01+00:00"
+        },
+        {
+            "name": "brunoviana/meusfeeds-usuarios",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brunoviana/meusfeeds-usuarios.git",
+                "reference": "46362c7756f38e4d3fd83756f11345609c606a3f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brunoviana/meusfeeds-usuarios/zipball/46362c7756f38e4d3fd83756f11345609c606a3f",
+                "reference": "46362c7756f38e4d3fd83756f11345609c606a3f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "phpunit/phpunit": "~9.0",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "MeusFeeds\\Usuarios\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Viana",
+                    "email": "brunoviana@gmail.com",
+                    "homepage": "https://github.com/brunoviana"
+                }
+            ],
+            "description": "Módulo de usuários do Meus Feeds.",
+            "time": "2020-05-22T16:24:55+00:00"
         },
         {
             "name": "composer/semver",
@@ -7263,7 +7347,10 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "brunoviana/meusfeeds-feeds": 20,
+        "brunoviana/meusfeeds-usuarios": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

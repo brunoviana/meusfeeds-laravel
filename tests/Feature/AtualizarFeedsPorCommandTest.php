@@ -3,14 +3,14 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Feed\Domain\Entities\Artigo;
-use Feed\Domain\ValueObjects\Data;
+use MeusFeeds\Feeds\Domain\Entities\Artigo;
+use MeusFeeds\Feeds\Domain\ValueObjects\Data;
 
-use Feed\Domain\ValueObjects\Autor;
-use Framework\Models\Feed as FeedModel;
-use Framework\Services\BuscadorDeArtigos;
+use MeusFeeds\Feeds\Domain\ValueObjects\Autor;
+use App\Models\Feed as FeedModel;
+use App\Services\BuscadorDeArtigos;
 
-use Framework\Models\Artigo as ArtigoModel;
+use App\Models\Artigo as ArtigoModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AtualizarFeedsPorCommandTest extends TestCase

@@ -1,10 +1,10 @@
 <?php
 
-namespace Framework\Mappers;
+namespace App\Mappers;
 
-use Feed\Domain\Entities\Feed;
+use MeusFeeds\Feeds\Domain\Entities\Feed;
 
-use Framework\Models\Feed as FeedModel;
+use App\Models\Feed as FeedModel;
 
 class FeedMapper
 {

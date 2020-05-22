@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Services;
+namespace App\Services;
 
 use FeedIo\FeedIo;
 

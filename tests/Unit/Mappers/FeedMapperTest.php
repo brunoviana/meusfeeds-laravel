@@ -4,10 +4,10 @@ namespace Tests\Unit\Mappers;
 
 use Tests\TestCase;
 
-use Feed\Domain\Entities\Feed;
-use Framework\Mappers\FeedMapper;
+use MeusFeeds\Feeds\Domain\Entities\Feed;
+use App\Mappers\FeedMapper;
 
-use Framework\Models\Feed as FeedModel;
+use App\Models\Feed as FeedModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FeedMapperTest extends TestCase

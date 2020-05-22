@@ -3,13 +3,13 @@
 namespace Tests\Unit\Mappers;
 
 use Tests\TestCase;
-use Framework\Mappers\UsuarioMapper;
-// use Feed\Domain\ValueObjects\Data;
+use App\Mappers\UsuarioMapper;
+// use MeusFeeds\Feeds\Domain\ValueObjects\Data;
 
-// use Feed\Domain\ValueObjects\Autor;
-use Usuario\Domain\Entities\Usuario;
+// use MeusFeeds\Feeds\Domain\ValueObjects\Autor;
+use MeusFeeds\Usuarios\Domain\Entities\Usuario;
 
-use Framework\Models\Usuario as UsuarioModel;
+use App\Models\Usuario as UsuarioModel;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

@@ -4,8 +4,8 @@ namespace Tests\Unit\Services;
 
 use Tests\TestCase;
 
-use Framework\Models\EmailPermitido;
-use Framework\Services\ConsultorDePermissoes;
+use App\Models\EmailPermitido;
+use App\Services\ConsultorDePermissoes;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ConsultorDePermissoesTest extends TestCase
