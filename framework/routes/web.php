@@ -22,10 +22,10 @@ Route::get('/callback-google', 'AutenticarUsuarioController@google');
 #### Layouts ####
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
-Route::get('/feeds', function () {
+Route::get('/i', function () {
     return view('feeds');
 });
 
