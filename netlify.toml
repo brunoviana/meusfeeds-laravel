@@ -1,7 +1,7 @@
 [build]
 
-command = "cd framework && php artisan export"
-publish = "framework/dist/"
+command = "composer install && php artisan export"
+publish = "dist/"
 
 [build.environment]
 
