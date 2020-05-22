@@ -20,7 +20,8 @@
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "spatie/laravel-export": "^0.3.2",
-        "squizlabs/php_codesniffer": "^3.5"
+        "squizlabs/php_codesniffer": "^3.5",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "dms/phpunit-arraysubset-asserts": "0.1.1",

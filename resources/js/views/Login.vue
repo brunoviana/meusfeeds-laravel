@@ -33,6 +33,19 @@
             onSuccess: function(googleUser){
                 let profile = googleUser.getBasicProfile();
 
+                this.$auth.login({
+                    params: {
+                        nome: profile.getName(),
+                        email: profile.getEmail(),
+                        foto: profile.getImageUrl()
+                    },
+                    success: function () {},
+                    error: function () {},
+                    rememberMe: true,
+                    redirect: '/',
+                    fetchUser: true,
+                });
+
                 console.debug(profile.getName());
                 console.debug(profile.getEmail());
                 console.debug(profile.getImageUrl());

@@ -992,6 +992,11 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
+"@websanova/vue-auth@^3.2.0-beta":
+  version "3.2.0-beta"
+  resolved "https://registry.yarnpkg.com/@websanova/vue-auth/-/vue-auth-3.2.0-beta.tgz#8abc6a4ff69b824768209c22024781d6b5200df6"
+  integrity sha512-HzRet9PrVEnhZm+9HOwUZBovqoa4IL6aCsvRu0GSpgkmEpbIfuNjNMMlEAoGuV2+C/iCAOUZ6DYEr9LDSSgCYw==
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -1272,7 +1277,7 @@ autoprefixer@^9.4.2, autoprefixer@^9.4.5:
     postcss "^7.0.27"
     postcss-value-parser "^4.0.3"
 
-axios@^0.19:
+axios@^0.19.2:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
@@ -7167,6 +7172,11 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+
+vue-axios@^2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/vue-axios/-/vue-axios-2.1.5.tgz#1af4bf1218ed71309c76afb38d0f683e312c24a7"
+  integrity sha512-th5xVbInVoyIoe+qY+9GCflEVezxAvztD4xpFF39SRQYqpoKD2qkmX8yv08jJG9a2SgNOCjirjJGSwg/wTrbmA==
 
 vue-google-login@^2.0.3:
   version "2.0.3"
