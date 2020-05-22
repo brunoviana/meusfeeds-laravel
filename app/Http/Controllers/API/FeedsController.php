@@ -13,10 +13,10 @@ use App\Http\Controllers\Controller;
 use App\Repositories\FeedRepository;
 use MeusFeeds\Feeds\App\Requests\CriarNovoFeedRequest;
 use App\Repositories\ArtigoRepository;
-use App\Http\Resources\MeusFeeds\Feeds\FeedResource;
+use App\Http\Resources\Feed\FeedResource;
 use MeusFeeds\Feeds\Domain\Exceptions\FeedJaExisteException;
 
-use App\Http\Resources\MeusFeeds\Feeds\FeedsDescobertosResource;
+use App\Http\Resources\Feed\FeedsDescobertosResource;
 
 class FeedsController extends Controller
 {

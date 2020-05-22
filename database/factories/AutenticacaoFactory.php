@@ -4,13 +4,13 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\Framework\Models\Usuario::class, function (Faker $faker) {
+$factory->define(\App\Models\Usuario::class, function (Faker $faker) {
     return [
         //
     ];
 });
 
-$factory->define(\Framework\Models\EmailPermitido::class, function (Faker $faker) {
+$factory->define(\App\Models\EmailPermitido::class, function (Faker $faker) {
     return [
         //
     ];
