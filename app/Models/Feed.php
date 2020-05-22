@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\MeusFeeds\Feeds\Artigo;
+use App\Models\Artigo;
 
 use Illuminate\Database\Eloquent\Model;
 

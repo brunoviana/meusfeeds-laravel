@@ -99,8 +99,8 @@ class BuscadorDeArtigosTest extends TestCase
     {
         $artigoFeedMock = app(\FeedIo\Feed::class);
 
-        $artigoMock = $this->mock(\FeedIo\MeusFeeds\Feeds\Item::class, function ($mock) {
-            $autor = new \FeedIo\MeusFeeds\Feeds\Item\Author();
+        $artigoMock = $this->mock(\FeedIo\Feed\Item::class, function ($mock) {
+            $autor = new \FeedIo\Feed\Item\Author();
             $autor->setName('Bruno Viana');
 
             $mock->shouldReceive('getTitle')->andReturn('Blog do Bruno');

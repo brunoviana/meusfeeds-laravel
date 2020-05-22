@@ -5,34 +5,12 @@
          colors="true"
 >
     <testsuites>
-        <testsuite name="Domain">
-            <directory suffix="Test.php">../*/Tests/Domain</directory>
-        </testsuite>
-
-        <testsuite name="App">
-            <directory suffix="Test.php">../*/Tests/App</directory>
-        </testsuite>
-
-        <testsuite name="Framework">
-            <directory suffix="Test.php">./tests</directory>
-        </testsuite>
-
-        <testsuite name="Feed">
-            <directory suffix="Test.php">../Feed/Tests</directory>
-        </testsuite>
-
-        <testsuite name="Usuario">
-            <directory suffix="Test.php">../Usuario/Tests</directory>
-        </testsuite>
-
-        <!-- <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Domain</directory>
-            <directory suffix="Test.php">./tests/Framework/Unit</directory>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
         <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/App</directory>
-            <directory suffix="Test.php">./tests/Framework/Feature</directory>
-        </testsuite> -->
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">

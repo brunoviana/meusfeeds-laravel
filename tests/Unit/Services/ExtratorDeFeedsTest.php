@@ -68,7 +68,7 @@ class ExtratorDeFeedsTest extends TestCase
         $artigoFeedMock = app(\FeedIo\Feed::class);
 
         foreach ($params['feed_itens'] as $feedItem) {
-            $artigoMock = $this->mock(\FeedIo\MeusFeeds\Feeds\Item::class, function ($mock) use ($feedItem) {
+            $artigoMock = $this->mock(\FeedIo\Feed\Item::class, function ($mock) use ($feedItem) {
                 $mock->shouldReceive('getTitle')->andReturn($feedItem);
             });
 
