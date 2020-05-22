@@ -15,16 +15,11 @@ RUN pecl install xdebug-2.8.1 \
 # Install Composer
 
 RUN	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer
-RUN composer global require hirak/prestissimo
 
 ENV PATH="/var/www/.composer/vendor/bin/:${PATH}"
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_MEMORY_LIMIT -1
-
-# Install XDebug
-
-RUN yes | pecl install xdebug
 
 EXPOSE 80
 
