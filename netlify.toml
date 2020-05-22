@@ -9,6 +9,7 @@ PHP_VERSION = "7.4"
 NODE_VERSION = "12.0.0"
 
 [[redirects]]
-  from = "/*"
-  to = "/"
-  status = 302
+
+from = "/*"
+to = "/"
+status = 302
