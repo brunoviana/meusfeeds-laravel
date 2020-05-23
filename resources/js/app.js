@@ -2,9 +2,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-//integrate
-const feather = require('feather-icons');
-
 import axios from 'axios';
 
 import Vue from 'vue'
@@ -89,6 +86,3 @@ const app = new Vue({
     components: { App },
     router
 });
-
-//call
- feather.replace();

@@ -1,30 +1,25 @@
 <template>
-    <div>
-        <h1>Vue Router Demo App</h1>
+    <div class="h-screen flex flex-col">
+        <Navigation />
 
-        <p>
-            <router-link :to="{ name: 'home.index' }">Home</router-link> |
-            <router-link :to="{ name: 'home.hello' }">Hello World</router-link> |
-            <a href="#" v-if="$auth.check()" @click.prevent="logout()">Logout</a>
-        </p>
-
-        <div class="container">
+        <main class="flex flex-grow overflow-hidden">
+            <Sidebar />
             <router-view></router-view>
-        </div>
+        </main>
     </div>
+
 
 </template>
 
 <script>
+    import Navigation from '../components/Home/Navigation';
+    import Sidebar from '../components/Home/Sidebar';
+
     export default {
-        methods: {
-            logout() {
-                this.$auth
-                    .logout({
-                        makeRequest: true,
-                        redirect: {name: 'login'},
-                    });
-            }
+        name: 'Home',
+        components: {
+            Navigation,
+            Sidebar
         }
     }
 </script>
