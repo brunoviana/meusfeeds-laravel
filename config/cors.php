@@ -20,7 +20,7 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
-        'meusfeeds.com.br'
+        'https://meusfeeds.com.br'
     ],
 
     'allowed_origins_patterns' => [],
