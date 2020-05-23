@@ -31,7 +31,7 @@ class AuthController extends Controller
         return response([
             'status' => 'success'
         ])
-        ->header('Authorization', $token);
+        ->header('Authorization', 'Bearer: ' . $token);
 
         // return $this->respondWithToken($token);
     }
