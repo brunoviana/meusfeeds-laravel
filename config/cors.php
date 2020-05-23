@@ -21,7 +21,8 @@ return [
 
     'allowed_origins' => [
         'http://localhost',
-        'https://meusfeeds.com.br'
+        'https://meusfeeds.com.br',
+        'http://meusfeeds.com.br',
     ],
 
     'allowed_origins_patterns' => [],
