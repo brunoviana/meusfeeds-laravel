@@ -28,8 +28,7 @@ import NaoEncontrado from './views/NaoEncontrado'
 axios.defaults.baseURL = API_URL;
 
 import auth from '@websanova/vue-auth';
-// import authBearer from '@websanova/vue-auth/dist/drivers/auth/bearer.js';
-import authBasic from '@websanova/vue-auth/dist/drivers/auth/basic.js';
+import authBearer from '@websanova/vue-auth/dist/drivers/auth/bearer.js';
 import httpAxios from '@websanova/vue-auth/dist/drivers/http/axios.1.x.js';
 import routerVueRouter from '@websanova/vue-auth/dist/drivers/router/vue-router.2.x.js';
 
@@ -80,7 +79,7 @@ const router = new VueRouter({
 Vue.router = router;
 
 Vue.use(auth, {
-    auth: authBasic,
+    auth: authBearer,
     http: httpAxios,
     router: routerVueRouter
 });
