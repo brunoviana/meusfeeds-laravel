@@ -19,7 +19,10 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => [
+        'localhost',
+        'meusfeeds.com.br',
+    ],
 
     'allowed_origins_patterns' => [],
 
