@@ -19,7 +19,7 @@ class UsuarioMapperTest extends TestCase
 
     public function test_Deve_Mapear_Entidade_Com_Sucesso()
     {
-        $usuario = Usuario::novo(
+        $usuario = new Usuario(
             'Bruno Viana',
             'brunoviana@gmail.com'
         );

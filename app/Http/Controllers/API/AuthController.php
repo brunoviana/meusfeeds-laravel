@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-
 use App\Models\Usuario;
+use Illuminate\Http\Request;
+use App\Models\ListaDeConvites;
+use App\Http\Controllers\Controller;
+use App\Repositories\UsuarioRepository;
+use App\Mappers\UsuarioMapper;
+use MeusFeeds\Usuarios\App\Exceptions\UsuarioNaoAutenticadoException;
+use MeusFeeds\Usuarios\App\UseCases\AutenticarUsuario;
+use MeusFeeds\Usuarios\App\Requests\AutenticarUsuarioRequest;
 
 class AuthController extends Controller
 {
@@ -16,24 +21,31 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $usuario = new Usuario();
-        $usuario->id = 1;
-        $usuario->nome = $request->input('nome');
-        $usuario->email = $request->input('email');
-        $usuario->foto = $request->input('foto');
+        $autenticaUsuario = new AutenticarUsuario(
+            new AutenticarUsuarioRequest(
+                $request->input('nome'),
+                $request->input('email')
+            ),
+            new UsuarioRepository(),
+            new ListaDeConvites()
+        );
 
-        // if (! $token = auth()->attempt($credentials)) {
-        //     return response()->json(['error' => 'Unauthorized'], 401);
-        // }
+        try {
+            $response = $autenticaUsuario->executar();
+        } catch (UsuarioNaoAutenticadoException $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 401);
+        }
 
-        $token = auth('api')->login($usuario);
+        $token = auth('api')->login(
+            UsuarioMapper::criaModel($response->usuario())
+        );
 
         return response([
             'status' => 'success'
         ])
         ->header('Authorization', $token);
-
-        // return $this->respondWithToken($token);
     }
 
     public function logout()

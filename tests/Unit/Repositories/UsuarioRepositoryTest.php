@@ -38,7 +38,7 @@ class UsuarioRepositoryTest extends TestCase
 
     public function test_Deve_Salvar_Usuario_Com_Sucesso()
     {
-        $usuario = Usuario::novo(
+        $usuario = new Usuario(
             'Bruno Viana',
             'brunoviana@gmail.com'
         );
@@ -51,7 +51,7 @@ class UsuarioRepositoryTest extends TestCase
 
     public function test_Deve_Setar_Id_Do_Usuario_Ao_Salvar()
     {
-        $usuario = Usuario::novo(
+        $usuario = new Usuario(
             'Bruno Viana',
             'brunoviana@gmail.com'
         );

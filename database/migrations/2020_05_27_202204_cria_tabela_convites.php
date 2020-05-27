@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CriaTabelaEmailsPermitidos extends Migration
+class CriaTabelaConvites extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CriaTabelaEmailsPermitidos extends Migration
      */
     public function up()
     {
-        Schema::create('emails_permitidos', function (Blueprint $table) {
+        Schema::create('convites', function (Blueprint $table) {
             $table->id();
             $table->string('email');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CriaTabelaEmailsPermitidos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emails_permitidos');
+        Schema::dropIfExists('convites');
     }
 }

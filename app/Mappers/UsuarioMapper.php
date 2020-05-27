@@ -23,7 +23,7 @@ class UsuarioMapper
 
     public static function criaEntidade(UsuarioModel $model)
     {
-        $usuario = Usuario::novo(
+        $usuario = new Usuario(
             $model->nome,
             $model->email
         );
