@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\API;
 
 use Tests\TestCase;
 use App\Services\ExtratorDeFeeds;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class DescobrirFeedsPelaUrlPorAPITest extends TestCase
+class DescobrirFeedsTest extends TestCase
 {
     use RefreshDatabase;
 

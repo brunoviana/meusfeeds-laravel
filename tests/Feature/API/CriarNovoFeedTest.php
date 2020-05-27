@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\API;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CriarNovoFeedPorAPITest extends TestCase
+class CriarNovoFeedTest extends TestCase
 {
     use RefreshDatabase;
 

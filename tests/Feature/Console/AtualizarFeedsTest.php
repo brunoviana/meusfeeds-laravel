@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Console;
 
 use Tests\TestCase;
 use MeusFeeds\Feeds\Domain\Entities\Artigo;
@@ -13,7 +13,7 @@ use App\Services\BuscadorDeArtigos;
 use App\Models\Artigo as ArtigoModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class AtualizarFeedsPorCommandTest extends TestCase
+class AtualizarFeedsTest extends TestCase
 {
     use RefreshDatabase;
 

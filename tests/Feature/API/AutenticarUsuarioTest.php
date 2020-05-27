@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\API;
 
 use Tests\TestCase;
 use App\Models\Usuario as UsuarioModel;
 use App\Models\Convite;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class AutenticarUsuarioViaApiTest extends TestCase
+class AutenticarUsuarioTest extends TestCase
 {
     use RefreshDatabase;
 
