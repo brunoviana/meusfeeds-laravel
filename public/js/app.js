@@ -36764,6 +36764,7 @@ var render = function() {
       _c("modal", { attrs: { name: "descobrir-feeds" } }, [
         _c(
           "div",
+          { staticClass: "h-full overflow-y-scroll" },
           [
             _c("loading", {
               attrs: {

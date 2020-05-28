@@ -42,7 +42,7 @@
         </div>
 
         <modal name="descobrir-feeds">
-            <div>
+            <div class="h-full overflow-y-scroll">
                 <loading :active="isModalLoading" :is-full-page="false" :height="25"></loading>
 
                 <input type="text" v-model="urlParaDescobrir" class="border-2" />
