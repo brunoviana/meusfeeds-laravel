@@ -16,7 +16,7 @@ class FeedMapperTest extends TestCase
 
     public function test_FeedRepository_Deve_Mapear_Entidade_Com_Sucesso()
     {
-        $feed = Feed::novo(
+        $feed = new Feed(
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
         );

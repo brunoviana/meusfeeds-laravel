@@ -24,7 +24,7 @@ class FeedMapper
 
     public static function criaEntidade(FeedModel $model)
     {
-        $feed = Feed::novo(
+        $feed = new Feed(
             $model->titulo,
             $model->link_rss
         );

@@ -9,8 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.4.0",
+        "brunoviana/meusfeeds-usuarios": "^1.0.0",
         "brunoviana/meusfeeds-feeds": "dev-master",
-        "brunoviana/meusfeeds-usuarios": "dev-master",
         "debril/feed-io": "^4.5",
         "fideloper/proxy": "^4.2",
         "friendsofphp/php-cs-fixer": "^2.16",

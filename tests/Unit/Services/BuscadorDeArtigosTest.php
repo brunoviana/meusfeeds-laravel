@@ -19,7 +19,7 @@ class BuscadorDeArtigosTest extends TestCase
 
     public function test_Deve_Buscar_Todos_Os_Artigos_Com_Sucesso()
     {
-        $feed = Feed::novo(
+        $feed = new Feed(
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
         );
@@ -80,7 +80,7 @@ class BuscadorDeArtigosTest extends TestCase
 
     public function test_Deve_Buscar_Todos_Se_Ainda_Nao_Tiver_Artigo_Ao_Buscar_Novos()
     {
-        $feed = Feed::novo(
+        $feed = new Feed(
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
         );

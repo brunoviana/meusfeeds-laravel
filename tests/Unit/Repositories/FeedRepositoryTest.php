@@ -60,7 +60,7 @@ class FeedRepositoryTest extends TestCase
 
     public function test_Deve_Salvar_Feed_Com_Sucesso()
     {
-        $feed = Feed::novo(
+        $feed = new Feed(
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
         );
@@ -73,7 +73,7 @@ class FeedRepositoryTest extends TestCase
 
     public function test_Deve_Setar_Id_Do_Feed_Ao_Salvar()
     {
-        $feed = Feed::novo(
+        $feed = new Feed(
             'Blog do Bruno',
             'https://brunoviana.dev/rss.xml'
         );

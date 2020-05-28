@@ -14,7 +14,7 @@ use App\Repositories\FeedRepository;
 use MeusFeeds\Feeds\App\Requests\CriarNovoFeedRequest;
 use App\Repositories\ArtigoRepository;
 use App\Http\Resources\Feed\FeedResource;
-use MeusFeeds\Feeds\Domain\Exceptions\FeedJaExisteException;
+use MeusFeeds\Feeds\App\Exceptions\FeedJaExisteException;
 
 use App\Http\Resources\Feed\FeedsDescobertosResource;
 

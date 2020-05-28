@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "390018ba081a24aefb7e07676c9443f3",
+    "content-hash": "5e0d1bc5a30ecd2d48947edc5bd893b2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -110,12 +110,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/brunoviana/meusfeeds-feeds.git",
-                "reference": "19d35e9e2330f3ae62d0a3a5c5fa4754ba340fea"
+                "reference": "c2c275b9cf42091b58f8b1e09a612c51353b6cdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brunoviana/meusfeeds-feeds/zipball/19d35e9e2330f3ae62d0a3a5c5fa4754ba340fea",
-                "reference": "19d35e9e2330f3ae62d0a3a5c5fa4754ba340fea",
+                "url": "https://api.github.com/repos/brunoviana/meusfeeds-feeds/zipball/c2c275b9cf42091b58f8b1e09a612c51353b6cdb",
+                "reference": "c2c275b9cf42091b58f8b1e09a612c51353b6cdb",
                 "shasum": ""
             },
             "require": {
@@ -123,6 +123,7 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.16",
+                "nunomaduro/collision": "^4.2",
                 "phpunit/phpunit": "~9.0",
                 "squizlabs/php_codesniffer": "^3.5"
             },
@@ -144,20 +145,20 @@
                 }
             ],
             "description": "Módulo de feeds do Meus Feeds.",
-            "time": "2020-05-22T16:25:01+00:00"
+            "time": "2020-05-28T16:00:09+00:00"
         },
         {
             "name": "brunoviana/meusfeeds-usuarios",
-            "version": "dev-master",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brunoviana/meusfeeds-usuarios.git",
-                "reference": "61e13c480794dcd4d0eaff65374d8121d3c98ec9"
+                "reference": "b5b224c0206765b07ee2280ae7cb531a3b746bc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brunoviana/meusfeeds-usuarios/zipball/61e13c480794dcd4d0eaff65374d8121d3c98ec9",
-                "reference": "61e13c480794dcd4d0eaff65374d8121d3c98ec9",
+                "url": "https://api.github.com/repos/brunoviana/meusfeeds-usuarios/zipball/b5b224c0206765b07ee2280ae7cb531a3b746bc2",
+                "reference": "b5b224c0206765b07ee2280ae7cb531a3b746bc2",
                 "shasum": ""
             },
             "require": {
@@ -186,7 +187,7 @@
                 }
             ],
             "description": "Módulo de usuários do Meus Feeds.",
-            "time": "2020-05-28T14:30:10+00:00"
+            "time": "2020-05-28T15:16:54+00:00"
         },
         {
             "name": "composer/semver",
@@ -7524,8 +7525,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "brunoviana/meusfeeds-feeds": 20,
-        "brunoviana/meusfeeds-usuarios": 20
+        "brunoviana/meusfeeds-feeds": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
