@@ -21,13 +21,15 @@ class UsuarioMapperTest extends TestCase
     {
         $usuario = new Usuario(
             'Bruno Viana',
-            'brunoviana@gmail.com'
+            'brunoviana@gmail.com',
+            'foto.jpg'
         );
 
         $usuarioModel = UsuarioMapper::criaModel($usuario);
 
         $this->assertEquals('Bruno Viana', $usuarioModel->nome);
         $this->assertEquals('brunoviana@gmail.com', $usuarioModel->email);
+        $this->assertEquals('foto.jpg', $usuarioModel->foto);
     }
 
     public function test_Deve_Retornar_Entitade_Corretamente()
@@ -35,10 +37,12 @@ class UsuarioMapperTest extends TestCase
         $usuarioModel = new UsuarioModel();
         $usuarioModel->nome = 'Bruno Viana';
         $usuarioModel->email = 'brunoviana@gmail.com';
+        $usuarioModel->foto = 'foto.jpg';
 
         $usuario = UsuarioMapper::criaEntidade($usuarioModel);
 
         $this->assertEquals('Bruno Viana', $usuario->nome());
         $this->assertEquals('brunoviana@gmail.com', $usuario->email());
+        $this->assertEquals('foto.jpg', $usuario->foto());
     }
 }

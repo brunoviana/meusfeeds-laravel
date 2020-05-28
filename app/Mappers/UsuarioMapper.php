@@ -17,6 +17,7 @@ class UsuarioMapper
 
         $usuarioModel->nome = $usuario->nome();
         $usuarioModel->email = $usuario->email();
+        $usuarioModel->foto = $usuario->foto();
 
         return $usuarioModel;
     }
@@ -25,7 +26,8 @@ class UsuarioMapper
     {
         $usuario = new Usuario(
             $model->nome,
-            $model->email
+            $model->email,
+            $model->foto
         );
 
         if ($model->id) {

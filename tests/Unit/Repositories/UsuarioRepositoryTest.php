@@ -18,7 +18,8 @@ class UsuarioRepositoryTest extends TestCase
     {
         factory(UsuarioModel::class, 1)->create([
             'nome' => 'Bruno Viana',
-            'email' => 'brunoviana@gmail.com'
+            'email' => 'brunoviana@gmail.com',
+            'foto' => 'foto.jpg'
         ]);
 
         $repository = new UsuarioRepository();
@@ -40,7 +41,8 @@ class UsuarioRepositoryTest extends TestCase
     {
         $usuario = new Usuario(
             'Bruno Viana',
-            'brunoviana@gmail.com'
+            'brunoviana@gmail.com',
+            'foto.jpg'
         );
 
         $repository = new UsuarioRepository();
@@ -53,7 +55,8 @@ class UsuarioRepositoryTest extends TestCase
     {
         $usuario = new Usuario(
             'Bruno Viana',
-            'brunoviana@gmail.com'
+            'brunoviana@gmail.com',
+            'foto.jpg'
         );
 
         $repository = new UsuarioRepository();

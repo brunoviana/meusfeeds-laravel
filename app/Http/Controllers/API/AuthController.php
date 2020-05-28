@@ -24,7 +24,8 @@ class AuthController extends Controller
         $autenticaUsuario = new AutenticarUsuario(
             new AutenticarUsuarioRequest(
                 $request->input('nome'),
-                $request->input('email')
+                $request->input('email'),
+                $request->input('foto')
             ),
             new UsuarioRepository(),
             new ListaDeConvites()

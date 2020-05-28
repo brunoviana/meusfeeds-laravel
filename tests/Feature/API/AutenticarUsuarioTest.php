@@ -15,12 +15,14 @@ class AutenticarUsuarioTest extends TestCase
     {
         $usuario = factory(UsuarioModel::class, 1)->create([
             'nome' => 'Bruno Viana',
-            'email' => 'brunoviana@gmail.com'
+            'email' => 'brunoviana@gmail.com',
+            'foto' => 'foto.jpg'
         ])->first();
 
         $params = [
             'nome' => 'Bruno Viana',
-            'email' => 'brunoviana@gmail.com'
+            'email' => 'brunoviana@gmail.com',
+            'foto' => 'foto.jpg'
         ];
 
         $response = $this->post('/api/auth/login', $params);
@@ -45,7 +47,8 @@ class AutenticarUsuarioTest extends TestCase
 
         $params = [
             'nome' => 'Bruno Viana',
-            'email' => 'brunoviana@gmail.com'
+            'email' => 'brunoviana@gmail.com',
+            'foto' => 'foto.jpg'
         ];
 
         $response = $this->post('/api/auth/login', $params);
@@ -64,7 +67,8 @@ class AutenticarUsuarioTest extends TestCase
     {
         $params = [
             'nome' => 'Bruno Viana',
-            'email' => 'brunoviana@gmail.com'
+            'email' => 'brunoviana@gmail.com',
+            'foto' => 'foto.jpg'
         ];
 
         $response = $this->post('/api/auth/login', $params);
