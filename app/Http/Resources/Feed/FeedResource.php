@@ -14,6 +14,14 @@ class FeedResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'titulo' => $this->titulo,
+            'dominio' => $this->dominio,
+            'link_rss' => $this->link_rss,
+            'nao_lidos' => $this->nao_lidos,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

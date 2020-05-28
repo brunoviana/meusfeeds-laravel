@@ -20,7 +20,8 @@ Route::get('auth/refresh', 'API\AuthController@refresh');
 Route::get('auth/user', 'API\AuthController@refresh');
 
 Route::post('feeds/descobrir', 'API\FeedsController@descobrir');
+Route::get('feeds/{feed}/artigos', 'API\FeedsController@artigos');
 
 Route::resource('feeds', 'API\FeedsController')->only([
-    'store'
+    'store', 'index', 'show'
 ]);

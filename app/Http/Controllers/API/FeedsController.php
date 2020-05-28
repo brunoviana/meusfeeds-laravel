@@ -14,6 +14,7 @@ use App\Repositories\FeedRepository;
 use MeusFeeds\Feeds\App\Requests\CriarNovoFeedRequest;
 use App\Repositories\ArtigoRepository;
 use App\Http\Resources\Feed\FeedResource;
+use App\Http\Resources\Feed\ArtigoResource;
 use MeusFeeds\Feeds\App\Exceptions\FeedJaExisteException;
 
 use App\Http\Resources\Feed\FeedsDescobertosResource;
@@ -27,7 +28,7 @@ class FeedsController extends Controller
      */
     public function index()
     {
-        //
+        return FeedResource::collection(FeedModel::all());
     }
 
     /**
@@ -75,7 +76,9 @@ class FeedsController extends Controller
      */
     public function show($id)
     {
-        //
+        return (new FeedResource(
+            FeedModel::find($id)
+        ));
     }
 
     /**
@@ -112,5 +115,10 @@ class FeedsController extends Controller
         return (new FeedsDescobertosResource(collect($feeds)))
                     ->response()
                     ->setStatusCode(200);
+    }
+
+    public function artigos(FeedModel $feed)
+    {
+        return ArtigoResource::collection($feed->artigos);
     }
 }

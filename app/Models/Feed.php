@@ -12,4 +12,19 @@ class Feed extends Model
     {
         return $this->hasMany(Artigo::class);
     }
+
+    public function getNaoLidosAttribute()
+    {
+        return $this->artigos()->where('lido', 0)->count();
+    }
+
+    public function getDominioAttribute()
+    {
+        $parseUrl = parse_url(trim($this->link_rss));
+        $explode =  explode('/', $parseUrl['path'], 2);
+
+        return trim(
+            $parseUrl['host'] ?? array_shift($explode)
+        );
+    }
 }

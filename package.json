@@ -29,12 +29,16 @@
         "@websanova/vue-auth": "^3.2.0-beta",
         "entypo": "^2.1.0",
         "feather-icons": "^4.28.0",
+        "moments": "^0.0.2",
         "tailwindcss": "^1.4.4",
         "vue": "^2.6.11",
         "vue-axios": "^2.1.5",
         "vue-clickaway": "^2.2.2",
         "vue-feather-icons": "^5.0.0",
         "vue-google-login": "^2.0.3",
+        "vue-js-modal": "^2.0.0-rc.3",
+        "vue-loading-overlay": "^3.3.2",
+        "vue-moment": "^4.1.0",
         "vue-router": "^3.2.0"
     }
 }
