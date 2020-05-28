@@ -2,7 +2,7 @@
     <div class="bg-gray-100 flex-shrink-0 md:block md:w-56 lg:w-1/5 xl:w-1/6 hidden overflow-y-auto">
         <div class="my-5 mx-4 flex items-center">
             <calendar-icon size="1.5x" class="text-gray-400 w-5 inline stroke-1"></calendar-icon>
-            <a href="#" @click.prevent="$router.push({ name: 'home.hello' })" class="text-sm font-bold ml-4 subpixel-antialiased">Hoje</a>
+            <a href="#" @click.prevent="$router.push({ name: 'home.index' })" class="text-sm font-bold ml-4 subpixel-antialiased">Hoje</a>
         </div>
 
         <div class="my-5 mx-4 flex items-center">

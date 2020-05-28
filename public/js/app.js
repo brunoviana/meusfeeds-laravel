@@ -36638,7 +36638,7 @@ var render = function() {
               on: {
                 click: function($event) {
                   $event.preventDefault()
-                  return _vm.$router.push({ name: "home.hello" })
+                  return _vm.$router.push({ name: "home.index" })
                 }
               }
             },
@@ -37096,120 +37096,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("p", [_vm._v("Inicio")])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-8" }, [
-      _c("div", { staticClass: "flex justify-right items-center" }, [
-        _c("h1", { staticClass: "text-3xl font-black mr-10" }, [
-          _vm._v("Stories by Taylor Otwell on Medium")
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c("i", {
-            staticClass: "text-gray-600 w-7 inline stroke-2",
-            attrs: { "data-feather": "check" }
-          }),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "text-gray-600 w-5 inline stroke-2",
-            attrs: { "data-feather": "rotate-cw" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "mt-10" }, [
-        _c("div", { staticClass: "flex border-t py-2" }, [
-          _c("i", {
-            staticClass: "text-gray-400 w-4 inline stroke-1 mr-2",
-            attrs: { "data-feather": "bookmark" }
-          }),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "text-gray-600 w-5 inline stroke-1 mr-2",
-            attrs: { "data-feather": "check" }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-sm text-gray-400 flex-none mr-2" }, [
-            _vm._v("Envoyer: Import Forge Servers")
-          ]),
-          _vm._v(" "),
-          _c(
-            "span",
-            { staticClass: "text-sm text-gray-400 font-light mr-2 truncate" },
-            [
-              _vm._v(
-                "Many people pair the convenient server provisioning of Forge with the zero-downtime deployment magic provided by Envoyer."
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-xs text-gray-400" }, [_vm._v("7m")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex border-t py-2" }, [
-          _c("i", {
-            staticClass: "text-gray-400 w-4 inline stroke-1 mr-2",
-            attrs: { "data-feather": "bookmark" }
-          }),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "text-gray-600 w-5 inline stroke-1 mr-2",
-            attrs: { "data-feather": "check" }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-sm text-gray-400 flex-none mr-2" }, [
-            _vm._v("Envoyer: Import Forge Servers")
-          ]),
-          _vm._v(" "),
-          _c(
-            "span",
-            { staticClass: "text-sm text-gray-400 font-light mr-2 truncate" },
-            [
-              _vm._v(
-                "Many people pair the convenient server provisioning of Forge with the zero-downtime deployment magic provided by Envoyer."
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-xs text-gray-400" }, [_vm._v("7m")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex border-t py-2" }, [
-          _c("i", {
-            staticClass: "text-gray-400 w-4 inline stroke-1 mr-2",
-            attrs: { "data-feather": "bookmark" }
-          }),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "text-gray-600 w-5 inline stroke-1 mr-2",
-            attrs: { "data-feather": "check" }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-sm text-gray-400 flex-none mr-2" }, [
-            _vm._v("Envoyer: Import Forge Servers")
-          ]),
-          _vm._v(" "),
-          _c(
-            "span",
-            { staticClass: "text-sm text-gray-400 font-light mr-2 truncate" },
-            [
-              _vm._v(
-                "Many people pair the convenient server provisioning of Forge with the zero-downtime deployment magic provided by Envoyer."
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-xs text-gray-400" }, [_vm._v("7m")])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
