@@ -1,23 +1,54 @@
 <template>
-    <div class="p-8 overflow-y-auto">
+    <div class="p-8 w-full">
         <loading :active="isLoading" :is-full-page="true" :height="25"></loading>
 
-        <div v-if="feed" class="flex justify-right items-center">
+        <div v-if="feed" class="flex justify-right items-center mb-10">
             <h1 class="text-3xl font-black mr-10">{{ feed.titulo }}</h1>
-            <div>
+            <!-- <div>
                 <i class="text-gray-600 w-7 inline stroke-2" data-feather="check"></i>
                 <i class="text-gray-600 w-5 inline stroke-2" data-feather="rotate-cw"></i>
-            </div>
+            </div> -->
         </div>
 
-        <div v-for="(artigo, index) in artigos" v-bind:key="index">
-            <a :href="artigo.link" target="_blank" class="flex border-t py-2">
-                <bookmark-icon size="1x" class="text-gray-400 w-4 inline stroke-1 mr-2"></bookmark-icon>
-                <check-icon size="1x" class="text-gray-600 w-5 inline stroke-1 mr-2"></check-icon>
+        <div    v-for="(artigo, index) in artigos"
+                v-bind:key="index"
+                class="flex border-t py-2">
 
-                <span class="text-sm text-gray-400 flex-none mr-2">{{ artigo.titulo }}</span>
-                <span class="text-sm text-gray-400 font-light mr-2 truncate">{{ artigo.descricao }}</span>
-                <span class="text-xs text-gray-400">{{ artigo.data_publicacao | moment('from', 'now', true) }}</span>
+                <!-- <bookmark-icon size="1x" class="text-gray-400 w-4 inline stroke-1 mr-2"></bookmark-icon> -->
+
+            <span class="w-5 inline mr-2 cursor-pointer">
+                <check-icon class="text-gray-600 stroke-1"
+                            size="1.5x"
+                            @click="alternarLido(artigo);">
+                </check-icon>
+            </span>
+
+            <a :href="artigo.link"
+                target="_blank"
+                v-bind:class="{
+                    'font-semibold': !artigo.lido,
+                    'text-black': !artigo.lido,
+                    'text-gray-400': artigo.lido
+                }">
+
+                <div class="text-sm uppercase"
+                     @click="alterarParaLido(artigo);">
+
+                    {{ artigo.titulo }}
+                </div>
+
+                <div class="text-xs mb-3"
+                     @click="alterarParaLido(artigo);">
+
+                    <clock-icon size="1x" class="text-gray-600 stroke-1 inline"></clock-icon>
+                    {{ artigo.data_publicacao | moment('from', 'now', true) }}
+                </div>
+
+                <div   class="text-sm font-light"
+                        @click="alterarParaLido(artigo);">
+
+                    {{ artigo.descricao | truncate(150) }}
+                </div>
             </a>
         </div>
 
@@ -27,7 +58,7 @@
 
 <script>
     import Loading from 'vue-loading-overlay';
-    import { CheckIcon, BookmarkIcon } from 'vue-feather-icons'
+    import { CheckIcon, BookmarkIcon, ClockIcon } from 'vue-feather-icons'
 
     import 'vue-loading-overlay/dist/vue-loading.css';
 
@@ -35,6 +66,7 @@
         components: {
             CheckIcon,
             BookmarkIcon,
+            ClockIcon,
             Loading
         },
         data: function() {
@@ -81,6 +113,24 @@
                 .catch(function(){
                     this.isLoading = false;
                 }.bind(this));
+            },
+
+            alternarLido(artigo){
+                let lido = artigo.lido == 0 ? 1 : 0;
+
+                artigo.lido = lido;
+
+                axios.post('/artigos/'+artigo.id+'/alterar-lido', {
+                    lido: lido
+                });
+            },
+
+            alterarParaLido(artigo){
+                artigo.lido = 1;
+
+                axios.post('/artigos/'+artigo.id+'/alterar-lido', {
+                    lido: 1
+                });
             }
         }
     }

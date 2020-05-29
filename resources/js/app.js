@@ -3,15 +3,21 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vue from 'vue'
+import moment from 'moment';
 import VueRouter from 'vue-router'
 import VueAxios from 'vue-axios';
 import VModal from 'vue-js-modal'
 import axios from 'axios';
 
+moment.locale('pt-br');
+
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(VModal);
-Vue.use(require('vue-moment'));
+Vue.use(require('vue-moment'), {
+    moment,
+});
+Vue.use(require('vue-truncate-filter'));
 
 import App from './views/App'
 import Auth from './views/Auth'

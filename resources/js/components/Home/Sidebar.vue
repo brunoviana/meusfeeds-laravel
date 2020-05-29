@@ -5,10 +5,10 @@
             <a href="#" @click.prevent="$router.push({ name: 'home.index' })" class="text-sm font-bold ml-4 subpixel-antialiased">Hoje</a>
         </div>
 
-        <div class="my-5 mx-4 flex items-center">
+        <!-- <div class="my-5 mx-4 flex items-center">
             <bookmark-icon size="1.5x" class="text-gray-400 w-5 inline stroke-1"></bookmark-icon>
             <a href="#" @click.prevent="$router.push({ name: 'home.hello' })" class="text-sm font-bold ml-4 subpixel-antialiased">Ler depois</a>
-        </div>
+        </div> -->
 
         <div class="my-5 mx-4">
 

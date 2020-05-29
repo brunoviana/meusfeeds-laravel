@@ -39,6 +39,7 @@
         "vue-js-modal": "^2.0.0-rc.3",
         "vue-loading-overlay": "^3.3.2",
         "vue-moment": "^4.1.0",
-        "vue-router": "^3.2.0"
+        "vue-router": "^3.2.0",
+        "vue-truncate-filter": "^1.1.7"
     }
 }
