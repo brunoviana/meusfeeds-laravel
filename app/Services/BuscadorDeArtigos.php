@@ -33,7 +33,7 @@ class BuscadorDeArtigos implements BuscadorDeArtigosInterface
             $autor = $item->getAuthor() ? (string) $item->getAuthor()->getName() : '';
             $descricao = $this->limpaDescricao($item->getDescription());
 
-            $artigosEncontrados[] = Artigo::novo(
+            $artigosEncontrados[] = new Artigo(
                 $item->getTitle(),
                 $descricao,
                 $item->getLink(),
@@ -83,7 +83,7 @@ class BuscadorDeArtigos implements BuscadorDeArtigosInterface
             $autor = $item->getAuthor() ? (string) $item->getAuthor()->getName() : '';
             $descricao = $this->limpaDescricao($item->getDescription());
 
-            $artigosEncontrados[] = Artigo::novo(
+            $artigosEncontrados[] = new Artigo(
                 $item->getTitle(),
                 $descricao,
                 $item->getLink(),

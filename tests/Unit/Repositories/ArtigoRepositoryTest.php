@@ -37,7 +37,7 @@ class ArtigoRepositoryTest extends TestCase
 
         $this->assertCount(0, ArtigoModel::all());
 
-        $artigo = Artigo::novo(
+        $artigo = new Artigo(
             'Hello World',
             'Meu primeiro artigo',
             'https://brunoviana.net/hello-world',
@@ -63,7 +63,7 @@ class ArtigoRepositoryTest extends TestCase
 
         $this->assertCount(0, ArtigoModel::all());
 
-        $artigo1 = Artigo::novo(
+        $artigo1 = new Artigo(
             'Hello World',
             'Meu primeiro artigo',
             'https://brunoviana.net/hello-world',
@@ -73,7 +73,7 @@ class ArtigoRepositoryTest extends TestCase
             Artigo::NAO_LIDO
         );
 
-        $artigo2 = Artigo::novo(
+        $artigo2 = new Artigo(
             'Hello Brasil',
             'Meu segundo artigo',
             'https://brunoviana.net/hello-brasil',

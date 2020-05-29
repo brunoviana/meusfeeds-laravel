@@ -27,7 +27,7 @@ class AtualizarFeedsTest extends TestCase
         $this->makeMock(BuscadorDeArtigos::class, function ($mock) {
             $mock->shouldReceive('buscarNovos')
                     ->andReturn([
-                        Artigo::novo(
+                        new Artigo(
                             'Meu primeiro artigo',
                             'Neste artigo você verá como fiz meu primeiro artigo',
                             'https://brunoviana.dev/primeiro-artigo',
@@ -36,7 +36,7 @@ class AtualizarFeedsTest extends TestCase
                             1,
                             Artigo::NAO_LIDO
                         ),
-                        Artigo::novo(
+                        new Artigo(
                             'Meu segundo artigo',
                             'Neste artigo você verá como fiz meu segundo artigo',
                             'https://brunoviana.dev/segundo-artigo',
@@ -45,7 +45,7 @@ class AtualizarFeedsTest extends TestCase
                             1,
                             Artigo::NAO_LIDO
                         ),
-                        Artigo::novo(
+                        new Artigo(
                             'Meu terceiro artigo',
                             'Neste artigo você verá como fiz meu priterceiromeiro artigo',
                             'https://brunoviana.dev/terceiro-artigo',

@@ -18,7 +18,7 @@ class ArtigoMapperTest extends TestCase
 
     public function test_Deve_Mapear_Entidade_Com_Sucesso()
     {
-        $artigo = Artigo::novo(
+        $artigo = new Artigo(
             'Hello World',
             'Meu primeiro artigo',
             'https://brunoviana.net/hello-world',

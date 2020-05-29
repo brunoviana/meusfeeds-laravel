@@ -31,7 +31,7 @@ class ArtigoMapper
 
     public static function criaEntidade(ArtigoModel $model)
     {
-        $artigo = Artigo::novo(
+        $artigo = new Artigo(
             $model->titulo,
             $model->descricao,
             $model->link,
