@@ -22,7 +22,11 @@ class CriaTabelaArtigos extends Migration
             $table->date('data_publicacao');
             $table->integer('lido');
             $table->bigInteger('feed_id')->unsigned();
+            $table->bigInteger('usuario_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('feed_id')->references('id')->on('feeds');
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
         });
     }
 

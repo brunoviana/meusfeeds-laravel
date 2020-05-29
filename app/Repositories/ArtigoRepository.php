@@ -12,7 +12,9 @@ class ArtigoRepository implements ArtigoRepositoryInterface
 {
     public function buscarPeloId(int $id) : ?Artigo
     {
-        $artigoModel = ArtigoModel::find($id);
+        $artigoModel = ArtigoModel::where('usuario_id', auth()->user()->id)
+                                    ->where('id', $id)
+                                    ->first();
 
         if ($artigoModel) {
             return ArtigoMapper::criaEntidade($artigoModel);
@@ -22,8 +24,9 @@ class ArtigoRepository implements ArtigoRepositoryInterface
     public function todos() : array
     {
         $artigos = [];
+        $artigosCollection = ArtigoModel::where('usuario_id', auth()->user()->id)->get();
 
-        foreach (ArtigoModel::all() as $artigoModel) {
+        foreach ($artigosCollection as $artigoModel) {
             $artigos[] = ArtigoMapper::criaEntidade($artigoModel);
         }
 
@@ -33,6 +36,10 @@ class ArtigoRepository implements ArtigoRepositoryInterface
     public function salvar(Artigo $artigo) : void
     {
         $artigoModel = ArtigoMapper::criaModel($artigo);
+
+        if (!$artigoModel->id) {
+            $artigoModel->usuario_id = auth()->user()->id;
+        }
 
         $artigoModel->save();
 

@@ -12,7 +12,9 @@ class FeedRepository implements FeedRepositoryInterface
 {
     public function buscar(int $id)
     {
-        $feedModel = FeedModel::find($id);
+        $feedModel = FeedModel::where('usuario_id', auth()->user()->id)
+                                    ->where('id', $id)
+                                    ->first();
 
         if ($feedModel) {
             return FeedMapper::criaEntidade($feedModel);
@@ -23,7 +25,9 @@ class FeedRepository implements FeedRepositoryInterface
 
     public function buscarPeloLink(string $link)
     {
-        $feedModel = FeedModel::where('link_rss', $link)->first();
+        $feedModel = FeedModel::where('usuario_id', auth()->user()->id)
+                                ->where('link_rss', $link)
+                                ->first();
 
         if ($feedModel) {
             return FeedMapper::criaEntidade($feedModel);
@@ -35,6 +39,10 @@ class FeedRepository implements FeedRepositoryInterface
     public function salvar(Feed $feed) : void
     {
         $feedModel = FeedMapper::criaModel($feed);
+
+        if (!$feedModel->id) {
+            $feedModel->usuario_id = auth()->user()->id;
+        }
 
         $feedModel->save();
 

@@ -11,17 +11,6 @@ use MeusFeeds\Usuarios\Domain\Repositories\UsuarioRepositoryInterface;
 
 class UsuarioRepository implements UsuarioRepositoryInterface
 {
-    // public function buscar(int $id)
-    // {
-    //     $feedModel = FeedModel::find($id);
-
-    //     if ($feedModel) {
-    //         return FeedMapper::criaEntidade($feedModel);
-    //     }
-
-    //     return null;
-    // }
-
     public function buscarPeloEmail(string $email) : ?Usuario
     {
         $usuarioModel = UsuarioModel::where('email', $email)->first();

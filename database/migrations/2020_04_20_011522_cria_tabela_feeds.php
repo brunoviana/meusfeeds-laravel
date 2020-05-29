@@ -17,7 +17,10 @@ class CriaTabelaFeeds extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('link_rss');
+            $table->bigInteger('usuario_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
         });
     }
 
