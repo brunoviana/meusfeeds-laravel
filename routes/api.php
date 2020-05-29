@@ -25,3 +25,9 @@ Route::get('feeds/{feed}/artigos', 'API\FeedsController@artigos');
 Route::resource('feeds', 'API\FeedsController')->only([
     'store', 'index', 'show'
 ]);
+
+Route::post('artigos/{artigo}/alterar-lido', 'API\ArtigosController@alterarLido');
+
+// Route::resource('artigos', 'API\ArtigosController')->only([
+//     'store', 'index', 'show'
+// ]);

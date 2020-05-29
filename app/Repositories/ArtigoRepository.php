@@ -10,6 +10,15 @@ use MeusFeeds\Feeds\Domain\Repositories\ArtigoRepositoryInterface;
 
 class ArtigoRepository implements ArtigoRepositoryInterface
 {
+    public function buscarPeloId(int $id) : ?Artigo
+    {
+        $artigoModel = ArtigoModel::find($id);
+
+        if ($artigoModel) {
+            return ArtigoMapper::criaEntidade($artigoModel);
+        }
+    }
+
     public function todos() : array
     {
         $artigos = [];
