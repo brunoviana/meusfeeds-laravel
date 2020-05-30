@@ -8,16 +8,18 @@ import VueRouter from 'vue-router'
 import VueAxios from 'vue-axios';
 import VModal from 'vue-js-modal'
 import axios from 'axios';
+import VueSlideoutPanel from 'vue2-slideout-panel';
 
 moment.locale('pt-br');
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(VModal);
+Vue.use(VueSlideoutPanel);
+Vue.use(require('vue-truncate-filter'));
 Vue.use(require('vue-moment'), {
     moment,
 });
-Vue.use(require('vue-truncate-filter'));
 
 import App from './views/App'
 import Auth from './views/Auth'

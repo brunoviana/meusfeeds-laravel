@@ -3,6 +3,7 @@
         <Navigation />
 <!-- flex flex-grow overflow-hidden -->
         <main class="flex flex-grow">
+            <slideout-panel></slideout-panel>
             <Sidebar />
             <router-view></router-view>
         </main>
